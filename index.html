@@ -5,176 +5,234 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rinnai Contractor Hub — SoCal Field Resources</title>
 <meta name="description" content="Curated Rinnai resources for Southern California contractors: SENSEI RX, SENSEI CX, Demand Duo, RCW Series, venting manuals, gas sizing, valves, and 24/7 tech support.">
-<meta name="theme-color" content="#F7F7F5">
+<meta name="theme-color" content="#0D0D0D">
 <meta name="apple-mobile-web-app-title" content="Rinnai Hub">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F7F7F5;
-    --card:#FFFFFF;
-    --ink:#141414;
-    --muted:#6B7075;
-    --line:#E7E7E3;
+    --bg:#0D0D0D;
+    --card:#1A1A1C;
+    --line:#2A2A2D;
+    --ink:#FFFFFF;
+    --body:#A0A0A8;
+    --dim:#5A5A62;
     --red:#C8102E;
     --red-dark:#A00D25;
-    --radius:16px;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+    --radius:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:120px}
-  @media (max-width:640px){html{scroll-padding-top:160px}}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @media (max-width:640px){html{scroll-padding-top:170px}}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);line-height:1.55;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg) radial-gradient(ellipse 80% 40% at 50% -10%, rgba(200,16,46,.06) 0%, transparent 100%) no-repeat;
+    color:var(--body);line-height:1.55;
     -webkit-font-smoothing:antialiased;
-    padding-bottom:84px;
+    padding-bottom:88px;
   }
   a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px}
 
   /* ===== Header ===== */
   header{
-    padding:56px 20px 28px;text-align:center;
-    background:linear-gradient(180deg,#FFFFFF 0%,var(--bg) 100%);
-    border-bottom:1px solid var(--line);
+    position:relative;padding:72px 20px 52px;text-align:center;overflow:hidden;
   }
+  header::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 70% 55% at 50% 108%, rgba(200,16,46,.16) 0%, rgba(255,90,40,.05) 45%, transparent 75%);
+  }
+  header>*{position:relative}
   .eyebrow{
-    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;
+    display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.16em;
     text-transform:uppercase;color:var(--red);
-    border:1px solid rgba(200,16,46,.25);border-radius:999px;
-    padding:5px 14px;margin-bottom:18px;background:rgba(200,16,46,.05);
+    border:1px solid rgba(200,16,46,.45);border-radius:999px;
+    padding:6px 16px;margin-bottom:22px;background:rgba(200,16,46,.06);
+    box-shadow:0 0 18px rgba(200,16,46,.18), inset 0 0 8px rgba(200,16,46,.06);
   }
   h1{
-    font-size:clamp(1.9rem,5.5vw,2.9rem);font-weight:800;
-    letter-spacing:-.03em;line-height:1.12;
+    font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--ink);
+    letter-spacing:-.04em;line-height:1.04;
   }
   h1 .red{color:var(--red)}
   .tagline{
-    max-width:560px;margin:14px auto 0;color:var(--muted);
+    max-width:520px;margin:18px auto 0;color:var(--body);
     font-size:clamp(.95rem,2.6vw,1.05rem);
+  }
+  /* flame threshold line */
+  .threshold{
+    height:1px;border:0;
+    background:linear-gradient(to right, transparent, rgba(200,16,46,.7) 50%, transparent);
   }
 
   /* ===== Sticky nav pills ===== */
   nav{
     position:sticky;top:0;z-index:50;
-    background:rgba(247,247,245,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    background:rgba(13,13,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
   }
   .pills{
     display:flex;gap:8px;overflow-x:auto;padding:12px 16px;
-    max-width:860px;margin:0 auto;scrollbar-width:none;
+    max-width:880px;margin:0 auto;scrollbar-width:none;
     justify-content:safe center;
   }
   .pills::-webkit-scrollbar{display:none}
   .pill{
-    flex:0 0 auto;font-size:.86rem;font-weight:600;white-space:nowrap;
-    padding:9px 18px;border-radius:999px;background:#FFF;
-    border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04);
-    transition:border-color .15s,color .15s;
+    flex:0 0 auto;font-size:.85rem;font-weight:600;white-space:nowrap;
+    padding:9px 18px;border-radius:999px;
+    background:#141416;color:var(--ink);
+    border:1px solid var(--line);
+    transition:all .2s var(--ease);
   }
-  .pill:hover{border-color:var(--red);color:var(--red)}
-
-  /* ===== Sections ===== */
-  main{max-width:860px;margin:0 auto;padding:8px 16px 40px}
-  section{padding-top:36px}
-  .section-head{display:flex;align-items:baseline;justify-content:center;gap:12px;margin-bottom:6px;text-align:center}
-  .section-head h2{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
-  .section-head .count{font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-  .section-sub{color:var(--muted);font-size:.92rem;margin:0 auto 18px;max-width:620px;text-align:center}
-
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media (max-width:640px){.grid{grid-template-columns:1fr}}
-
-  /* ===== Cards ===== */
-  .card{
-    display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px 18px;box-shadow:0 1px 3px rgba(0,0,0,.05);
-    transition:transform .15s,box-shadow .15s,border-color .15s;
+  .pill:hover{border-color:var(--red);color:#FFF;box-shadow:0 0 14px rgba(200,16,46,.2)}
+  .pill:active{background:rgba(200,16,46,.12);border-color:var(--red)}
+  .pill.store{
+    background:var(--red);border-color:var(--red);color:#FFF;font-weight:700;
+    box-shadow:0 0 16px rgba(200,16,46,.35);
   }
-  .card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08);border-color:#D8D8D2}
-  .card:active{transform:scale(.98);background:#FCFCFA;border-color:var(--red)}
-  .card:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-  .pill:active{background:rgba(200,16,46,.06);border-color:var(--red);color:var(--red)}
+  .pill.store:hover{background:var(--red-dark)}
   @media (max-width:640px){
     .pills{
       display:grid;grid-template-columns:repeat(2,1fr);
       gap:8px;padding:10px 14px;overflow:visible;
     }
     .pill{
-      text-align:center;padding:10px 6px;font-size:.84rem;
+      text-align:center;padding:11px 6px;font-size:.84rem;
       overflow:hidden;text-overflow:ellipsis;
     }
     .pill:first-child,.pill:last-child{grid-column:1 / -1}
   }
+
+  /* ===== Sections ===== */
+  main{max-width:880px;margin:0 auto;padding:10px 16px 48px}
+  section{padding-top:52px}
+  section+section::before{
+    content:"";display:block;height:1px;margin-bottom:52px;
+    background:linear-gradient(to right, transparent, #2A2A2D 20%, #2A2A2D 80%, transparent);
+  }
+  section#residential{padding-top:44px}
+  .section-head{text-align:center;margin-bottom:8px}
+  .section-head h2{
+    display:inline-block;font-size:1.5rem;font-weight:800;color:var(--ink);
+    letter-spacing:-.04em;padding-bottom:10px;position:relative;
+  }
+  .section-head h2::after{
+    content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:36px;height:2px;background:var(--red);border-radius:2px;
+  }
+  .section-head .count{
+    display:block;margin-top:10px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.68rem;font-weight:500;color:var(--dim);
+    letter-spacing:.18em;text-transform:uppercase;
+  }
+  .section-sub{color:var(--body);font-size:.92rem;margin:10px auto 22px;max-width:600px;text-align:center}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+  /* ===== Cards ===== */
+  .card{
+    display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 18px;
+    transition:all .2s var(--ease);
+  }
+  .card:hover{
+    border-color:transparent;
+    box-shadow:0 0 0 1px var(--red), 0 8px 32px rgba(200,16,46,.15);
+  }
+  .card:active{background:#1E1E21}
   .icon{
     width:46px;height:46px;border-radius:12px;
-    background:rgba(200,16,46,.07);color:var(--red);
+    background:rgba(200,16,46,.12);color:var(--red);
     display:flex;align-items:center;justify-content:center;
   }
   .icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-  .card h3{font-size:.98rem;font-weight:700;letter-spacing:-.01em;margin-bottom:2px}
-  .card p{font-size:.84rem;color:var(--muted)}
+  .card h3{font-size:.98rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-bottom:2px}
+  .card p{font-size:.84rem;color:var(--body)}
   .tag{
     display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;
-    text-transform:uppercase;color:var(--red);
-    background:rgba(200,16,46,.08);border-radius:5px;padding:2px 7px;
-    margin-top:8px;
+    text-transform:uppercase;border-radius:999px;padding:3px 9px;margin-top:8px;
+    color:#FF5A6E;background:rgba(200,16,46,.14);
   }
-  .tag.gray{color:var(--muted);background:#F0F0EC}
-
-  /* ===== Small screens: tighter, denser ===== */
-  @media (max-width:640px){
-    header{padding:36px 18px 22px}
-    .eyebrow{margin-bottom:14px}
-    main{padding:4px 14px 32px}
-    section{padding-top:28px}
-    .section-sub{margin-bottom:14px}
-    .grid{gap:10px}
-    .card{padding:18px 16px;gap:10px;border-radius:14px}
-    .icon{width:42px;height:42px;border-radius:10px}
-    .icon svg{width:20px;height:20px}
-    .card h3{font-size:.94rem}
-    .card p{font-size:.82rem}
-  }
+  .tag.new{color:#F59E0B;background:rgba(245,158,11,.1)}
+  .tag.login{color:#A0A0A8;background:rgba(160,160,168,.12)}
+  .tag.gray{color:#8B93A8;background:rgba(139,147,168,.1)}
 
   /* ===== Support banner ===== */
   .support{
-    margin-top:40px;background:#141414;color:#FFF;border-radius:20px;
-    padding:30px 24px;text-align:center;
+    position:relative;margin-top:52px;background:var(--card);color:#FFF;
+    border:1px solid var(--line);border-radius:18px;
+    padding:38px 24px;text-align:center;overflow:hidden;
   }
-  .support .label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B9BDC2;margin-bottom:8px}
+  .support::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--red);box-shadow:0 0 24px 2px rgba(200,16,46,.5);
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--body);margin-bottom:12px;
+  }
+  .badge .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--red);
+    box-shadow:0 0 8px rgba(200,16,46,.8);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
   .support a.phone{
-    display:inline-block;font-size:clamp(1.5rem,6vw,2.1rem);font-weight:800;letter-spacing:-.02em;color:#FFF;
+    display:inline-block;font-size:clamp(2rem,8vw,3.5rem);font-weight:900;
+    letter-spacing:-.04em;color:#FFF;transition:color .2s var(--ease);
   }
-  .support a.phone:hover{color:#FF5A6E}
-  .support p{font-size:.86rem;color:#B9BDC2;margin-top:6px}
-  @media (max-width:640px){
-    .support{margin-top:30px;padding:24px 18px;border-radius:16px}
-    footer{padding:26px 18px 14px;font-size:.76rem}
-  }
+  .support a.phone:hover{color:var(--red)}
+  .support p{font-size:.86rem;color:var(--dim);margin-top:10px}
 
   /* ===== Footer ===== */
   footer{
-    text-align:center;padding:34px 20px 20px;color:var(--muted);font-size:.8rem;
+    text-align:center;padding:40px 20px 24px;color:var(--dim);font-size:.75rem;
   }
-  footer .brand{font-weight:700;color:var(--ink)}
-  footer a{color:var(--red);font-weight:600}
 
   /* ===== Mobile call bar ===== */
   .callbar{
     position:fixed;left:0;right:0;bottom:0;z-index:60;
     display:flex;justify-content:center;
     padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-    background:rgba(247,247,245,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    border-top:1px solid var(--line);
+    background:rgba(13,13,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-top:1px solid rgba(200,16,46,.4);
   }
   .callbar a{
     display:flex;align-items:center;justify-content:center;gap:8px;
     width:100%;max-width:420px;padding:13px;border-radius:999px;
     background:var(--red);color:#FFF;font-weight:700;font-size:.95rem;
-    box-shadow:0 4px 14px rgba(200,16,46,.3);
+    box-shadow:0 0 20px rgba(200,16,46,.4);
+    transition:all .2s var(--ease);
   }
   .callbar a:active{background:var(--red-dark)}
   .callbar svg{width:18px;height:18px;stroke:#FFF;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ===== Small screens ===== */
+  @media (max-width:640px){
+    header{padding:52px 18px 40px}
+    .eyebrow{margin-bottom:16px}
+    main{padding:6px 14px 36px}
+    section{padding-top:40px}
+    section+section::before{margin-bottom:40px}
+    .grid{gap:10px}
+    .card{padding:20px 16px;gap:10px}
+    .icon{width:42px;height:42px;border-radius:10px}
+    .icon svg{width:20px;height:20px}
+    .card h3{font-size:.94rem}
+    .card p{font-size:.82rem}
+    .support{margin-top:40px;padding:30px 18px;border-radius:16px}
+    footer{padding:30px 18px 16px}
+  }
 </style>
 </head>
 <body>
@@ -185,9 +243,11 @@
   <p class="tagline">The stuff we actually use on jobs in Southern California — brochures, manuals, sizing charts, and support. Curated, no filler.</p>
 </header>
 
+<hr class="threshold" aria-hidden="true">
+
 <nav aria-label="Sections">
   <div class="pills">
-    <a class="pill" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener" style="border-color:var(--red);color:var(--red);font-weight:700">Rinnai Store</a>
+    <a class="pill store" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener">Rinnai Store</a>
     <a class="pill" href="#residential">Residential</a>
     <a class="pill" href="#commercial">Commercial</a>
     <a class="pill" href="#field">Field Essentials</a>
@@ -290,7 +350,7 @@
         <span>
           <h3>RCW Series Volume Water Heaters</h3>
           <p>New floor-standing condensing line — 399k to 1M BTU, up to 99% efficiency, 10:1 turndown.</p>
-          <span class="tag">New</span>
+          <span class="tag new">New</span>
         </span>
       </a>
 
@@ -330,12 +390,12 @@
     <p class="section-sub">Parts ordering and the rest of the job — gas sizing, recirculation, and isolation valves.</p>
     <div class="grid">
 
-      <a class="card" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener" style="border-color:rgba(200,16,46,.45)">
+      <a class="card" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener" style="border-color:rgba(200,16,46,.5)">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 7h12l1.5 13a1 1 0 0 1-1 1.1H5.5a1 1 0 0 1-1-1.1L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></span>
         <span>
           <h3>Rinnai Store</h3>
           <p>Order OEM parts and components direct from Rinnai — PRO login required.</p>
-          <span class="tag">Login</span>
+          <span class="tag login">Login</span>
         </span>
       </a>
 
@@ -389,7 +449,7 @@
         <span>
           <h3>Rinnai PRO Training (Absorb LMS)</h3>
           <p>Official online certification courses for Rinnai tankless.</p>
-          <span class="tag gray">Login</span>
+          <span class="tag login">Login</span>
         </span>
       </a>
 
@@ -408,8 +468,9 @@
   <!-- ================= SUPPORT ================= -->
   <section id="support">
     <div class="support">
-      <div class="label">Rinnai PRO Tech Support · 24/7 Emergency Available</div>
-      <a class="phone" href="tel:8006219419">800-621-9419</a>
+      <div class="badge"><span class="dot" aria-hidden="true"></span>Rinnai PRO Tech Support · 24/7 Emergency Available</div>
+      <br>
+      <a class="phone" href="tel:8443191230">844-319-1230</a>
       <p>Have the model and serial number ready — it's on the right side of the unit.</p>
     </div>
   </section>
@@ -421,7 +482,7 @@
 </footer>
 
 <div class="callbar">
-  <a href="tel:8006219419" aria-label="Call Rinnai tech support">
+  <a href="tel:8443191230" aria-label="Call Rinnai tech support">
     <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
     Call Rinnai Tech Support
   </a>
