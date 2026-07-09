@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rinnai Contractor Hub — SoCal Field Resources</title>
+<meta name="description" content="Curated Rinnai resources for Southern California contractors: SENSEI RX, SENSEI CX, Demand Duo, RCW Series, venting manuals, gas sizing, valves, and 24/7 tech support.">
+<meta name="theme-color" content="#F7F7F5">
+<meta name="apple-mobile-web-app-title" content="Rinnai Hub">
+<style>
+  :root{
+    --bg:#F7F7F5;
+    --card:#FFFFFF;
+    --ink:#141414;
+    --muted:#6B7075;
+    --line:#E7E7E3;
+    --red:#C8102E;
+    --red-dark:#A00D25;
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:120px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:84px;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ===== Header ===== */
+  header{
+    padding:56px 20px 28px;text-align:center;
+    background:linear-gradient(180deg,#FFFFFF 0%,var(--bg) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--red);
+    border:1px solid rgba(200,16,46,.25);border-radius:999px;
+    padding:5px 14px;margin-bottom:18px;background:rgba(200,16,46,.05);
+  }
+  h1{
+    font-size:clamp(1.9rem,5.5vw,2.9rem);font-weight:800;
+    letter-spacing:-.03em;line-height:1.12;
+  }
+  h1 .red{color:var(--red)}
+  .tagline{
+    max-width:560px;margin:14px auto 0;color:var(--muted);
+    font-size:clamp(.95rem,2.6vw,1.05rem);
+  }
+
+  /* ===== Sticky nav pills ===== */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,247,245,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .pills{
+    display:flex;gap:8px;overflow-x:auto;padding:12px 16px;
+    max-width:860px;margin:0 auto;scrollbar-width:none;
+    justify-content:safe center;
+  }
+  .pills::-webkit-scrollbar{display:none}
+  .pill{
+    flex:0 0 auto;font-size:.86rem;font-weight:600;white-space:nowrap;
+    padding:9px 18px;border-radius:999px;background:#FFF;
+    border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04);
+    transition:border-color .15s,color .15s;
+  }
+  .pill:hover{border-color:var(--red);color:var(--red)}
+
+  /* ===== Sections ===== */
+  main{max-width:860px;margin:0 auto;padding:8px 16px 40px}
+  section{padding-top:36px}
+  .section-head{display:flex;align-items:baseline;justify-content:center;gap:12px;margin-bottom:6px;text-align:center}
+  .section-head h2{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
+  .section-head .count{font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .section-sub{color:var(--muted);font-size:.92rem;margin:0 auto 18px;max-width:620px;text-align:center}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+  /* ===== Cards ===== */
+  .card{
+    display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 18px;box-shadow:0 1px 3px rgba(0,0,0,.05);
+    transition:transform .15s,box-shadow .15s,border-color .15s;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08);border-color:#D8D8D2}
+  .card:active{transform:scale(.98);background:#FCFCFA;border-color:var(--red)}
+  .card:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+  .pill:active{background:rgba(200,16,46,.06);border-color:var(--red);color:var(--red)}
+  .icon{
+    width:46px;height:46px;border-radius:12px;
+    background:rgba(200,16,46,.07);color:var(--red);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{font-size:.98rem;font-weight:700;letter-spacing:-.01em;margin-bottom:2px}
+  .card p{font-size:.84rem;color:var(--muted)}
+  .tag{
+    display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--red);
+    background:rgba(200,16,46,.08);border-radius:5px;padding:2px 7px;
+    margin-top:8px;
+  }
+  .tag.gray{color:var(--muted);background:#F0F0EC}
+
+  /* ===== Small screens: tighter, denser ===== */
+  @media (max-width:640px){
+    header{padding:36px 18px 22px}
+    .eyebrow{margin-bottom:14px}
+    main{padding:4px 14px 32px}
+    section{padding-top:28px}
+    .section-sub{margin-bottom:14px}
+    .grid{gap:10px}
+    .card{padding:18px 16px;gap:10px;border-radius:14px}
+    .icon{width:42px;height:42px;border-radius:10px}
+    .icon svg{width:20px;height:20px}
+    .card h3{font-size:.94rem}
+    .card p{font-size:.82rem}
+  }
+
+  /* ===== Support banner ===== */
+  .support{
+    margin-top:40px;background:#141414;color:#FFF;border-radius:20px;
+    padding:30px 24px;text-align:center;
+  }
+  .support .label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B9BDC2;margin-bottom:8px}
+  .support a.phone{
+    display:inline-block;font-size:clamp(1.5rem,6vw,2.1rem);font-weight:800;letter-spacing:-.02em;color:#FFF;
+  }
+  .support a.phone:hover{color:#FF5A6E}
+  .support p{font-size:.86rem;color:#B9BDC2;margin-top:6px}
+  @media (max-width:640px){
+    .support{margin-top:30px;padding:24px 18px;border-radius:16px}
+    footer{padding:26px 18px 14px;font-size:.76rem}
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    text-align:center;padding:34px 20px 20px;color:var(--muted);font-size:.8rem;
+  }
+  footer .brand{font-weight:700;color:var(--ink)}
+  footer a{color:var(--red);font-weight:600}
+
+  /* ===== Mobile call bar ===== */
+  .callbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    display:flex;justify-content:center;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(247,247,245,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+  }
+  .callbar a{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;max-width:420px;padding:13px;border-radius:999px;
+    background:var(--red);color:#FFF;font-weight:700;font-size:.95rem;
+    box-shadow:0 4px 14px rgba(200,16,46,.3);
+  }
+  .callbar a:active{background:var(--red-dark)}
+  .callbar svg{width:18px;height:18px;stroke:#FFF;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">SoCal Field Resources</span>
+  <h1>Rinnai <span class="red">Contractor Hub</span></h1>
+  <p class="tagline">The stuff we actually use on jobs in Southern California — brochures, manuals, sizing charts, and support. Curated, no filler.</p>
+</header>
+
+<nav aria-label="Sections">
+  <div class="pills">
+    <a class="pill" href="#residential">Residential</a>
+    <a class="pill" href="#commercial">Commercial</a>
+    <a class="pill" href="#field">Field Essentials</a>
+    <a class="pill" href="#training">Training &amp; Video</a>
+    <a class="pill" href="#support">Tech Support</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= RESIDENTIAL ================= -->
+  <section id="residential">
+    <div class="section-head"><h2>Residential</h2><span class="count">Tankless</span></div>
+    <p class="section-sub">The two lines that matter out here: SENSEI RX condensing and RE non-condensing. Spec it, install it, vent it.</p>
+    <div class="grid">
+
+      <a class="card" href="https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span>
+        <span>
+          <h3>SENSEI RX Series Brochure</h3>
+          <p>Full 30+ page PDF — models, BTUs, approved components, venting, valves.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://media.rinnai.us/salsify_asset/s-5dcde422-3307-426c-ab15-29ecd56cac15/100000839%20SENSEI%20RX%20Residential%20Installation%20and%20Operation%20Manual.pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg></span>
+        <span>
+          <h3>SENSEI RX Install &amp; Operation Manual</h3>
+          <p>Clearances, water quality, venting, flushing (Quick-Flush), draining.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://media.rinnai.us/salsify_asset/s-7bbd9e1e-b3de-4800-acad-aa997c5e9f28/100000625-PVC%20and%20CPVC%20Common%20Venting%20Installation%20Instructions%20for%20SENSEI.pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 20V8a4 4 0 0 1 4-4h12"/><path d="M16 0l4 4-4 4" transform="translate(0,0)"/><path d="M4 14h6M4 17h6"/></svg></span>
+        <span>
+          <h3>PVC / CPVC Common Venting Manual</h3>
+          <p>Official common-vent instructions for SENSEI models.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://media.rinnai.us/salsify_asset/s-4c0f42d2-4a9d-40d2-a189-d4f84bee5509/100000722(02)%20RE%20Installation%20and%20Operation%20Manual.pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></span>
+        <span>
+          <h3>RE Series Install &amp; Operation Manual</h3>
+          <p>Non-condensing — the outdoor workhorse for warm-climate replacements. Venting, flushing, draining.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ================= COMMERCIAL ================= -->
+  <section id="commercial">
+    <div class="section-head"><h2>Commercial</h2><span class="count">CX · Demand Duo · RCW</span></div>
+    <p class="section-sub">What actually gets installed down here: CX tankless, Demand Duo hybrids, and the new RCW volume water heaters. No boilers.</p>
+    <div class="grid">
+
+      <a class="card" href="https://www.rinnai.us/commercial/tankless-water-heaters" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 7v4M10 9h4"/></svg></span>
+        <span>
+          <h3>SENSEI CX Commercial Tankless</h3>
+          <p>199k BTU, 185°F output, cascade up to 24 units. CX &amp; CXP models.</p>
+          <span class="tag gray">Product page</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.rinnai.us/commercial/demand-duo" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="8" height="14" rx="2"/><rect x="14" y="3" width="7" height="11" rx="2"/><path d="M11 13h3"/></svg></span>
+        <span>
+          <h3>Demand Duo Hybrid Systems</h3>
+          <p>Tank + tankless hybrid. Direct replacement for commercial tanks — R, H, and Duo 2 series.</p>
+          <span class="tag gray">Product page</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.rinnai.us/sites/default/files/2024-11/US%20-%20Demand%20Duo%C2%AE%20Hybrid%20Commercial%20Water%20Heating%20Solutions%20(1).pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6"/><path d="M12 11v6M9 14l3 3 3-3"/></svg></span>
+        <span>
+          <h3>Demand Duo Brochure</h3>
+          <p>First-hour delivery, warranty comparison, venting options — the sell sheet.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://media.rinnai.us/salsify_asset/s-eab7351b-b8a4-43d2-a1ab-3043b0b802d8/100000872%20Demand%20Duo%202%20H-Series%20with%20SENSEI%20CX%20Installation%20Instructions.pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg></span>
+        <span>
+          <h3>Demand Duo 2 Install Instructions</h3>
+          <p>H-Series with SENSEI CX — CA earthquake strapping, rack assembly, venting, clearances, part numbers.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.rinnai.us/commercial/rcw-series" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span>
+        <span>
+          <h3>RCW Series Volume Water Heaters</h3>
+          <p>New floor-standing condensing line — 399k to 1M BTU, up to 99% efficiency, 10:1 turndown.</p>
+          <span class="tag">New</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="10" rx="1.5"/><rect x="14" y="4" width="7" height="10" rx="1.5"/><path d="M6.5 14v6M17.5 14v6M4 20h5M15 20h5"/></svg></span>
+        <span>
+          <h3>TRS Rack System Install Instructions</h3>
+          <p>Tankless rack systems with SENSEI CX — preassembled racks, fits a 32" doorway.</p>
+          <span class="tag">PDF</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.rinnai.us/commercial/multifamily-properties" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 10h2M13 10h2M9 14h2M13 14h2M9 18h2M13 18h2"/></svg></span>
+        <span>
+          <h3>Multi-Family Solutions</h3>
+          <p>Rack systems, central plant designs, and case studies for apartments &amp; HOAs.</p>
+          <span class="tag gray">Rinnai.us</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.rinnai.us/commercial" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+        <span>
+          <h3>Commercial Overview + Free Sizing</h3>
+          <p>Rinnai's engineering team sizes your system free — quotes within 48 hours, 100% sizing guarantee.</p>
+          <span class="tag gray">Rinnai.us</span>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ================= FIELD ESSENTIALS ================= -->
+  <section id="field">
+    <div class="section-head"><h2>Field Essentials</h2><span class="count">Sizing · Recirc · Valves</span></div>
+    <p class="section-sub">The rest of the job — gas sizing, recirculation, and isolation valves.</p>
+    <div class="grid">
+
+      <a class="card" href="https://www.rinnai.us/professional/faq" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+        <span>
+          <h3>Gas Pipe Sizing Charts</h3>
+          <p>1/2", 3/4" run lengths and sizing answers in the PRO FAQ.</p>
+          <span class="tag gray">Rinnai.us</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://us.grundfos.com/products/find-product/alpha-north-america/alpha-hwr-sf-t-north-america" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-6 6"/><path d="M21 3h-5M21 3v5"/></svg></span>
+        <span>
+          <h3>Grundfos Alpha HWR</h3>
+          <p>Smart indoor recirculation pump — the go-to for comfort recirc retrofits.</p>
+          <span class="tag gray">Grundfos</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.webstonevalves.com/product/tankless-water-heater-service-valves/" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="5"/><path d="M12 9V4M8 4h8"/></svg></span>
+        <span>
+          <h3>Webstone Service Valves</h3>
+          <p>Tankless isolation / service valve kits — make the annual flush a 5-minute hookup.</p>
+          <span class="tag gray">Webstone</span>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ================= TRAINING ================= -->
+  <section id="training">
+    <div class="section-head"><h2>Training &amp; Video</h2><span class="count">Learn it right</span></div>
+    <p class="section-sub">Watch it before you wrench it.</p>
+    <div class="grid">
+
+      <a class="card" href="https://www.youtube.com/@rinnaivideos" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3V9z"/></svg></span>
+        <span>
+          <h3>Rinnai YouTube Channel</h3>
+          <p>Installs, flushing, board replacement, venting walkthroughs.</p>
+          <span class="tag gray">Video</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://rinnaipro.myabsorb.com" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></span>
+        <span>
+          <h3>Rinnai PRO Training (Absorb LMS)</h3>
+          <p>Official online certification courses for Rinnai tankless.</p>
+          <span class="tag gray">Login</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://class-creation.netlify.app" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+        <span>
+          <h3>Live Hands-On Classes</h3>
+          <p>In-person Rinnai training in SoCal — register for the next session.</p>
+          <span class="tag">Register</span>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ================= SUPPORT ================= -->
+  <section id="support">
+    <div class="support">
+      <div class="label">Rinnai PRO Tech Support · 24/7 Emergency Available</div>
+      <a class="phone" href="tel:8006219419">800-621-9419</a>
+      <p>Have the model and serial number ready — it's on the right side of the unit.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Curated by <span class="brand">Eternahot</span> · Rinnai PRO Partner · CSLB #1150831</p>
+  <p style="margin-top:6px">Not an official Rinnai page — just what we actually use on jobs.<br>
+  <a href="https://eternahot.com" target="_blank" rel="noopener">eternahot.com</a> · <a href="tel:2132223457">(213) 222-3457</a></p>
+</footer>
+
+<div class="callbar">
+  <a href="tel:8006219419" aria-label="Call Rinnai tech support">
+    <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+    Call Rinnai Tech Support
+  </a>
+</div>
+
+</body>
+</html>
