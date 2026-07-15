@@ -202,6 +202,40 @@
   .checks li{margin:8px 0;padding-left:24px;position:relative}
   .checks li::before{content:"\2713";position:absolute;left:0;color:var(--red);font-weight:800}
 
+  /* ===== Flow calculator & chart ===== */
+  .calc{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;margin-bottom:14px;
+  }
+  .calc label{display:flex;flex-direction:column;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .calc input,.calc select{
+    width:100%;padding:10px 12px;border-radius:10px;background:#141416;
+    border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.9rem;outline:none;
+  }
+  .calc input:focus,.calc select:focus{border-color:var(--red)}
+  .calc-out{grid-column:1 / -1;text-align:center;padding-top:10px;border-top:1px solid var(--line)}
+  .calc-gpm{font-size:2.4rem;font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.1}
+  .calc-gpm span{font-size:1rem;font-weight:700;color:var(--dim)}
+  .calc-detail{font-size:.8rem;color:var(--dim);margin-top:4px}
+  @media (max-width:640px){
+    .calc{grid-template-columns:1fr 1fr}
+    .calc label:nth-of-type(3){grid-column:1 / -1}
+  }
+  .chartwrap{
+    overflow-x:auto;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:14px 8px 6px;position:relative;margin-bottom:14px;
+  }
+  .chart-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:.78rem;color:var(--body);padding:0 8px 8px}
+  .chart-legend .sw{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+  .chart-svg{display:block;min-width:560px;width:100%;height:auto}
+  .chart-tip{
+    position:absolute;pointer-events:none;display:none;z-index:5;
+    background:rgba(13,13,13,.95);border:1px solid var(--line);border-radius:8px;
+    padding:8px 10px;font-size:.75rem;color:var(--body);white-space:nowrap;
+  }
+  .chart-tip strong{color:var(--ink)}
+
   /* ===== Support banner ===== */
   .support{
     position:relative;margin-top:52px;background:var(--card);color:#FFF;
@@ -416,6 +450,53 @@
         </tbody>
       </table>
     </div>
+
+    <div class="subhead"><h3>Flow Rate vs Temperature Rise (&#916;T)</h3><p>Max hot water is physics: <strong>GPM = (BTU &#215; efficiency) &#247; (500 &#215; &#916;T)</strong>. &#916;T = set temp &#8722; incoming water temp. "Not enough hot water" in January is usually just a bigger &#916;T, not a broken unit.</p></div>
+
+    <div class="calc" id="flowCalc">
+      <label>Incoming water &#176;F<input type="number" id="fcIn" value="65" min="33" max="90" inputmode="numeric"></label>
+      <label>Set temp &#176;F<input type="number" id="fcSet" value="120" min="98" max="185" inputmode="numeric"></label>
+      <label>Unit<select id="fcUnit">
+        <option value="199000,0.96,11.0">199k condensing &#8212; RX / CX / RU199</option>
+        <option value="199000,0.82,9.8">199k non-condensing &#8212; RE199 / REP</option>
+        <option value="180000,0.82,0">180k non-condensing &#8212; RE180</option>
+        <option value="160000,0.82,0">160k non-condensing &#8212; RE160</option>
+        <option value="160000,0.96,0">160k condensing &#8212; RU160</option>
+        <option value="140000,0.82,0">140k non-condensing &#8212; RE140</option>
+      </select></label>
+      <div class="calc-out">
+        <div class="calc-gpm" id="fcOut">10.9 <span>GPM max</span></div>
+        <p class="calc-detail" id="fcDetail">&#916;T 55&#176;F &#183; roughly 5 simultaneous 2.0 GPM showers</p>
+      </div>
+    </div>
+
+    <div class="chart-legend" aria-hidden="true">
+      <span><span class="sw" style="background:#E8465F"></span>199k condensing (RX &#183; CX &#183; RU199)</span>
+      <span><span class="sw" style="background:#2F8ED6"></span>199k non-condensing (RE199)</span>
+    </div>
+    <div class="chartwrap" id="chartWrap">
+      <svg class="chart-svg" id="flowChart" viewBox="0 0 640 330" role="img" aria-label="Flow rate in GPM versus temperature rise for 199k BTU condensing and non-condensing units">
+        <rect x="160.0" y="16" width="232.0" height="278" fill="#FFFFFF" opacity="0.035"/><text x="276.0" y="28" text-anchor="middle" font-size="9.5" fill="#5A5A62" letter-spacing="1">TYPICAL SOCAL &#916;T</text><line x1="44" y1="294.0" x2="624" y2="294.0" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="297.5" text-anchor="end" font-size="10.5" fill="#5A5A62">0</text><line x1="44" y1="247.7" x2="624" y2="247.7" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="251.2" text-anchor="end" font-size="10.5" fill="#5A5A62">2</text><line x1="44" y1="201.3" x2="624" y2="201.3" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="204.8" text-anchor="end" font-size="10.5" fill="#5A5A62">4</text><line x1="44" y1="155.0" x2="624" y2="155.0" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="158.5" text-anchor="end" font-size="10.5" fill="#5A5A62">6</text><line x1="44" y1="108.7" x2="624" y2="108.7" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="112.2" text-anchor="end" font-size="10.5" fill="#5A5A62">8</text><line x1="44" y1="62.3" x2="624" y2="62.3" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="65.8" text-anchor="end" font-size="10.5" fill="#5A5A62">10</text><line x1="44" y1="16.0" x2="624" y2="16.0" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="19.5" text-anchor="end" font-size="10.5" fill="#5A5A62">12</text><text x="44.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">35</text><text x="160.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">45</text><text x="276.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">55</text><text x="392.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">65</text><text x="508.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">75</text><text x="624.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">85</text>
+        <text x="334" y="328" text-anchor="middle" font-size="10.5" fill="#5A5A62" font-weight="700" letter-spacing="1">&#916;T &#8212; TEMPERATURE RISE (&#176;F)</text>
+        <text x="12" y="155" text-anchor="middle" font-size="10.5" fill="#5A5A62" font-weight="700" letter-spacing="1" transform="rotate(-90 12 155)">GPM</text>
+        <path d="M44.0,41.1 L73.0,58.0 L102.0,72.7 L131.0,85.7 L160.0,97.3 L189.0,107.7 L218.0,117.0 L247.0,125.4 L276.0,133.1 L305.0,140.1 L334.0,146.5 L363.0,152.4 L392.0,157.8 L421.0,162.9 L450.0,167.5 L479.0,171.9 L508.0,176.0 L537.0,179.8 L566.0,183.4 L595.0,186.7 L624.0,189.9" fill="none" stroke="#E8465F" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M44.0,78.0 L73.0,92.4 L102.0,105.0 L131.0,116.1 L160.0,126.0 L189.0,134.8 L218.0,142.8 L247.0,150.0 L276.0,156.5 L305.0,162.5 L334.0,168.0 L363.0,173.0 L392.0,177.7 L421.0,182.0 L450.0,186.0 L479.0,189.7 L508.0,193.2 L537.0,196.4 L566.0,199.5 L595.0,202.4 L624.0,205.1" fill="none" stroke="#2F8ED6" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="622" y="180.9" text-anchor="end" font-size="11" font-weight="600" fill="#A0A0A8">Condensing</text><text x="622" y="222.1" text-anchor="end" font-size="11" font-weight="600" fill="#A0A0A8">Non-condensing</text>
+        <line id="fcCross" x1="0" y1="16" x2="0" y2="294" stroke="#5A5A62" stroke-width="1" stroke-dasharray="3 3" style="display:none"/>
+        <circle id="fcDotA" r="4.5" fill="#E8465F" stroke="#1A1A1C" stroke-width="2" style="display:none"/>
+        <circle id="fcDotB" r="4.5" fill="#2F8ED6" stroke="#1A1A1C" stroke-width="2" style="display:none"/>
+        <rect id="fcHit" x="44" y="16" width="580" height="278" fill="transparent"/>
+      </svg>
+      <div class="chart-tip" id="fcTip"></div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>&#916;T Rise</th><th>199k Cond.</th><th>199k Non-Cond.</th><th>160k Non-Cond.</th><th>140k Non-Cond.</th></tr></thead>
+        <tbody><tr><td class="code">35&#176;F</td><td>10.9</td><td>9.3</td><td>7.5</td><td>6.6</td></tr><tr><td class="code">40&#176;F</td><td>9.6</td><td>8.2</td><td>6.6</td><td>5.7</td></tr><tr><td class="code">45&#176;F</td><td>8.5</td><td>7.3</td><td>5.8</td><td>5.1</td></tr><tr><td class="code">50&#176;F</td><td>7.6</td><td>6.5</td><td>5.2</td><td>4.6</td></tr><tr><td class="code">55&#176;F</td><td style="color:var(--ink)">6.9</td><td style="color:var(--ink)">5.9</td><td style="color:var(--ink)">4.8</td><td style="color:var(--ink)">4.2</td></tr><tr><td class="code">60&#176;F</td><td>6.4</td><td>5.4</td><td>4.4</td><td>3.8</td></tr><tr><td class="code">65&#176;F</td><td>5.9</td><td>5.0</td><td>4.0</td><td>3.5</td></tr><tr><td class="code">70&#176;F</td><td>5.5</td><td>4.7</td><td>3.7</td><td>3.3</td></tr><tr><td class="code">75&#176;F</td><td>5.1</td><td>4.4</td><td>3.5</td><td>3.1</td></tr><tr><td class="code">80&#176;F</td><td>4.8</td><td>4.1</td><td>3.3</td><td>2.9</td></tr></tbody>
+      </table>
+    </div>
+    <p class="table-note">GPM, calculated at ~96% (condensing) / ~82% (non-condensing) thermal efficiency, capped at published max flow (11.0 / 9.8 GPM on the 199k units). Close enough to diagnose a flow complaint &#8212; the spec-sheet curve governs for system design.</p>
 
     <div class="subhead"><h3>Vent Length Limits</h3><p>Maximum <strong>equivalent</strong> length per unit, direct vent. Count every fitting: each 90° elbow = 5 ft, each 45° = 2.5 ft (twin pipe PVC/CPVC).</p></div>
     <div class="tablewrap">
@@ -725,6 +806,55 @@
         r.style.display=r.textContent.toLowerCase().indexOf(q)!==-1?'':'none';
       });
     });
+  })();
+</script>
+
+<script>
+  (function(){
+    var inp=document.getElementById('fcIn'),set=document.getElementById('fcSet'),
+        unit=document.getElementById('fcUnit'),out=document.getElementById('fcOut'),
+        det=document.getElementById('fcDetail');
+    if(!inp)return;
+    function calc(){
+      var p=unit.value.split(','),btu=+p[0],eff=+p[1],cap=+p[2];
+      var dt=Math.max(1,(+set.value)-(+inp.value));
+      var g=btu*eff/(500*dt);
+      if(cap>0)g=Math.min(g,cap);
+      out.innerHTML=g.toFixed(1)+' <span>GPM max</span>';
+      det.textContent='\u0394T '+dt+'\u00B0F \u00B7 roughly '+Math.max(1,Math.floor(g/2))+' simultaneous 2.0 GPM showers';
+    }
+    [inp,set,unit].forEach(function(el){el.addEventListener('input',calc)});
+    calc();
+
+    var svg=document.getElementById('flowChart'),hit=document.getElementById('fcHit'),
+        cross=document.getElementById('fcCross'),dA=document.getElementById('fcDotA'),
+        dB=document.getElementById('fcDotB'),tip=document.getElementById('fcTip'),
+        wrap=document.getElementById('chartWrap');
+    var ML=44,MR=16,MT=16,PW=580,PH=278,T0=35,T1=85,G1=12.0;
+    function gpm(btu,eff,dt){return btu*eff/(500*dt)}
+    function onMove(ev){
+      var pt=svg.createSVGPoint();pt.x=ev.clientX;pt.y=ev.clientY;
+      var p=pt.matrixTransform(svg.getScreenCTM().inverse());
+      var t=T0+(p.x-ML)/PW*(T1-T0);
+      if(t<T0||t>T1)return onLeave();
+      var a=gpm(199000,.96,t),b=gpm(199000,.82,t);
+      var ya=MT+(G1-a)/G1*PH,yb=MT+(G1-b)/G1*PH;
+      cross.setAttribute('x1',p.x);cross.setAttribute('x2',p.x);cross.style.display='';
+      dA.setAttribute('cx',p.x);dA.setAttribute('cy',ya);dA.style.display='';
+      dB.setAttribute('cx',p.x);dB.setAttribute('cy',yb);dB.style.display='';
+      tip.innerHTML='<strong>\u0394T '+Math.round(t)+'\u00B0F</strong><br>Condensing: <strong>'+a.toFixed(1)+
+        '</strong> GPM<br>Non-cond: <strong>'+b.toFixed(1)+'</strong> GPM';
+      tip.style.display='block';
+      var r=wrap.getBoundingClientRect();
+      var tx=ev.clientX-r.left+14,ty=ev.clientY-r.top-10;
+      if(tx+tip.offsetWidth>r.width-8)tx-=tip.offsetWidth+28;
+      tip.style.left=tx+'px';tip.style.top=ty+'px';
+    }
+    function onLeave(){
+      cross.style.display='none';dA.style.display='none';dB.style.display='none';tip.style.display='none';
+    }
+    hit.addEventListener('pointermove',onMove);
+    hit.addEventListener('pointerleave',onLeave);
   })();
 </script>
 
