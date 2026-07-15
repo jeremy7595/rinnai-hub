@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rinnai Contractor Hub — SoCal Field Resources</title>
-<meta name="description" content="Curated Rinnai resources for Southern California contractors: SENSEI RX, SENSEI CX, Demand Duo, RCW Series, venting manuals, gas sizing, valves, and 24/7 tech support.">
+<meta name="description" content="Rinnai tankless service reference for technicians: error codes, gas pressure specs, descale flush procedure, recess box and door kit cross-reference, manuals, and 24/7 tech support.">
 <meta name="theme-color" content="#0D0D0D">
 <meta name="apple-mobile-web-app-title" content="Rinnai Hub">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:120px}
-  @media (max-width:640px){html{scroll-padding-top:170px}}
+  @media (max-width:640px){html{scroll-padding-top:74px}}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -98,15 +98,8 @@
   }
   .pill.store:hover{background:var(--red-dark)}
   @media (max-width:640px){
-    .pills{
-      display:grid;grid-template-columns:repeat(2,1fr);
-      gap:8px;padding:10px 14px;overflow:visible;
-    }
-    .pill{
-      text-align:center;padding:11px 6px;font-size:.84rem;
-      overflow:hidden;text-overflow:ellipsis;
-    }
-    .pill:first-child,.pill:last-child{grid-column:1 / -1}
+    .pills{gap:7px;padding:10px 14px}
+    .pill{padding:9px 14px;font-size:.82rem}
   }
 
   /* ===== Sections ===== */
@@ -116,7 +109,7 @@
     content:"";display:block;height:1px;margin-bottom:52px;
     background:linear-gradient(to right, transparent, #2A2A2D 20%, #2A2A2D 80%, transparent);
   }
-  section#residential{padding-top:44px}
+  section#codes{padding-top:44px}
   .section-head{text-align:center;margin-bottom:8px}
   .section-head h2{
     display:inline-block;font-size:1.5rem;font-weight:800;color:var(--ink);
@@ -165,6 +158,49 @@
   .tag.new{color:#F59E0B;background:rgba(245,158,11,.1)}
   .tag.login{color:#A0A0A8;background:rgba(160,160,168,.12)}
   .tag.gray{color:#8B93A8;background:rgba(139,147,168,.1)}
+
+  /* ===== Data tables ===== */
+  .filterbar{max-width:420px;margin:0 auto 18px}
+  .filterbar input{
+    width:100%;padding:11px 16px;border-radius:999px;
+    background:#141416;border:1px solid var(--line);color:var(--ink);
+    font:inherit;font-size:.88rem;outline:none;transition:border-color .2s var(--ease);
+  }
+  .filterbar input::placeholder{color:var(--dim)}
+  .filterbar input:focus{border-color:var(--red)}
+  .tablewrap{
+    overflow-x:auto;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  table.data{width:100%;border-collapse:collapse;font-size:.85rem;text-align:left;min-width:560px}
+  .data th{
+    font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--dim);padding:12px 14px;border-bottom:1px solid var(--line);
+    background:#141416;white-space:nowrap;
+  }
+  .data td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--body);vertical-align:top}
+  .data tr:last-child td{border-bottom:0}
+  .data td.code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-weight:700;color:var(--ink);white-space:nowrap;
+  }
+  .data td strong{color:var(--ink);font-weight:600}
+  .table-note{font-size:.8rem;color:var(--dim);margin-top:12px;text-align:center;max-width:620px;margin-left:auto;margin-right:auto}
+  .subhead{margin:36px 0 12px;text-align:center}
+  .subhead h3{font-size:1.02rem;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .subhead p{font-size:.82rem;color:var(--dim);margin-top:2px}
+  .steps{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px 20px 42px;font-size:.88rem;
+  }
+  .steps li{margin:8px 0;padding-left:6px}
+  .steps li::marker{color:var(--red);font-weight:700}
+  .checks{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;list-style:none;font-size:.88rem;
+  }
+  .checks li{margin:8px 0;padding-left:24px;position:relative}
+  .checks li::before{content:"\2713";position:absolute;left:0;color:var(--red);font-weight:800}
 
   /* ===== Support banner ===== */
   .support{
@@ -282,7 +318,7 @@
 <header>
   <span class="eyebrow">SoCal Field Resources</span>
   <h1>Rinnai <span class="red">Contractor Hub</span></h1>
-  <p class="tagline">The stuff we actually use on jobs in Southern California — brochures, manuals, sizing charts, and support. Curated, no filler.</p>
+  <p class="tagline">The data techs reach for 80% of the time — error codes, gas specs, flush procedure, recess kits — right on the page. Manuals and links as backup.</p>
 </header>
 
 <hr class="threshold" aria-hidden="true">
@@ -303,15 +339,119 @@
 <nav aria-label="Sections">
   <div class="pills">
     <a class="pill store" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener">Rinnai Store</a>
+    <a class="pill" href="#codes">Error Codes</a>
+    <a class="pill" href="#specs">Quick Specs</a>
+    <a class="pill" href="#kits">Recess &amp; Kits</a>
     <a class="pill" href="#residential">Residential</a>
     <a class="pill" href="#commercial">Commercial</a>
     <a class="pill" href="#field">Field Essentials</a>
-    <a class="pill" href="#training">Training &amp; Video</a>
+    <a class="pill" href="#training">Training</a>
     <a class="pill" href="#support">Tech Support</a>
   </div>
 </nav>
 
 <main>
+
+  <!-- ================= ERROR CODES ================= -->
+  <section id="codes">
+    <div class="section-head"><h2>Error Codes</h2><span class="count">Diagnostic Quick Reference</span></div>
+    <p class="section-sub">The codes you'll actually see and where to start. Applies broadly across Rinnai tankless — always confirm against the unit's service manual before replacing parts.</p>
+    <div class="filterbar"><input type="search" id="codeFilter" placeholder="Filter — try 11, ignition, scale…" aria-label="Filter error codes"></div>
+    <div class="tablewrap">
+      <table class="data" id="codeTable">
+        <thead><tr><th>Code</th><th>What it means</th><th>First checks in the field</th></tr></thead>
+        <tbody>
+          <tr><td class="code">10</td><td><strong>Air supply / exhaust blockage</strong></td><td>Walk the vent — termination screen, bird nests, sag in horizontal runs. Check the fan blade for debris and confirm vent length is within spec.</td></tr>
+          <tr><td class="code">11</td><td><strong>No ignition</strong></td><td>Confirm gas is on and supply is adequate. Check inlet gas pressure under load, igniter spark, and gas solenoids. Verify gas type matches the rating plate.</td></tr>
+          <tr><td class="code">12</td><td><strong>Flame failure</strong></td><td>Low gas pressure under load is the classic cause — check it at max fire. Inspect the flame rod and its connection, look for exhaust recirculating into the intake, verify the ground wire.</td></tr>
+          <tr><td class="code">14</td><td><strong>Thermal fuse / overheat wrap</strong></td><td>Usually scale in the heat exchanger or restricted airflow. Descale and find the cause before replacing the fuse — it tripped for a reason.</td></tr>
+          <tr><td class="code">16</td><td><strong>Over-temperature warning</strong></td><td>Scale buildup or restricted flow — flush the heat exchanger, clean the inlet filter, verify flow control operation.</td></tr>
+          <tr><td class="code">19</td><td><strong>Electrical grounding fault</strong></td><td>Moisture in connectors, chafed wiring, or a sensor shorted to the case. Verify a solid dedicated ground.</td></tr>
+          <tr><td class="code">25</td><td><strong>Condensate trap / drain blocked</strong> (condensing)</td><td>Clear the trap and drain line, check neutralizer media, confirm drain slope. Never cap a condensate line.</td></tr>
+          <tr><td class="code">31</td><td><strong>Burner sensor fault</strong></td><td>Check the connector and sensor resistance; replace the sensor if open or shorted.</td></tr>
+          <tr><td class="code">32</td><td><strong>Outgoing water temp sensor</strong></td><td>Check the connector, sensor resistance, and scale on the probe. Replace if out of spec.</td></tr>
+          <tr><td class="code">33</td><td><strong>Heat exchanger temp sensor</strong></td><td>Same drill as 32 — connector, resistance, scale.</td></tr>
+          <tr><td class="code">34</td><td><strong>Combustion air temp sensor</strong></td><td>First check for exhaust re-entering the intake (vent termination clearances), then the sensor and fan.</td></tr>
+          <tr><td class="code">52</td><td><strong>Modulating gas valve fault</strong></td><td>Check the valve connector and coil resistance; replace the modulating valve if out of spec.</td></tr>
+          <tr><td class="code">61</td><td><strong>Combustion fan failure</strong></td><td>Spin the fan by hand — it should be free. Check motor resistance and the connector; replace the fan motor.</td></tr>
+          <tr><td class="code">65</td><td><strong>Water flow control valve fault</strong></td><td>Servo jammed or scaled — clean or replace the flow control assembly.</td></tr>
+          <tr><td class="code">71</td><td><strong>Gas solenoid valve circuit</strong></td><td>Check solenoid coils and wiring; if the coils test good, suspect the PCB.</td></tr>
+          <tr><td class="code">72</td><td><strong>Flame sensor fault</strong></td><td>Flame signal with no ignition sequence — dirty or shorted flame rod, or the PCB.</td></tr>
+          <tr><td class="code">79</td><td><strong>Water leak detected in cabinet</strong></td><td>Find and fix the leak (heat exchanger, fittings, valves), dry the leak sensor, then clear the code.</td></tr>
+          <tr><td class="code">LC</td><td><strong>Scale buildup in heat exchanger</strong></td><td>Descale now — LC is the unit telling you it's limed up. Check hardness and recommend treatment; ignored LCs end in a 14 or 16.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">No code and no power at all? Breaker, 120V at the receptacle, and the fuses on the PCB — in that order.</p>
+  </section>
+
+  <!-- ================= QUICK SPECS ================= -->
+  <section id="specs">
+    <div class="section-head"><h2>Service Quick Specs</h2><span class="count">Gas · Water · Models · Maintenance</span></div>
+    <p class="section-sub">The numbers you check on every call, without digging through a 60-page manual.</p>
+
+    <div class="subhead"><h3>Inlet Gas Pressure</h3><p>Measured at the unit's inlet test port, at max fire, with other gas appliances running. Static pressure means nothing — check it under load.</p></div>
+    <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>Fuel</th><th>Minimum</th><th>Maximum</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Natural Gas</strong></td><td>3.5" WC</td><td>10.5" WC</td></tr>
+          <tr><td><strong>Propane (LP)</strong></td><td>8.0" WC</td><td>13.5" WC</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead"><h3>Model Series Cheat Sheet</h3><p>What you're looking at when you pull the cover.</p></div>
+    <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>Series</th><th>Type</th><th>Field notes</th></tr></thead>
+        <tbody>
+          <tr><td class="code">RE / REP</td><td>Non-condensing</td><td>The warm-climate outdoor workhorse. REP has a built-in recirc pump.</td></tr>
+          <tr><td class="code">RX / RXP</td><td>Condensing (SENSEI)</td><td>Current residential high-efficiency line. RXP has a built-in pump. Has Quick-Flush mode for descaling.</td></tr>
+          <tr><td class="code">CX / CXP</td><td>Condensing commercial (SENSEI)</td><td>199k BTU, 185°F capable, cascades up to 24 units. CXP has a built-in pump.</td></tr>
+          <tr><td class="code">RU</td><td>Condensing (prior gen)</td><td>Everywhere in the field — parts still readily available.</td></tr>
+          <tr><td class="code">RSC</td><td>Condensing + recirc (prior gen)</td><td>Built-in recirculation — works with or without a dedicated return line.</td></tr>
+          <tr><td class="code">Demand Duo</td><td>Hybrid tank + tankless</td><td>Commercial tank replacement — you're servicing both halves.</td></tr>
+          <tr><td class="code">RCW</td><td>Condensing volume heater</td><td>Floor-standing, 399k–1M BTU, up to 99% efficiency.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead"><h3>Descale / Flush Procedure</h3><p>Rinnai's water spec is total hardness under 200 mg/L (~12 gpg). Most of SoCal runs harder than that — flush annually and push scale treatment on every install.</p></div>
+    <ol class="steps">
+      <li>Power off, gas off, close the hot and cold isolation valves.</li>
+      <li>Connect the pump and hoses to the service valves; drop both in a bucket with ~4 gallons of food-grade white vinegar or citric descaler.</li>
+      <li>Open both service ports and circulate 45–60 minutes (SENSEI RX: use Quick-Flush mode).</li>
+      <li>Dump the solution and rinse with fresh water for about 5 minutes.</li>
+      <li>Pull and rinse the cold-inlet filter screen — towel down first.</li>
+      <li>Return valves to service, restore power and gas, run hot water, confirm no codes.</li>
+    </ol>
+
+    <div class="subhead"><h3>Annual Maintenance Checklist</h3><p>The visit that prevents the 2 a.m. no-hot-water call.</p></div>
+    <ul class="checks">
+      <li>Descale / flush the heat exchanger — non-negotiable in hard water</li>
+      <li>Clean the cold-inlet water filter</li>
+      <li>Condensing units: clear the condensate trap, check neutralizer media</li>
+      <li>Inspect the vent run and termination screen</li>
+      <li>Verify inlet gas pressure at max fire</li>
+      <li>Pull the error-code history from the controller</li>
+    </ul>
+  </section>
+
+  <!-- ================= RECESS BOXES & KITS ================= -->
+  <section id="kits">
+    <div class="section-head"><h2>Recess Boxes &amp; Door Kits</h2><span class="count">Wall Recess · Retrofit</span></div>
+    <p class="section-sub">Swapping a unit that lives in a wall recess? Match the retrofit door kit to the existing box and the new series — no re-doing the wall.</p>
+    <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>Recess Box</th><th>Model Series</th><th>Retrofit Door Kits</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr><td class="code">RGBRE</td><td>RE / REP (Non-Condensing)</td><td>109001313 · 109001365 · 109001374</td><td>Current non-condensing upgrades / retrofits</td></tr>
+          <tr><td class="code">RGBCTWHRX (CTWH-4)</td><td>RX / RXP / CX / RU / RSC (Condensing)</td><td>109001424 · 104000335 · 104000336</td><td>High-efficiency condensing installs</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <!-- ================= RESIDENTIAL ================= -->
   <section id="residential">
@@ -542,6 +682,20 @@
     Call Rinnai Tech Support
   </a>
 </div>
+
+<script>
+  (function(){
+    var input=document.getElementById('codeFilter');
+    if(!input)return;
+    var rows=Array.prototype.slice.call(document.querySelectorAll('#codeTable tbody tr'));
+    input.addEventListener('input',function(){
+      var q=input.value.trim().toLowerCase();
+      rows.forEach(function(r){
+        r.style.display=r.textContent.toLowerCase().indexOf(q)!==-1?'':'none';
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
