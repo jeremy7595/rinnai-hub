@@ -387,7 +387,7 @@
 
   <!-- ================= QUICK SPECS ================= -->
   <section id="specs">
-    <div class="section-head"><h2>Service Quick Specs</h2><span class="count">Gas · Water · Models · Maintenance</span></div>
+    <div class="section-head"><h2>Service Quick Specs</h2><span class="count">Gas · Models · Venting · Dip Switches · Maintenance</span></div>
     <p class="section-sub">The numbers you check on every call, without digging through a 60-page manual.</p>
 
     <div class="subhead"><h3>Inlet Gas Pressure</h3><p>Measured at the unit's inlet test port, at max fire, with other gas appliances running. Static pressure means nothing — check it under load.</p></div>
@@ -416,6 +416,37 @@
         </tbody>
       </table>
     </div>
+
+    <div class="subhead"><h3>Vent Length Limits</h3><p>Maximum <strong>equivalent</strong> length per unit, direct vent. Count every fitting: each 90° elbow = 5 ft, each 45° = 2.5 ft (twin pipe PVC/CPVC).</p></div>
+    <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>Series</th><th>Vent Type</th><th>Max Equivalent Length</th></tr></thead>
+        <tbody>
+          <tr><td class="code">RX / RXP</td><td>Twin pipe PVC/CPVC/PP</td><td><strong>2" → 75 ft</strong> · <strong>3" → 150 ft</strong></td></tr>
+          <tr><td class="code">RX / RXP</td><td>Concentric</td><td><strong>2"×4" → 75 ft</strong> · <strong>3"×5" → 150 ft</strong></td></tr>
+          <tr><td class="code">CX / CXP</td><td>Twin pipe PVC/CPVC</td><td><strong>2" → 75 ft</strong> · <strong>3" → 150 ft</strong></td></tr>
+          <tr><td class="code">CX / CXP</td><td>Concentric</td><td><strong>2"×4" → 75 ft</strong> · <strong>3"×5" → 150 ft</strong></td></tr>
+          <tr><td class="code">RE / REP indoor</td><td>Concentric only (non-condensing)</td><td>Per Table 2 in the RE I&amp;O manual (linked below) — Ubbink termination counts as 5 ft</td></tr>
+          <tr><td class="code">RE / REP outdoor</td><td>None — integral exhaust</td><td>No vent run. Watch termination clearances instead</td></tr>
+          <tr><td class="code">RU / RUR / RSC</td><td>Twin pipe or concentric</td><td>Prior-gen limits vary by model and fuel — pull the model's manual before quoting a run</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Common venting (multiple units, one vent) is a different animal with its own tables — use the PVC/CPVC Common Venting manual in the Residential section.</p>
+
+    <div class="subhead"><h3>Dip Switch &amp; Parameter Settings</h3><p>Kill power before touching switches. Set only what the manual tells you to — everything else stays factory.</p></div>
+    <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>Elevation</th><th>SW 2</th><th>SW 3</th></tr></thead>
+        <tbody>
+          <tr><td><strong>0 – 2,000 ft</strong> (factory)</td><td>OFF</td><td>OFF</td></tr>
+          <tr><td><strong>2,001 – 5,400 ft</strong></td><td class="code">ON</td><td>OFF</td></tr>
+          <tr><td><strong>5,401 – 7,700 ft</strong> (Big Bear, Wrightwood)</td><td>OFF</td><td class="code">ON</td></tr>
+          <tr><td><strong>7,701 – 10,200 ft</strong></td><td class="code">ON</td><td class="code">ON</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Altitude switches 2 &amp; 3 live in the tan DIPSW1 bank on the front of the PCB. Once set, no gas pressure re-adjustment is needed for altitude. Vent-length setting: RE/REP use controller <strong>parameter 99</strong> — factory <strong>99A</strong> for long runs, change to <strong>99b</strong> only when total vent is under 21 equivalent ft. Prior-gen indoor condensing units put the same 21-ft threshold on dip switch #1 of the tan bank — confirm ON/OFF orientation in that model's manual.</p>
 
     <div class="subhead"><h3>Descale / Flush Procedure</h3><p>Rinnai's water spec is total hardness under 200 mg/L (~12 gpg). Most of SoCal runs harder than that — flush annually and push scale treatment on every install.</p></div>
     <ol class="steps">
