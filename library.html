@@ -338,9 +338,10 @@
 
   /* ---------- Categories ---------- */
   var CATS = [
+    "Tech Data Sheets",
     "Portals & Ordering",
     "Manuals & Install",
-    "Brochures & Specs",
+    "Brochures",
     "Charts & Quick Reference",
     "Product Pages",
     "Training & Video",
@@ -349,6 +350,17 @@
 
   /* ---------- Seed catalog ---------- */
   var SEED = [
+    // Tech Data Sheets — the ones reached for most
+    {id:"s-sp-rx", title:"RX Spec Sheet — SENSEI Condensing", url:"https://media.rinnai.us/salsify_asset/s-b65161ac-3923-46b2-b2e6-65adc57fea27/100000883%20SENSEI%20RX%20Residential%20Condensing%20Spec%20Sheet.pdf", desc:"Current residential condensing line — dimensions, gas, venting, flow curves.", cat:"Tech Data Sheets", type:"pdf", tags:["RX","RXP","spec sheet","tech data","condensing"]},
+    {id:"s-sp-rei", title:"RE Indoor Spec Sheet (REi-SP)", url:"https://media.rinnai.us/salsify_asset/s-15b74aa5-ad50-4bca-8472-3ad046ca968d/REi-SP%20Non%20Condensing%20Residential%20Indoor%20Spec%20Sheet.pdf", desc:"RE199i · RE180i · RE160i · RE140i — indoor non-condensing.", cat:"Tech Data Sheets", type:"pdf", tags:["RE","spec sheet","tech data","non-condensing","indoor"]},
+    {id:"s-sp-ree", title:"RE Outdoor Spec Sheet (REe-SP)", url:"https://media.rinnai.us/salsify_asset/s-cbd9a57a-b865-4b48-bbbc-66247d74df96/REe-SP%20Non%20Condensing%20Residential%20Outdoor%20Spec%20Sheet.pdf", desc:"RE199e · RE180e · RE160e · RE140e — the outdoor warm-climate workhorse.", cat:"Tech Data Sheets", type:"pdf", tags:["RE","REP","spec sheet","tech data","non-condensing","outdoor"]},
+    {id:"s-sp-rsci", title:"RSC Indoor Spec Sheet (RSCi-SP)", url:"https://media.rinnai.us/salsify_asset/s-810e92fc-9d0d-4208-b914-8b37d43dd34a/RSCi-SP-2%20SENSEI%20Condensing%20with%20Pump%20Indoor%20Spec%20Sheet.pdf", desc:"RSC199i · RSC160i — condensing with built-in Smart-Circ pump.", cat:"Tech Data Sheets", type:"pdf", tags:["RSC","spec sheet","tech data","recirculation","pump","indoor"]},
+    {id:"s-sp-rsce", title:"RSC Outdoor Spec Sheet (RSCe-SP)", url:"https://media.rinnai.us/salsify_asset/s-2344b632-68ba-4a7a-9c13-a6dc231cb5d9/RSCe-SP-1%20SENSEI%20Condensing%20with%20Pump%20Outdoor%20Spec%20Sheet.pdf", desc:"Outdoor SENSEI condensing with built-in pump.", cat:"Tech Data Sheets", type:"pdf", tags:["RSC","spec sheet","tech data","recirculation","pump","outdoor"]},
+    {id:"s-sp-rur", title:"RUR Indoor Spec Sheet (RURi-SP)", url:"https://media.rinnai.us/salsify_asset/s-9896fa18-b5c1-4fee-b1c1-5054c834acc0/RURi-SP-N%20Series%20Condensing%20Residential%20with%20Pump%20Indoor%20Spec%20Sheet.pdf", desc:"RUR199i · RUR160i — prior-gen condensing with pump and thermal bypass recirc.", cat:"Tech Data Sheets", type:"pdf", tags:["RUR","spec sheet","tech data","recirculation","pump","indoor"]},
+    {id:"s-sp-rui", title:"RU Indoor Spec Sheet (RUi-SP)", url:"https://media.rinnai.us/salsify_asset/s-256984e6-5151-41e4-a0c0-fc6c392ff0f7/RUi-SP-4%20SENSEI%20Condensing%20Residential%20Indoor%20Spec%20Sheet.pdf", desc:"RU199i · RU180i · RU160i · RU130i — prior-gen condensing, everywhere in the field.", cat:"Tech Data Sheets", type:"pdf", tags:["RU","spec sheet","tech data","condensing","indoor"]},
+    {id:"s-sp-rue", title:"RU Outdoor Spec Sheet (RUe-SP)", url:"https://media.rinnai.us/salsify_asset/s-ae254def-662a-4241-ac5c-3cdf1ea2fee0/RUe-SP-4%20SENSEI%20Condensing%20Residential%20Outdoor%20Spec%20Sheet.pdf", desc:"RU199e · RU180e · RU160e · RU130e — prior-gen condensing, outdoor.", cat:"Tech Data Sheets", type:"pdf", tags:["RU","spec sheet","tech data","condensing","outdoor"]},
+    {id:"s-sp-rsctech", title:"RSC Tech Sheet — Parameter Settings", url:"https://media.rinnai.us/salsify_asset/s-906e84f5-92ba-46dd-9619-0dbcc130ae89/100000786-SENSEI%20Tech%20Sheet-RSC.pdf", desc:"SENSEI RSC parameter and dip switch settings for service calls.", cat:"Tech Data Sheets", type:"pdf", tags:["RSC","tech sheet","parameters","dip switch","service"]},
+
     // Portals & Ordering
     {id:"s-store", title:"Rinnai Store", url:"https://store.rinnai.us/instance2EnvAALogin/html/login.html", desc:"Order OEM parts and components direct — PRO login required.", cat:"Portals & Ordering", type:"login", tags:["parts","ordering","OEM","store"]},
     {id:"s-rinnai", title:"Rinnai.us", url:"https://www.rinnai.us", desc:"Main Rinnai US site — products, support, warranty.", cat:"Portals & Ordering", type:"page", tags:["main site","warranty","support"]},
@@ -362,8 +374,8 @@
     {id:"s-trs", title:"TRS Rack System Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"Tankless rack systems with SENSEI CX — preassembled, fits a 32\" doorway.", cat:"Manuals & Install", type:"pdf", tags:["TRS","rack","commercial","CX","install"]},
 
     // Brochures & Specs
-    {id:"s-rx-bro", title:"SENSEI RX Series Brochure", url:"https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf", desc:"30+ pages — models, BTUs, approved components, venting, valves.", cat:"Brochures & Specs", type:"pdf", tags:["RX","brochure","spec","condensing"]},
-    {id:"s-duo-bro", title:"Demand Duo Brochure", url:"https://www.rinnai.us/sites/default/files/2024-11/US%20-%20Demand%20Duo%C2%AE%20Hybrid%20Commercial%20Water%20Heating%20Solutions%20(1).pdf", desc:"First-hour delivery, warranty comparison, venting options — the sell sheet.", cat:"Brochures & Specs", type:"pdf", tags:["Demand Duo","brochure","commercial","hybrid"]},
+    {id:"s-rx-bro", title:"SENSEI RX Series Brochure", url:"https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf", desc:"30+ pages — models, BTUs, approved components, venting, valves.", cat:"Brochures", type:"pdf", tags:["RX","brochure","spec","condensing"]},
+    {id:"s-duo-bro", title:"Demand Duo Brochure", url:"https://www.rinnai.us/sites/default/files/2024-11/US%20-%20Demand%20Duo%C2%AE%20Hybrid%20Commercial%20Water%20Heating%20Solutions%20(1).pdf", desc:"First-hour delivery, warranty comparison, venting options — the sell sheet.", cat:"Brochures", type:"pdf", tags:["Demand Duo","brochure","commercial","hybrid"]},
 
     // Charts & Quick Reference
     {id:"s-codes", title:"Error Codes Quick Reference", url:"index.html#codes", desc:"The codes you actually see, with first checks in the field.", cat:"Charts & Quick Reference", type:"tool", tags:["error codes","diagnostic","troubleshooting","11","12","LC"]},
