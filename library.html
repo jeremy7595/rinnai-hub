@@ -353,6 +353,7 @@
   var CATS = [
     "Tech Data Sheets",
     "Installation Manuals",
+    "Legacy Equipment",
     "Spec Sheets",
     "Portals & Ordering",
     "Brochures",
@@ -362,16 +363,16 @@
     "My Links"
   ];
   // Categories that start collapsed — tap the header to expand
-  var DEFAULT_COLLAPSED = {"Spec Sheets": true};
+  var DEFAULT_COLLAPSED = {"Legacy Equipment": true, "Spec Sheets": true};
 
   /* ---------- Seed catalog ---------- */
   var SEED = [
     // Tech Data Sheets — the service documents reached for most
     {id:"s-td-rxcx", title:"RX / CX Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-4c213567-ddfa-42b1-ae72-8daaf587961d/100000849-SENSEI%20RX%20CX%20Tech%20Sheet_English.pdf", desc:"SENSEI RX and CX — parameter settings, dip switches, error codes, service data.", cat:"Tech Data Sheets", type:"pdf", tags:["RX","RXP","CX","CXP","tech sheet","tech data","parameters","dip switch","service"]},
     {id:"s-td-re", title:"RE Outdoor Tech Sheet (VE)", url:"https://media.rinnai.us/salsify_asset/s-f7e95f26-90e9-45bf-8188-52b154268d00/100000735%20VE%20Non-Pump%20Outdoor%20Tech%20Sheet.pdf", desc:"RE outdoor non-condensing (VE models) — parameter settings, gas pressure, commissioning.", cat:"Tech Data Sheets", type:"pdf", tags:["RE","REP","VE","tech sheet","tech data","parameters","outdoor","service"]},
-    {id:"s-td-rsc", title:"RSC Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-906e84f5-92ba-46dd-9619-0dbcc130ae89/100000786-SENSEI%20Tech%20Sheet-RSC.pdf", desc:"SENSEI RSC — parameter and dip switch settings, service data.", cat:"Tech Data Sheets", type:"pdf", tags:["RSC","tech sheet","tech data","parameters","dip switch","service"]},
-    {id:"s-td-rur", title:"RUR Tech Sheet (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-f3d0e42b-79ae-4232-8be9-f4b73d239324/U334-0783X01(01)-100000507(01)-N-Series%20Techsheet-Res%20with%20Pump.pdf", desc:"RUR residential with pump — diagnostics, parameters, service data.", cat:"Tech Data Sheets", type:"pdf", tags:["RUR","N-Series","tech sheet","tech data","pump","recirculation","service"]},
-    {id:"s-td-ru", title:"RU Tech Sheet (N-Series Res & Comm)", url:"https://media.rinnai.us/salsify_asset/s-75390343-35ca-405e-aa2c-bb81667f7062/U334-0781X01(01)-100000505(01)-N-Series%20Techsheet-Res%20and%20Comm.pdf", desc:"RU residential and commercial — diagnostic codes, performance data, service procedures.", cat:"Tech Data Sheets", type:"pdf", tags:["RU","CU","N-Series","tech sheet","tech data","diagnostics","service"]},
+    {id:"s-td-rsc", title:"RSC Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-906e84f5-92ba-46dd-9619-0dbcc130ae89/100000786-SENSEI%20Tech%20Sheet-RSC.pdf", desc:"SENSEI RSC — parameter and dip switch settings, service data.", cat:"Legacy Equipment", type:"pdf", tags:["RSC","tech sheet","tech data","parameters","dip switch","service"]},
+    {id:"s-td-rur", title:"RUR Tech Sheet (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-f3d0e42b-79ae-4232-8be9-f4b73d239324/U334-0783X01(01)-100000507(01)-N-Series%20Techsheet-Res%20with%20Pump.pdf", desc:"RUR residential with pump — diagnostics, parameters, service data.", cat:"Legacy Equipment", type:"pdf", tags:["RUR","N-Series","tech sheet","tech data","pump","recirculation","service"]},
+    {id:"s-td-ru", title:"RU Tech Sheet (N-Series Res & Comm)", url:"https://media.rinnai.us/salsify_asset/s-75390343-35ca-405e-aa2c-bb81667f7062/U334-0781X01(01)-100000505(01)-N-Series%20Techsheet-Res%20and%20Comm.pdf", desc:"RU residential and commercial — diagnostic codes, performance data, service procedures.", cat:"Legacy Equipment", type:"pdf", tags:["RU","CU","N-Series","tech sheet","tech data","diagnostics","service"]},
 
     // Spec Sheets
     {id:"s-sp-rx", title:"RX Spec Sheet — SENSEI Condensing", url:"https://media.rinnai.us/salsify_asset/s-b65161ac-3923-46b2-b2e6-65adc57fea27/100000883%20SENSEI%20RX%20Residential%20Condensing%20Spec%20Sheet.pdf", desc:"Current residential condensing line — dimensions, gas, venting, flow curves.", cat:"Spec Sheets", type:"pdf", tags:["RX","RXP","spec sheet","tech data","condensing"]},
@@ -395,14 +396,14 @@
     {id:"s-vent", title:"PVC / CPVC Common Venting Manual", url:"https://media.rinnai.us/salsify_asset/s-7bbd9e1e-b3de-4800-acad-aa997c5e9f28/100000625-PVC%20and%20CPVC%20Common%20Venting%20Installation%20Instructions%20for%20SENSEI.pdf", desc:"Official common-vent instructions for SENSEI models.", cat:"Installation Manuals", type:"pdf", tags:["venting","common vent","SENSEI","PVC","CPVC"]},
     {id:"s-duo2", title:"Demand Duo 2 Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-eab7351b-b8a4-43d2-a1ab-3043b0b802d8/100000872%20Demand%20Duo%202%20H-Series%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"H-Series with SENSEI CX — CA strapping, rack assembly, venting, part numbers.", cat:"Installation Manuals", type:"pdf", tags:["Demand Duo","commercial","hybrid","install","CX"]},
     {id:"s-trs", title:"TRS Rack System Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"Tankless rack systems with SENSEI CX — preassembled, fits a 32\" doorway.", cat:"Installation Manuals", type:"pdf", tags:["TRS","rack","commercial","CX","install"]},
-    {id:"s-rsc-man", title:"RSC Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-815d8447-6141-4ddc-b1c1-6464d5c23d50/100000773-RSC%20SENSEI%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI RSC condensing with pump — install, venting, recirc setup.", cat:"Installation Manuals", type:"pdf", tags:["RSC","install","manual","pump","recirculation","condensing"]},
+    {id:"s-rsc-man", title:"RSC Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-815d8447-6141-4ddc-b1c1-6464d5c23d50/100000773-RSC%20SENSEI%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI RSC condensing with pump — install, venting, recirc setup.", cat:"Legacy Equipment", type:"pdf", tags:["RSC","install","manual","pump","recirculation","condensing"]},
     {id:"s-cx-man", title:"CX Commercial Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-c0fcb742-0456-4168-82cf-9373b43514cd/100000840%20SENSEI%20CX%20Commercial%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI CX199i/160i and CXP — commercial condensing install and operation.", cat:"Installation Manuals", type:"pdf", tags:["CX","CXP","commercial","install","manual","condensing"]},
-    {id:"s-ru-man", title:"RU Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-bb57a000-5f48-4159-ac3c-47e47f8180f7/100000467-N%20Series%20Residential%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential condensing — the RU units everywhere in the field.", cat:"Installation Manuals", type:"pdf", tags:["RU","N-Series","install","manual","condensing"]},
-    {id:"s-rur-man", title:"RUR Install & Operation Manual (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-286a4b4b-e04a-4af4-9ee4-4311495ae923/100000508-N%20Series%20Residential%20with%20Pump%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential with pump — RUR condensing with built-in recirc.", cat:"Installation Manuals", type:"pdf", tags:["RUR","N-Series","install","manual","pump","recirculation"]},
-    {id:"s-cu-man", title:"CU Commercial Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-0dbc4660-4b6d-4210-82c7-a7ed6834a355/100000504-N%20Series%20Commercial%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series commercial condensing — CU units.", cat:"Installation Manuals", type:"pdf", tags:["CU","N-Series","commercial","install","manual"]},
-    {id:"s-hybrid-man", title:"Residential Hybrid System Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-680b020a-4fc1-4ce4-a15b-e04557402526/100000446(02)-Residential%20Hybrid%20System%20Installation%20and%20Operation%20Manual.pdf", desc:"Residential tank + tankless hybrid systems.", cat:"Installation Manuals", type:"pdf", tags:["hybrid","install","manual","residential"]},
-    {id:"s-value-man", title:"Value Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-43d60415-4de7-4ad8-aa59-1b39248bfe09/100000258-Value%20Series%20Installation%20and%20Operation%20Manual.pdf", desc:"V-Series direct vent tankless — the budget line still out in the field.", cat:"Installation Manuals", type:"pdf", tags:["V65","V53","Value Series","install","manual"]},
-    {id:"s-rack-man", title:"Tankless Rack System Installation Manual", url:"https://media.rinnai.us/salsify_asset/s-a823682c-30b6-412b-977a-1f92b8ab594b/100000294-Tankless%20Rack%20Installation%20Manual.pdf", desc:"Original tankless rack system — prior-gen commercial rack installs.", cat:"Installation Manuals", type:"pdf", tags:["rack","commercial","install","manual"]},
+    {id:"s-ru-man", title:"RU Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-bb57a000-5f48-4159-ac3c-47e47f8180f7/100000467-N%20Series%20Residential%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential condensing — the RU units everywhere in the field.", cat:"Legacy Equipment", type:"pdf", tags:["RU","N-Series","install","manual","condensing"]},
+    {id:"s-rur-man", title:"RUR Install & Operation Manual (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-286a4b4b-e04a-4af4-9ee4-4311495ae923/100000508-N%20Series%20Residential%20with%20Pump%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential with pump — RUR condensing with built-in recirc.", cat:"Legacy Equipment", type:"pdf", tags:["RUR","N-Series","install","manual","pump","recirculation"]},
+    {id:"s-cu-man", title:"CU Commercial Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-0dbc4660-4b6d-4210-82c7-a7ed6834a355/100000504-N%20Series%20Commercial%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series commercial condensing — CU units.", cat:"Legacy Equipment", type:"pdf", tags:["CU","N-Series","commercial","install","manual"]},
+    {id:"s-hybrid-man", title:"Residential Hybrid System Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-680b020a-4fc1-4ce4-a15b-e04557402526/100000446(02)-Residential%20Hybrid%20System%20Installation%20and%20Operation%20Manual.pdf", desc:"Residential tank + tankless hybrid systems.", cat:"Legacy Equipment", type:"pdf", tags:["hybrid","install","manual","residential"]},
+    {id:"s-value-man", title:"Value Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-43d60415-4de7-4ad8-aa59-1b39248bfe09/100000258-Value%20Series%20Installation%20and%20Operation%20Manual.pdf", desc:"V-Series direct vent tankless — the budget line still out in the field.", cat:"Legacy Equipment", type:"pdf", tags:["V65","V53","Value Series","install","manual"]},
+    {id:"s-rack-man", title:"Tankless Rack System Installation Manual", url:"https://media.rinnai.us/salsify_asset/s-a823682c-30b6-412b-977a-1f92b8ab594b/100000294-Tankless%20Rack%20Installation%20Manual.pdf", desc:"Original tankless rack system — prior-gen commercial rack installs.", cat:"Legacy Equipment", type:"pdf", tags:["rack","commercial","install","manual"]},
 
     // Brochures & Specs
     {id:"s-rx-bro", title:"SENSEI RX Series Brochure", url:"https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf", desc:"30+ pages — models, BTUs, approved components, venting, valves.", cat:"Brochures", type:"pdf", tags:["RX","brochure","spec","condensing"]},
@@ -447,9 +448,9 @@
   if(!Array.isArray(custom)) custom = [];
   if(!Array.isArray(pins)) pins = [];
   var collapse = loadJSON(LS_COLLAPSE, null);
-  if(!collapse || typeof collapse !== "object" || Array.isArray(collapse)){
-    collapse = {};
-    for(var ck in DEFAULT_COLLAPSED) collapse[ck] = DEFAULT_COLLAPSED[ck];
+  if(!collapse || typeof collapse !== "object" || Array.isArray(collapse)) collapse = {};
+  for(var ck in DEFAULT_COLLAPSED){
+    if(!(ck in collapse)) collapse[ck] = DEFAULT_COLLAPSED[ck];
   }
 
   /* ---------- State ---------- */
