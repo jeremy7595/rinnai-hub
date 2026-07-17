@@ -124,12 +124,25 @@
   }
   .group{margin-bottom:26px}
   .group-head{
-    display:flex;align-items:baseline;gap:10px;margin-bottom:10px;
+    display:flex;align-items:center;gap:10px;margin-bottom:10px;
   }
   .group-head h2{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em}
   .group-head .n{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:.68rem;color:var(--dim);letter-spacing:.1em;
+  }
+  button.group-head{
+    width:100%;background:transparent;border:0;padding:6px 0;text-align:left;
+  }
+  button.group-head:hover h2{color:#FF5A6E}
+  .group-head .chev{
+    width:14px;height:14px;flex:0 0 auto;
+    stroke:var(--dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+    transition:transform .2s var(--ease);transform:rotate(90deg);
+  }
+  .group.collapsed .chev{transform:rotate(0deg)}
+  .group-head .hint{
+    margin-left:auto;font-size:.68rem;font-weight:600;color:var(--dim);
   }
   .rows{display:flex;flex-direction:column;gap:8px}
   .row{
@@ -339,15 +352,17 @@
   /* ---------- Categories ---------- */
   var CATS = [
     "Tech Data Sheets",
+    "Installation Manuals",
     "Spec Sheets",
     "Portals & Ordering",
-    "Manuals & Install",
     "Brochures",
     "Charts & Quick Reference",
     "Product Pages",
     "Training & Video",
     "My Links"
   ];
+  // Categories that start collapsed — tap the header to expand
+  var DEFAULT_COLLAPSED = {"Spec Sheets": true};
 
   /* ---------- Seed catalog ---------- */
   var SEED = [
@@ -375,11 +390,19 @@
     {id:"s-hub", title:"Contractor Hub (this site)", url:"index.html", desc:"The tech-facing quick reference — error codes, gas specs, flush procedure, kits.", cat:"Portals & Ordering", type:"tool", tags:["hub","reference","techs"]},
 
     // Manuals & Install
-    {id:"s-rx-man", title:"SENSEI RX Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-5dcde422-3307-426c-ab15-29ecd56cac15/100000839%20SENSEI%20RX%20Residential%20Installation%20and%20Operation%20Manual.pdf", desc:"Clearances, water quality, venting, Quick-Flush, draining.", cat:"Manuals & Install", type:"pdf", tags:["RX","RXP","condensing","install","manual","residential"]},
-    {id:"s-re-man", title:"RE Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-4c0f42d2-4a9d-40d2-a189-d4f84bee5509/100000722(02)%20RE%20Installation%20and%20Operation%20Manual.pdf", desc:"Non-condensing outdoor workhorse — venting, flushing, draining.", cat:"Manuals & Install", type:"pdf", tags:["RE","REP","non-condensing","install","manual"]},
-    {id:"s-vent", title:"PVC / CPVC Common Venting Manual", url:"https://media.rinnai.us/salsify_asset/s-7bbd9e1e-b3de-4800-acad-aa997c5e9f28/100000625-PVC%20and%20CPVC%20Common%20Venting%20Installation%20Instructions%20for%20SENSEI.pdf", desc:"Official common-vent instructions for SENSEI models.", cat:"Manuals & Install", type:"pdf", tags:["venting","common vent","SENSEI","PVC","CPVC"]},
-    {id:"s-duo2", title:"Demand Duo 2 Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-eab7351b-b8a4-43d2-a1ab-3043b0b802d8/100000872%20Demand%20Duo%202%20H-Series%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"H-Series with SENSEI CX — CA strapping, rack assembly, venting, part numbers.", cat:"Manuals & Install", type:"pdf", tags:["Demand Duo","commercial","hybrid","install","CX"]},
-    {id:"s-trs", title:"TRS Rack System Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"Tankless rack systems with SENSEI CX — preassembled, fits a 32\" doorway.", cat:"Manuals & Install", type:"pdf", tags:["TRS","rack","commercial","CX","install"]},
+    {id:"s-rx-man", title:"SENSEI RX Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-5dcde422-3307-426c-ab15-29ecd56cac15/100000839%20SENSEI%20RX%20Residential%20Installation%20and%20Operation%20Manual.pdf", desc:"Clearances, water quality, venting, Quick-Flush, draining.", cat:"Installation Manuals", type:"pdf", tags:["RX","RXP","condensing","install","manual","residential"]},
+    {id:"s-re-man", title:"RE Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-4c0f42d2-4a9d-40d2-a189-d4f84bee5509/100000722(02)%20RE%20Installation%20and%20Operation%20Manual.pdf", desc:"Non-condensing outdoor workhorse — venting, flushing, draining.", cat:"Installation Manuals", type:"pdf", tags:["RE","REP","non-condensing","install","manual"]},
+    {id:"s-vent", title:"PVC / CPVC Common Venting Manual", url:"https://media.rinnai.us/salsify_asset/s-7bbd9e1e-b3de-4800-acad-aa997c5e9f28/100000625-PVC%20and%20CPVC%20Common%20Venting%20Installation%20Instructions%20for%20SENSEI.pdf", desc:"Official common-vent instructions for SENSEI models.", cat:"Installation Manuals", type:"pdf", tags:["venting","common vent","SENSEI","PVC","CPVC"]},
+    {id:"s-duo2", title:"Demand Duo 2 Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-eab7351b-b8a4-43d2-a1ab-3043b0b802d8/100000872%20Demand%20Duo%202%20H-Series%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"H-Series with SENSEI CX — CA strapping, rack assembly, venting, part numbers.", cat:"Installation Manuals", type:"pdf", tags:["Demand Duo","commercial","hybrid","install","CX"]},
+    {id:"s-trs", title:"TRS Rack System Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"Tankless rack systems with SENSEI CX — preassembled, fits a 32\" doorway.", cat:"Installation Manuals", type:"pdf", tags:["TRS","rack","commercial","CX","install"]},
+    {id:"s-rsc-man", title:"RSC Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-815d8447-6141-4ddc-b1c1-6464d5c23d50/100000773-RSC%20SENSEI%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI RSC condensing with pump — install, venting, recirc setup.", cat:"Installation Manuals", type:"pdf", tags:["RSC","install","manual","pump","recirculation","condensing"]},
+    {id:"s-cx-man", title:"CX Commercial Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-c0fcb742-0456-4168-82cf-9373b43514cd/100000840%20SENSEI%20CX%20Commercial%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI CX199i/160i and CXP — commercial condensing install and operation.", cat:"Installation Manuals", type:"pdf", tags:["CX","CXP","commercial","install","manual","condensing"]},
+    {id:"s-ru-man", title:"RU Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-bb57a000-5f48-4159-ac3c-47e47f8180f7/100000467-N%20Series%20Residential%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential condensing — the RU units everywhere in the field.", cat:"Installation Manuals", type:"pdf", tags:["RU","N-Series","install","manual","condensing"]},
+    {id:"s-rur-man", title:"RUR Install & Operation Manual (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-286a4b4b-e04a-4af4-9ee4-4311495ae923/100000508-N%20Series%20Residential%20with%20Pump%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential with pump — RUR condensing with built-in recirc.", cat:"Installation Manuals", type:"pdf", tags:["RUR","N-Series","install","manual","pump","recirculation"]},
+    {id:"s-cu-man", title:"CU Commercial Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-0dbc4660-4b6d-4210-82c7-a7ed6834a355/100000504-N%20Series%20Commercial%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series commercial condensing — CU units.", cat:"Installation Manuals", type:"pdf", tags:["CU","N-Series","commercial","install","manual"]},
+    {id:"s-hybrid-man", title:"Residential Hybrid System Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-680b020a-4fc1-4ce4-a15b-e04557402526/100000446(02)-Residential%20Hybrid%20System%20Installation%20and%20Operation%20Manual.pdf", desc:"Residential tank + tankless hybrid systems.", cat:"Installation Manuals", type:"pdf", tags:["hybrid","install","manual","residential"]},
+    {id:"s-value-man", title:"Value Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-43d60415-4de7-4ad8-aa59-1b39248bfe09/100000258-Value%20Series%20Installation%20and%20Operation%20Manual.pdf", desc:"V-Series direct vent tankless — the budget line still out in the field.", cat:"Installation Manuals", type:"pdf", tags:["V65","V53","Value Series","install","manual"]},
+    {id:"s-rack-man", title:"Tankless Rack System Installation Manual", url:"https://media.rinnai.us/salsify_asset/s-a823682c-30b6-412b-977a-1f92b8ab594b/100000294-Tankless%20Rack%20Installation%20Manual.pdf", desc:"Original tankless rack system — prior-gen commercial rack installs.", cat:"Installation Manuals", type:"pdf", tags:["rack","commercial","install","manual"]},
 
     // Brochures & Specs
     {id:"s-rx-bro", title:"SENSEI RX Series Brochure", url:"https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf", desc:"30+ pages — models, BTUs, approved components, venting, valves.", cat:"Brochures", type:"pdf", tags:["RX","brochure","spec","condensing"]},
@@ -405,8 +428,9 @@
   ];
 
   /* ---------- Storage ---------- */
-  var LS_CUSTOM = "rinnaihub.library.custom";
-  var LS_PINS   = "rinnaihub.library.pins";
+  var LS_CUSTOM   = "rinnaihub.library.custom";
+  var LS_PINS     = "rinnaihub.library.pins";
+  var LS_COLLAPSE = "rinnaihub.library.collapse";
 
   function loadJSON(key, fallback){
     try{
@@ -422,6 +446,11 @@
   var pins   = loadJSON(LS_PINS, []);
   if(!Array.isArray(custom)) custom = [];
   if(!Array.isArray(pins)) pins = [];
+  var collapse = loadJSON(LS_COLLAPSE, null);
+  if(!collapse || typeof collapse !== "object" || Array.isArray(collapse)){
+    collapse = {};
+    for(var ck in DEFAULT_COLLAPSED) collapse[ck] = DEFAULT_COLLAPSED[ck];
+  }
 
   /* ---------- State ---------- */
   var activeCat = "All";
@@ -541,12 +570,20 @@
       html += '<div class="group"><div class="group-head"><h2>&#9733; Pinned</h2><span class="n">'+pinned.length+'</span></div><div class="rows">' +
         pinned.map(rowHTML).join("") + '</div></div>';
     }
+    var searching = words.length > 0;
     CATS.forEach(function(cat){
       var group = rest.filter(function(e){ return e.cat === cat; });
       if(!group.length) return;
       group.sort(function(a,b){ return a.title.localeCompare(b.title); });
-      html += '<div class="group"><div class="group-head"><h2>'+esc(cat)+'</h2><span class="n">'+group.length+'</span></div><div class="rows">' +
-        group.map(rowHTML).join("") + '</div></div>';
+      var isCollapsed = !searching && activeCat === "All" && collapse[cat];
+      html += '<div class="group'+(isCollapsed?' collapsed':'')+'">' +
+        '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
+          '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
+          '<h2>'+esc(cat)+'</h2><span class="n">'+group.length+'</span>' +
+          (isCollapsed ? '<span class="hint">tap to show</span>' : '') +
+        '</button>' +
+        (isCollapsed ? '' : '<div class="rows">'+group.map(rowHTML).join("")+'</div>') +
+      '</div>';
     });
 
     if(!entries.length){
@@ -592,6 +629,14 @@
 
   /* ---------- Row actions ---------- */
   $list.addEventListener("click", function(ev){
+    var tog = ev.target.closest("[data-toggle]");
+    if(tog){
+      var tcat = tog.getAttribute("data-toggle");
+      collapse[tcat] = !collapse[tcat];
+      saveJSON(LS_COLLAPSE, collapse);
+      render();
+      return;
+    }
     var btn = ev.target.closest("[data-act]");
     if(!btn) return;
     var id = btn.getAttribute("data-id");
