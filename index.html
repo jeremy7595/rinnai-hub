@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rinnai Contractor Hub — SoCal Field Resources</title>
-<meta name="description" content="Rinnai tankless service reference for technicians: error codes, gas pressure specs, descale flush procedure, recess box and door kit cross-reference, manuals, and 24/7 tech support.">
+<title>Rinnai Work Library — Docs &amp; Links</title>
+<meta name="description" content="One searchable repository for every Rinnai document, manual, chart, and link — no more digging through the Rinnai site to find them.">
 <meta name="theme-color" content="#0D0D0D">
-<meta name="apple-mobile-web-app-title" content="Rinnai Hub">
+<meta name="apple-mobile-web-app-title" content="Rinnai Library">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -24,8 +24,7 @@
     --radius:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:120px}
-  @media (max-width:640px){html{scroll-padding-top:74px}}
+  html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -35,837 +34,769 @@
     background:var(--bg) radial-gradient(ellipse 80% 40% at 50% -10%, rgba(200,16,46,.06) 0%, transparent 100%) no-repeat;
     color:var(--body);line-height:1.55;
     -webkit-font-smoothing:antialiased;
-    padding-bottom:88px;
+    padding-bottom:60px;
   }
   a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer}
   :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px}
 
   /* ===== Header ===== */
-  header{
-    position:relative;padding:72px 20px 52px;text-align:center;overflow:hidden;
-  }
+  header{position:relative;padding:44px 20px 26px;text-align:center;overflow:hidden}
   header::before{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(ellipse 70% 55% at 50% 108%, rgba(200,16,46,.16) 0%, rgba(255,90,40,.05) 45%, transparent 75%);
+    background:radial-gradient(ellipse 70% 55% at 50% 108%, rgba(200,16,46,.14) 0%, rgba(255,90,40,.05) 45%, transparent 75%);
   }
   header>*{position:relative}
   .eyebrow{
-    display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.16em;
+    display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.16em;
     text-transform:uppercase;color:var(--red);
     border:1px solid rgba(200,16,46,.45);border-radius:999px;
-    padding:6px 16px;margin-bottom:22px;background:rgba(200,16,46,.06);
-    box-shadow:0 0 18px rgba(200,16,46,.18), inset 0 0 8px rgba(200,16,46,.06);
+    padding:5px 14px;margin-bottom:16px;background:rgba(200,16,46,.06);
   }
-  h1{
-    font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--ink);
-    letter-spacing:-.04em;line-height:1.04;
-  }
+  h1{font-size:clamp(1.9rem,6vw,2.9rem);font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:1.05}
   h1 .red{color:var(--red)}
-  .tagline{
-    max-width:520px;margin:18px auto 0;color:var(--body);
-    font-size:clamp(.95rem,2.6vw,1.05rem);
+  .tagline{max-width:520px;margin:12px auto 0;font-size:.92rem}
+  .hublink{
+    display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+    font-size:.8rem;font-weight:600;color:var(--body);
+    border:1px solid var(--line);border-radius:999px;padding:7px 15px;
+    transition:all .2s var(--ease);
   }
-  /* flame threshold line */
-  .threshold{
-    height:1px;border:0;
-    background:linear-gradient(to right, transparent, rgba(200,16,46,.7) 50%, transparent);
-  }
+  .hublink:hover{border-color:var(--red);color:#FFF}
+  .hublink svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-  /* ===== Sticky nav pills ===== */
-  nav{
+  /* ===== Toolbar ===== */
+  .toolbar{
     position:sticky;top:0;z-index:50;
     background:rgba(13,13,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
+    padding:12px 16px;
   }
-  .pills{
-    display:flex;gap:8px;overflow-x:auto;padding:12px 16px;
-    max-width:880px;margin:0 auto;scrollbar-width:none;
-    justify-content:safe center;
+  .toolbar-inner{max-width:880px;margin:0 auto}
+  .searchrow{display:flex;gap:10px}
+  .searchbox{position:relative;flex:1}
+  .searchbox svg{
+    position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    width:16px;height:16px;stroke:var(--dim);fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none;
   }
-  .pills::-webkit-scrollbar{display:none}
-  .pill{
-    flex:0 0 auto;font-size:.85rem;font-weight:600;white-space:nowrap;
-    padding:9px 18px;border-radius:999px;
-    background:#141416;color:var(--ink);
-    border:1px solid var(--line);
-    transition:all .2s var(--ease);
-  }
-  .pill:hover{border-color:var(--red);color:#FFF;box-shadow:0 0 14px rgba(200,16,46,.2)}
-  .pill:active{background:rgba(200,16,46,.12);border-color:var(--red)}
-  .pill.store{
-    background:var(--red);border-color:var(--red);color:#FFF;font-weight:700;
-    box-shadow:0 0 16px rgba(200,16,46,.35);
-  }
-  .pill.store:hover{background:var(--red-dark)}
-  @media (max-width:640px){
-    .pills{gap:7px;padding:10px 14px}
-    .pill{padding:9px 14px;font-size:.82rem}
-  }
-
-  /* ===== Sections ===== */
-  main{max-width:880px;margin:0 auto;padding:10px 16px 48px}
-  section{padding-top:52px}
-  section+section::before{
-    content:"";display:block;height:1px;margin-bottom:52px;
-    background:linear-gradient(to right, transparent, #2A2A2D 20%, #2A2A2D 80%, transparent);
-  }
-  section#codes{padding-top:44px}
-  .section-head{text-align:center;margin-bottom:8px}
-  .section-head h2{
-    display:inline-block;font-size:1.5rem;font-weight:800;color:var(--ink);
-    letter-spacing:-.04em;padding-bottom:10px;position:relative;
-  }
-  .section-head h2::after{
-    content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
-    width:36px;height:2px;background:var(--red);border-radius:2px;
-  }
-  .section-head .count{
-    display:block;margin-top:10px;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    font-size:.68rem;font-weight:500;color:var(--dim);
-    letter-spacing:.18em;text-transform:uppercase;
-  }
-  .section-sub{color:var(--body);font-size:.92rem;margin:10px auto 22px;max-width:600px;text-align:center}
-
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media (max-width:640px){.grid{grid-template-columns:1fr}}
-
-  /* ===== Cards ===== */
-  .card{
-    display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px 18px;
-    transition:all .2s var(--ease);
-  }
-  .card:hover{
-    border-color:transparent;
-    box-shadow:0 0 0 1px var(--red), 0 8px 32px rgba(200,16,46,.15);
-  }
-  .card:active{background:#1E1E21}
-  .icon{
-    width:46px;height:46px;border-radius:12px;
-    background:rgba(200,16,46,.12);color:var(--red);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-  .card h3{font-size:.98rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-bottom:2px}
-  .card p{font-size:.84rem;color:var(--body)}
-  .tag{
-    display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;
-    text-transform:uppercase;border-radius:999px;padding:3px 9px;margin-top:8px;
-    color:#FF5A6E;background:rgba(200,16,46,.14);
-  }
-  .tag.new{color:#F59E0B;background:rgba(245,158,11,.1)}
-  .tag.login{color:#A0A0A8;background:rgba(160,160,168,.12)}
-  .tag.gray{color:#8B93A8;background:rgba(139,147,168,.1)}
-
-  /* ===== Data tables ===== */
-  .filterbar{max-width:420px;margin:0 auto 18px}
-  .filterbar input{
-    width:100%;padding:11px 16px;border-radius:999px;
+  .searchbox input{
+    width:100%;padding:11px 38px 11px 40px;border-radius:999px;
     background:#141416;border:1px solid var(--line);color:var(--ink);
-    font:inherit;font-size:.88rem;outline:none;transition:border-color .2s var(--ease);
+    font:inherit;font-size:.9rem;outline:none;transition:border-color .2s var(--ease);
   }
-  .filterbar input::placeholder{color:var(--dim)}
-  .filterbar input:focus{border-color:var(--red)}
-  .tablewrap{
-    overflow-x:auto;background:var(--card);border:1px solid var(--line);
-    border-radius:var(--radius);
+  .searchbox input::placeholder{color:var(--dim)}
+  .searchbox input:focus{border-color:var(--red)}
+  .searchbox .clear{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    width:26px;height:26px;border-radius:50%;border:0;background:transparent;
+    color:var(--dim);font-size:1rem;line-height:1;display:none;
   }
-  table.data{width:100%;border-collapse:collapse;font-size:.85rem;text-align:left;min-width:560px}
-  .data th{
-    font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--dim);padding:12px 14px;border-bottom:1px solid var(--line);
-    background:#141416;white-space:nowrap;
+  .searchbox .clear:hover{color:var(--ink)}
+  .addbtn{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;
+    padding:11px 18px;border-radius:999px;border:1px solid var(--red);
+    background:var(--red);color:#FFF;font-weight:700;font-size:.88rem;
+    box-shadow:0 0 16px rgba(200,16,46,.3);transition:background .2s var(--ease);
   }
-  .data td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--body);vertical-align:top}
-  .data tr:last-child td{border-bottom:0}
-  .data td.code{
+  .addbtn:hover{background:var(--red-dark)}
+  .addbtn svg{width:15px;height:15px;stroke:#FFF;fill:none;stroke-width:2.5;stroke-linecap:round}
+  .cats{
+    display:flex;gap:7px;overflow-x:auto;padding-top:10px;scrollbar-width:none;
+  }
+  .cats::-webkit-scrollbar{display:none}
+  .cat{
+    flex:0 0 auto;font-size:.78rem;font-weight:600;white-space:nowrap;
+    padding:7px 14px;border-radius:999px;border:1px solid var(--line);
+    background:#141416;color:var(--body);transition:all .2s var(--ease);
+  }
+  .cat:hover{border-color:var(--red);color:#FFF}
+  .cat.active{background:rgba(200,16,46,.14);border-color:var(--red);color:#FFF}
+
+  /* ===== List ===== */
+  main{max-width:880px;margin:0 auto;padding:20px 16px 40px}
+  .meta-row{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.75rem;color:var(--dim);margin-bottom:14px;flex-wrap:wrap;gap:8px;
+  }
+  .meta-row .kbd{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    font-weight:700;color:var(--ink);white-space:nowrap;
+    border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:.7rem;
   }
-  .data td strong{color:var(--ink);font-weight:600}
-  .table-note{font-size:.8rem;color:var(--dim);margin-top:12px;text-align:center;max-width:620px;margin-left:auto;margin-right:auto}
-  .subhead{margin:36px 0 12px;text-align:center}
-  .subhead h3{font-size:1.02rem;font-weight:700;color:var(--ink);letter-spacing:-.02em}
-  .subhead p{font-size:.82rem;color:var(--dim);margin-top:2px}
-  .steps{
+  .group{margin-bottom:26px}
+  .group-head{
+    display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  }
+  .group-head h2{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .group-head .n{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.68rem;color:var(--dim);letter-spacing:.1em;
+  }
+  button.group-head{
+    width:100%;background:transparent;border:0;padding:6px 0;text-align:left;
+  }
+  button.group-head:hover h2{color:#FF5A6E}
+  .group-head .chev{
+    width:14px;height:14px;flex:0 0 auto;
+    stroke:var(--dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+    transition:transform .2s var(--ease);transform:rotate(90deg);
+  }
+  .group.collapsed .chev{transform:rotate(0deg)}
+  .group-head .hint{
+    margin-left:auto;font-size:.68rem;font-weight:600;color:var(--dim);
+  }
+  .rows{display:flex;flex-direction:column;gap:8px}
+  .row{
+    display:flex;gap:12px;align-items:flex-start;
     background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:20px 22px 20px 42px;font-size:.88rem;
+    padding:13px 14px;transition:all .15s var(--ease);position:relative;
   }
-  .steps li{margin:8px 0;padding-left:6px}
-  .steps li::marker{color:var(--red);font-weight:700}
-  .checks{
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:20px 22px;list-style:none;font-size:.88rem;
+  .row:hover{border-color:rgba(200,16,46,.55);box-shadow:0 4px 20px rgba(200,16,46,.1)}
+  .row.pinned-row{border-color:rgba(200,16,46,.35)}
+  .rowmain{flex:1;min-width:0}
+  .rowtitle{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
   }
-  .checks li{margin:8px 0;padding-left:24px;position:relative}
-  .checks li::before{content:"\2713";position:absolute;left:0;color:var(--red);font-weight:800}
-
-  /* ===== Flow calculator & chart ===== */
-  .calc{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:18px;margin-bottom:14px;
+  .rowtitle a{
+    font-size:.93rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;
   }
-  .calc label{display:flex;flex-direction:column;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
-  .calc input,.calc select{
-    width:100%;padding:10px 12px;border-radius:10px;background:#141416;
-    border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.9rem;outline:none;
-  }
-  .calc input:focus,.calc select:focus{border-color:var(--red)}
-  .calc-out{grid-column:1 / -1;text-align:center;padding-top:10px;border-top:1px solid var(--line)}
-  .calc-gpm{font-size:2.4rem;font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.1}
-  .calc-gpm span{font-size:1rem;font-weight:700;color:var(--dim)}
-  .calc-detail{font-size:.8rem;color:var(--dim);margin-top:4px}
-  @media (max-width:640px){
-    .calc{grid-template-columns:1fr 1fr}
-    .calc label:nth-of-type(3){grid-column:1 / -1}
-  }
-  .chartwrap{
-    overflow-x:auto;background:var(--card);border:1px solid var(--line);
-    border-radius:var(--radius);padding:14px 8px 6px;position:relative;margin-bottom:14px;
-  }
-  .chart-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:.78rem;color:var(--body);padding:0 8px 8px}
-  .chart-legend .sw{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
-  .chart-svg{display:block;min-width:560px;width:100%;height:auto}
-  .chart-tip{
-    position:absolute;pointer-events:none;display:none;z-index:5;
-    background:rgba(13,13,13,.95);border:1px solid var(--line);border-radius:8px;
-    padding:8px 10px;font-size:.75rem;color:var(--body);white-space:nowrap;
-  }
-  .chart-tip strong{color:var(--ink)}
-
-  /* ===== Support banner ===== */
-  .support{
-    position:relative;margin-top:52px;background:var(--card);color:#FFF;
-    border:1px solid var(--line);border-radius:18px;
-    padding:38px 24px;text-align:center;overflow:hidden;
-  }
-  .support::before{
-    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-    background:var(--red);box-shadow:0 0 24px 2px rgba(200,16,46,.5);
-  }
+  .rowtitle a:hover{color:#FF5A6E}
+  .rowtitle a::after{content:"";position:absolute;inset:0}
   .badge{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--body);margin-bottom:12px;
+    flex:0 0 auto;font-size:.58rem;font-weight:800;letter-spacing:.1em;
+    text-transform:uppercase;border-radius:999px;padding:2px 8px;
   }
-  .badge .dot{
-    width:7px;height:7px;border-radius:50%;background:var(--red);
-    box-shadow:0 0 8px rgba(200,16,46,.8);
-    animation:pulse 2.4s ease-in-out infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .support a.phone{
-    display:inline-block;font-size:clamp(2rem,8vw,3.5rem);font-weight:900;
-    letter-spacing:-.04em;color:#FFF;transition:color .2s var(--ease);
-  }
-  .support a.phone:hover{color:var(--red)}
-  .support p{font-size:.86rem;color:var(--dim);margin-top:10px}
-
-
-  /* ===== Share QR ===== */
-  .share{margin-top:16px;text-align:center}
-  .share .share-label{
-    font-size:.95rem;color:var(--ink);font-weight:700;margin-bottom:6px;
-  }
-  .share .share-sub{
-    font-size:.82rem;color:var(--body);max-width:420px;margin:0 auto 16px;line-height:1.5;
-  }
-  .share .qr-tile{
-    display:inline-block;background:#FFF;border-radius:16px;padding:14px;
-    border:1px solid var(--line);
-  }
-  .share svg{display:block;width:280px;height:280px}
-  .share .share-url{
+  .badge.pdf{color:#FF5A6E;background:rgba(200,16,46,.14)}
+  .badge.page{color:#8B93A8;background:rgba(139,147,168,.12)}
+  .badge.login{color:#F59E0B;background:rgba(245,158,11,.1)}
+  .badge.video{color:#38BDF8;background:rgba(56,189,248,.1)}
+  .badge.tool{color:#4ADE80;background:rgba(74,222,128,.1)}
+  .rowdesc{font-size:.8rem;color:var(--body);margin-top:3px}
+  .rowurl{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    font-size:.72rem;color:var(--dim);margin-top:10px;letter-spacing:.02em;
+    font-size:.66rem;color:var(--dim);margin-top:5px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
+  .rowacts{
+    flex:0 0 auto;display:flex;gap:4px;position:relative;z-index:2;
+  }
+  .iconbtn{
+    width:30px;height:30px;border-radius:8px;border:1px solid transparent;
+    background:transparent;color:var(--dim);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .15s var(--ease);
+  }
+  .iconbtn:hover{color:var(--ink);border-color:var(--line);background:#141416}
+  .iconbtn.pin-on{color:#FF5A6E}
+  .iconbtn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .iconbtn.pin-on svg{fill:currentColor}
+  .empty{
+    text-align:center;padding:60px 20px;color:var(--dim);font-size:.9rem;
+  }
+  .empty strong{color:var(--body)}
 
-  /* ===== Contact strip ===== */
-  .contact-strip{
-    display:flex;align-items:center;justify-content:center;gap:14px;
-    padding:12px 20px;
-    background:rgba(200,16,46,.06);
-    border-bottom:1px solid rgba(200,16,46,.2);
-    font-size:.82rem;
+  /* ===== Footer tools ===== */
+  .libfoot{
+    max-width:880px;margin:0 auto;padding:0 16px 30px;text-align:center;
   }
-  .contact-photo{
-    width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center top;
-    border:2px solid rgba(200,16,46,.5);flex-shrink:0;
-  }
-  .contact-info{display:flex;flex-direction:column;gap:2px}
-  .contact-info .contact-name{font-weight:700;color:var(--ink);line-height:1.2}
-  .contact-info .contact-title{color:var(--dim);font-size:.76rem}
-  .contact-links{display:flex;gap:8px;align-items:center;margin-top:2px}
-  .contact-strip a{color:var(--body);transition:color .2s}
-  .contact-strip a:hover{color:var(--red)}
-  @media (max-width:480px){
-    .contact-strip{gap:10px}
-    .contact-photo{width:42px;height:42px}
-  }
-
-    /* ===== Footer ===== */
-  footer{
-    text-align:center;padding:40px 20px 24px;color:var(--dim);font-size:.75rem;
-  }
-
-  /* ===== Mobile call bar ===== */
-  .callbar{
-    position:fixed;left:0;right:0;bottom:0;z-index:60;
-    display:flex;justify-content:center;
-    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-    background:rgba(13,13,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-top:1px solid rgba(200,16,46,.4);
-  }
-  .callbar a{
-    display:flex;align-items:center;justify-content:center;gap:8px;
-    width:100%;max-width:420px;padding:13px;border-radius:999px;
-    background:var(--red);color:#FFF;font-weight:700;font-size:.95rem;
-    box-shadow:0 0 20px rgba(200,16,46,.4);
+  .libfoot .io{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .ghost{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:9px 16px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--body);font-size:.8rem;font-weight:600;
     transition:all .2s var(--ease);
   }
-  .callbar a:active{background:var(--red-dark)}
-  .callbar svg{width:18px;height:18px;stroke:#FFF;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .ghost:hover{border-color:var(--red);color:#FFF}
+  .ghost svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .libfoot p{font-size:.72rem;color:var(--dim);max-width:480px;margin:0 auto}
 
-  /* ===== Small screens ===== */
-  @media (max-width:640px){
-    header{padding:52px 18px 40px}
-    .eyebrow{margin-bottom:16px}
-    main{padding:6px 14px 36px}
-    section{padding-top:40px}
-    section+section::before{margin-bottom:40px}
-    .grid{gap:10px}
-    .card{padding:20px 16px;gap:10px}
-    .icon{width:42px;height:42px;border-radius:10px}
-    .icon svg{width:20px;height:20px}
-    .card h3{font-size:.94rem}
-    .card p{font-size:.82rem}
-    .support{margin-top:40px;padding:30px 18px;border-radius:16px}
-    footer{padding:30px 18px 16px}
+  /* ===== Modal ===== */
+  .overlay{
+    position:fixed;inset:0;z-index:100;display:none;
+    background:rgba(0,0,0,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;
+  }
+  .overlay.open{display:flex}
+  .modal{
+    width:100%;max-width:480px;background:var(--card);
+    border:1px solid var(--line);border-radius:16px;padding:24px;
+  }
+  .modal h2{font-size:1.1rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:18px}
+  .modal label{
+    display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--dim);margin:14px 0 6px;
+  }
+  .modal input,.modal select,.modal textarea{
+    width:100%;padding:10px 12px;border-radius:10px;background:#141416;
+    border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.88rem;outline:none;
+  }
+  .modal input:focus,.modal select:focus,.modal textarea:focus{border-color:var(--red)}
+  .modal textarea{resize:vertical;min-height:60px}
+  .modal .btns{display:flex;gap:10px;justify-content:flex-end;margin-top:22px}
+  .modal .cancel{
+    padding:10px 18px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--body);font-weight:600;font-size:.85rem;
+  }
+  .modal .cancel:hover{color:var(--ink)}
+  .modal .save{
+    padding:10px 22px;border-radius:999px;border:0;
+    background:var(--red);color:#FFF;font-weight:700;font-size:.85rem;
+  }
+  .modal .save:hover{background:var(--red-dark)}
+  .modal .err{display:none;color:#FF5A6E;font-size:.78rem;margin-top:10px}
+
+  /* ===== Toast ===== */
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+    z-index:120;background:#1E1E21;border:1px solid var(--line);border-radius:999px;
+    padding:10px 20px;font-size:.82rem;color:var(--ink);opacity:0;pointer-events:none;
+    transition:all .25s var(--ease);white-space:nowrap;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:560px){
+    header{padding:34px 16px 20px}
+    .rowurl{display:none}
+    .rowacts{flex-direction:column}
+    .addbtn span{display:none}
+    .addbtn{padding:11px 14px}
   }
 </style>
 </head>
 <body>
 
 <header>
-  <span class="eyebrow">SoCal Field Resources</span>
-  <h1>Rinnai <span class="red">Contractor Hub</span></h1>
-  <p class="tagline">The data techs reach for 80% of the time — error codes, gas specs, flush procedure, recess kits — right on the page. Manuals and links as backup.</p>
+  <span class="eyebrow">Everything In One Place</span>
+  <h1>Rinnai <span class="red">Work Library</span></h1>
+  <p class="tagline">Every manual, chart, brochure, and portal link — searchable in one spot instead of scattered across the Rinnai ecosystem.</p>
 </header>
 
-<hr class="threshold" aria-hidden="true">
-
-<div class="contact-strip">
-  <img src="data:image/jpeg;base64,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" class="contact-photo" alt="Jeremy Barnes">
-  <div class="contact-info">
-    <span class="contact-name">Jeremy Barnes</span>
-    <span class="contact-title">Regional Service Manager</span>
-    <div class="contact-links">
-      <a href="mailto:jbarnes@rinnai.us">jbarnes@rinnai.us</a>
-      <span style="color:var(--line)">·</span>
-      <a href="tel:3109227015">(310) 922-7015</a>
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="searchrow">
+      <div class="searchbox">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="q" placeholder="Search — try RX manual, vent, dip switch, Duo…" aria-label="Search library" autocomplete="off">
+        <button class="clear" id="qClear" aria-label="Clear search">&times;</button>
+      </div>
+      <button class="addbtn" id="addBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        <span>Add Link</span>
+      </button>
     </div>
+    <div class="cats" id="cats" role="tablist" aria-label="Categories"></div>
   </div>
 </div>
-
-<nav aria-label="Sections">
-  <div class="pills">
-    <a class="pill store" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener">Rinnai Store</a>
-    <a class="pill" href="library.html">&#9733; Library</a>
-    <a class="pill" href="#codes">Error Codes</a>
-    <a class="pill" href="#specs">Quick Specs</a>
-    <a class="pill" href="#kits">Recess &amp; Kits</a>
-    <a class="pill" href="#residential">Residential</a>
-    <a class="pill" href="#commercial">Commercial</a>
-    <a class="pill" href="#field">Field Essentials</a>
-    <a class="pill" href="#training">Training</a>
-    <a class="pill" href="#support">Tech Support</a>
-  </div>
-</nav>
 
 <main>
-
-  <!-- ================= ERROR CODES ================= -->
-  <section id="codes">
-    <div class="section-head"><h2>Error Codes</h2><span class="count">Diagnostic Quick Reference</span></div>
-    <p class="section-sub">The codes you'll actually see and where to start. Applies broadly across Rinnai tankless — always confirm against the unit's service manual before replacing parts.</p>
-    <div class="filterbar"><input type="search" id="codeFilter" placeholder="Filter — try 11, ignition, scale…" aria-label="Filter error codes"></div>
-    <div class="tablewrap">
-      <table class="data" id="codeTable">
-        <thead><tr><th>Code</th><th>What it means</th><th>First checks in the field</th></tr></thead>
-        <tbody>
-          <tr><td class="code">10</td><td><strong>Air supply / exhaust blockage</strong></td><td>Walk the vent — termination screen, bird nests, sag in horizontal runs. Check the fan blade for debris and confirm vent length is within spec.</td></tr>
-          <tr><td class="code">11</td><td><strong>No ignition</strong></td><td>Confirm gas is on and supply is adequate. Check inlet gas pressure under load, igniter spark, and gas solenoids. Verify gas type matches the rating plate.</td></tr>
-          <tr><td class="code">12</td><td><strong>Flame failure</strong></td><td>Low gas pressure under load is the classic cause — check it at max fire. Inspect the flame rod and its connection, look for exhaust recirculating into the intake, verify the ground wire.</td></tr>
-          <tr><td class="code">14</td><td><strong>Thermal fuse / overheat wrap</strong></td><td>Usually scale in the heat exchanger or restricted airflow. Descale and find the cause before replacing the fuse — it tripped for a reason.</td></tr>
-          <tr><td class="code">16</td><td><strong>Over-temperature warning</strong></td><td>Scale buildup or restricted flow — flush the heat exchanger, clean the inlet filter, verify flow control operation.</td></tr>
-          <tr><td class="code">19</td><td><strong>Electrical grounding fault</strong></td><td>Moisture in connectors, chafed wiring, or a sensor shorted to the case. Verify a solid dedicated ground.</td></tr>
-          <tr><td class="code">25</td><td><strong>Condensate trap / drain blocked</strong> (condensing)</td><td>Clear the trap and drain line, check neutralizer media, confirm drain slope. Never cap a condensate line.</td></tr>
-          <tr><td class="code">31</td><td><strong>Burner sensor fault</strong></td><td>Check the connector and sensor resistance; replace the sensor if open or shorted.</td></tr>
-          <tr><td class="code">32</td><td><strong>Outgoing water temp sensor</strong></td><td>Check the connector, sensor resistance, and scale on the probe. Replace if out of spec.</td></tr>
-          <tr><td class="code">33</td><td><strong>Heat exchanger temp sensor</strong></td><td>Same drill as 32 — connector, resistance, scale.</td></tr>
-          <tr><td class="code">34</td><td><strong>Combustion air temp sensor</strong></td><td>First check for exhaust re-entering the intake (vent termination clearances), then the sensor and fan.</td></tr>
-          <tr><td class="code">52</td><td><strong>Modulating gas valve fault</strong></td><td>Check the valve connector and coil resistance; replace the modulating valve if out of spec.</td></tr>
-          <tr><td class="code">61</td><td><strong>Combustion fan failure</strong></td><td>Spin the fan by hand — it should be free. Check motor resistance and the connector; replace the fan motor.</td></tr>
-          <tr><td class="code">65</td><td><strong>Water flow control valve fault</strong></td><td>Servo jammed or scaled — clean or replace the flow control assembly.</td></tr>
-          <tr><td class="code">71</td><td><strong>Gas solenoid valve circuit</strong></td><td>Check solenoid coils and wiring; if the coils test good, suspect the PCB.</td></tr>
-          <tr><td class="code">72</td><td><strong>Flame sensor fault</strong></td><td>Flame signal with no ignition sequence — dirty or shorted flame rod, or the PCB.</td></tr>
-          <tr><td class="code">79</td><td><strong>Water leak detected in cabinet</strong></td><td>Find and fix the leak (heat exchanger, fittings, valves), dry the leak sensor, then clear the code.</td></tr>
-          <tr><td class="code">LC</td><td><strong>Scale buildup in heat exchanger</strong></td><td>Descale now — LC is the unit telling you it's limed up. Check hardness and recommend treatment; ignored LCs end in a 14 or 16.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="table-note">No code and no power at all? Breaker, 120V at the receptacle, and the fuses on the PCB — in that order.</p>
-  </section>
-
-  <!-- ================= QUICK SPECS ================= -->
-  <section id="specs">
-    <div class="section-head"><h2>Service Quick Specs</h2><span class="count">Gas · Models · Venting · Dip Switches · Maintenance</span></div>
-    <p class="section-sub">The numbers you check on every call, without digging through a 60-page manual.</p>
-
-    <div class="subhead"><h3>Inlet Gas Pressure</h3><p>Measured at the unit's inlet test port, at max fire, with other gas appliances running. Static pressure means nothing — check it under load.</p></div>
-    <div class="tablewrap">
-      <table class="data">
-        <thead><tr><th>Fuel</th><th>Minimum</th><th>Maximum</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Natural Gas</strong></td><td>3.5" WC</td><td>10.5" WC</td></tr>
-          <tr><td><strong>Propane (LP)</strong></td><td>8.0" WC</td><td>13.5" WC</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="subhead"><h3>Model Series Cheat Sheet</h3><p>What you're looking at when you pull the cover.</p></div>
-    <div class="tablewrap">
-      <table class="data">
-        <thead><tr><th>Series</th><th>Type</th><th>Field notes</th></tr></thead>
-        <tbody>
-          <tr><td class="code">RE / REP</td><td>Non-condensing</td><td>The warm-climate outdoor workhorse. REP has a built-in recirc pump.</td></tr>
-          <tr><td class="code">RX / RXP</td><td>Condensing (SENSEI)</td><td>Current residential high-efficiency line. RXP has a built-in pump. Has Quick-Flush mode for descaling.</td></tr>
-          <tr><td class="code">CX / CXP</td><td>Condensing commercial (SENSEI)</td><td>199k BTU, 185°F capable, cascades up to 24 units. CXP has a built-in pump.</td></tr>
-          <tr><td class="code">RU</td><td>Condensing (prior gen)</td><td>Everywhere in the field — parts still readily available.</td></tr>
-          <tr><td class="code">RSC</td><td>Condensing + recirc (prior gen)</td><td>Built-in recirculation — works with or without a dedicated return line.</td></tr>
-          <tr><td class="code">Demand Duo</td><td>Hybrid tank + tankless</td><td>Commercial tank replacement — you're servicing both halves.</td></tr>
-          <tr><td class="code">RCW</td><td>Condensing volume heater</td><td>Floor-standing, 399k–1M BTU, up to 99% efficiency.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="subhead"><h3>Flow Rate vs Temperature Rise (&#916;T)</h3><p>Max hot water is physics: <strong>GPM = (BTU &#215; efficiency) &#247; (500 &#215; &#916;T)</strong>. &#916;T = set temp &#8722; incoming water temp. "Not enough hot water" in January is usually just a bigger &#916;T, not a broken unit.</p></div>
-
-    <div class="calc" id="flowCalc">
-      <label>Incoming water &#176;F<input type="number" id="fcIn" value="65" min="33" max="90" inputmode="numeric"></label>
-      <label>Set temp &#176;F<input type="number" id="fcSet" value="120" min="98" max="185" inputmode="numeric"></label>
-      <label>Unit<select id="fcUnit">
-        <option value="199000,0.96,11.0">199k condensing &#8212; RX / CX / RU199</option>
-        <option value="199000,0.82,9.8">199k non-condensing &#8212; RE199 / REP</option>
-        <option value="180000,0.82,0">180k non-condensing &#8212; RE180</option>
-        <option value="160000,0.82,0">160k non-condensing &#8212; RE160</option>
-        <option value="160000,0.96,0">160k condensing &#8212; RU160</option>
-        <option value="140000,0.82,0">140k non-condensing &#8212; RE140</option>
-      </select></label>
-      <div class="calc-out">
-        <div class="calc-gpm" id="fcOut">10.9 <span>GPM max</span></div>
-        <p class="calc-detail" id="fcDetail">&#916;T 55&#176;F &#183; roughly 5 simultaneous 2.0 GPM showers</p>
-      </div>
-    </div>
-
-    <div class="chart-legend" aria-hidden="true">
-      <span><span class="sw" style="background:#E8465F"></span>199k condensing (RX &#183; CX &#183; RU199)</span>
-      <span><span class="sw" style="background:#2F8ED6"></span>199k non-condensing (RE199)</span>
-    </div>
-    <div class="chartwrap" id="chartWrap">
-      <svg class="chart-svg" id="flowChart" viewBox="0 0 640 330" role="img" aria-label="Flow rate in GPM versus temperature rise for 199k BTU condensing and non-condensing units">
-        <rect x="160.0" y="16" width="232.0" height="278" fill="#FFFFFF" opacity="0.035"/><text x="276.0" y="28" text-anchor="middle" font-size="9.5" fill="#5A5A62" letter-spacing="1">TYPICAL SOCAL &#916;T</text><line x1="44" y1="294.0" x2="624" y2="294.0" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="297.5" text-anchor="end" font-size="10.5" fill="#5A5A62">0</text><line x1="44" y1="247.7" x2="624" y2="247.7" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="251.2" text-anchor="end" font-size="10.5" fill="#5A5A62">2</text><line x1="44" y1="201.3" x2="624" y2="201.3" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="204.8" text-anchor="end" font-size="10.5" fill="#5A5A62">4</text><line x1="44" y1="155.0" x2="624" y2="155.0" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="158.5" text-anchor="end" font-size="10.5" fill="#5A5A62">6</text><line x1="44" y1="108.7" x2="624" y2="108.7" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="112.2" text-anchor="end" font-size="10.5" fill="#5A5A62">8</text><line x1="44" y1="62.3" x2="624" y2="62.3" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="65.8" text-anchor="end" font-size="10.5" fill="#5A5A62">10</text><line x1="44" y1="16.0" x2="624" y2="16.0" stroke="#2A2A2D" stroke-width="1"/><text x="36" y="19.5" text-anchor="end" font-size="10.5" fill="#5A5A62">12</text><text x="44.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">35</text><text x="160.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">45</text><text x="276.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">55</text><text x="392.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">65</text><text x="508.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">75</text><text x="624.0" y="316" text-anchor="middle" font-size="10.5" fill="#5A5A62">85</text>
-        <text x="334" y="328" text-anchor="middle" font-size="10.5" fill="#5A5A62" font-weight="700" letter-spacing="1">&#916;T &#8212; TEMPERATURE RISE (&#176;F)</text>
-        <text x="12" y="155" text-anchor="middle" font-size="10.5" fill="#5A5A62" font-weight="700" letter-spacing="1" transform="rotate(-90 12 155)">GPM</text>
-        <path d="M44.0,41.1 L73.0,58.0 L102.0,72.7 L131.0,85.7 L160.0,97.3 L189.0,107.7 L218.0,117.0 L247.0,125.4 L276.0,133.1 L305.0,140.1 L334.0,146.5 L363.0,152.4 L392.0,157.8 L421.0,162.9 L450.0,167.5 L479.0,171.9 L508.0,176.0 L537.0,179.8 L566.0,183.4 L595.0,186.7 L624.0,189.9" fill="none" stroke="#E8465F" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M44.0,78.0 L73.0,92.4 L102.0,105.0 L131.0,116.1 L160.0,126.0 L189.0,134.8 L218.0,142.8 L247.0,150.0 L276.0,156.5 L305.0,162.5 L334.0,168.0 L363.0,173.0 L392.0,177.7 L421.0,182.0 L450.0,186.0 L479.0,189.7 L508.0,193.2 L537.0,196.4 L566.0,199.5 L595.0,202.4 L624.0,205.1" fill="none" stroke="#2F8ED6" stroke-width="2.5" stroke-linecap="round"/>
-        <text x="622" y="180.9" text-anchor="end" font-size="11" font-weight="600" fill="#A0A0A8">Condensing</text><text x="622" y="222.1" text-anchor="end" font-size="11" font-weight="600" fill="#A0A0A8">Non-condensing</text>
-        <line id="fcCross" x1="0" y1="16" x2="0" y2="294" stroke="#5A5A62" stroke-width="1" stroke-dasharray="3 3" style="display:none"/>
-        <circle id="fcDotA" r="4.5" fill="#E8465F" stroke="#1A1A1C" stroke-width="2" style="display:none"/>
-        <circle id="fcDotB" r="4.5" fill="#2F8ED6" stroke="#1A1A1C" stroke-width="2" style="display:none"/>
-        <rect id="fcHit" x="44" y="16" width="580" height="278" fill="transparent"/>
-      </svg>
-      <div class="chart-tip" id="fcTip"></div>
-    </div>
-
-    <div class="tablewrap">
-      <table class="data">
-        <thead><tr><th>&#916;T Rise</th><th>199k Cond.</th><th>199k Non-Cond.</th><th>160k Non-Cond.</th><th>140k Non-Cond.</th></tr></thead>
-        <tbody><tr><td class="code">35&#176;F</td><td>10.9</td><td>9.3</td><td>7.5</td><td>6.6</td></tr><tr><td class="code">40&#176;F</td><td>9.6</td><td>8.2</td><td>6.6</td><td>5.7</td></tr><tr><td class="code">45&#176;F</td><td>8.5</td><td>7.3</td><td>5.8</td><td>5.1</td></tr><tr><td class="code">50&#176;F</td><td>7.6</td><td>6.5</td><td>5.2</td><td>4.6</td></tr><tr><td class="code">55&#176;F</td><td style="color:var(--ink)">6.9</td><td style="color:var(--ink)">5.9</td><td style="color:var(--ink)">4.8</td><td style="color:var(--ink)">4.2</td></tr><tr><td class="code">60&#176;F</td><td>6.4</td><td>5.4</td><td>4.4</td><td>3.8</td></tr><tr><td class="code">65&#176;F</td><td>5.9</td><td>5.0</td><td>4.0</td><td>3.5</td></tr><tr><td class="code">70&#176;F</td><td>5.5</td><td>4.7</td><td>3.7</td><td>3.3</td></tr><tr><td class="code">75&#176;F</td><td>5.1</td><td>4.4</td><td>3.5</td><td>3.1</td></tr><tr><td class="code">80&#176;F</td><td>4.8</td><td>4.1</td><td>3.3</td><td>2.9</td></tr></tbody>
-      </table>
-    </div>
-    <p class="table-note">GPM, calculated at ~96% (condensing) / ~82% (non-condensing) thermal efficiency, capped at published max flow (11.0 / 9.8 GPM on the 199k units). Close enough to diagnose a flow complaint &#8212; the spec-sheet curve governs for system design.</p>
-
-    <div class="subhead"><h3>Vent Length Limits</h3><p>Maximum <strong>equivalent</strong> length per unit, direct vent. Count every fitting: each 90° elbow = 5 ft, each 45° = 2.5 ft (twin pipe PVC/CPVC).</p></div>
-    <div class="tablewrap">
-      <table class="data">
-        <thead><tr><th>Series</th><th>Vent Type</th><th>Max Equivalent Length</th></tr></thead>
-        <tbody>
-          <tr><td class="code">RX / RXP</td><td>Twin pipe PVC/CPVC/PP</td><td><strong>2" → 75 ft</strong> · <strong>3" → 150 ft</strong></td></tr>
-          <tr><td class="code">RX / RXP</td><td>Concentric</td><td><strong>2"×4" → 75 ft</strong> · <strong>3"×5" → 150 ft</strong></td></tr>
-          <tr><td class="code">CX / CXP</td><td>Twin pipe PVC/CPVC</td><td><strong>2" → 75 ft</strong> · <strong>3" → 150 ft</strong></td></tr>
-          <tr><td class="code">CX / CXP</td><td>Concentric</td><td><strong>2"×4" → 75 ft</strong> · <strong>3"×5" → 150 ft</strong></td></tr>
-          <tr><td class="code">RE / REP indoor</td><td>Concentric only (non-condensing)</td><td>Per Table 2 in the RE I&amp;O manual (linked below) — Ubbink termination counts as 5 ft</td></tr>
-          <tr><td class="code">RE / REP outdoor</td><td>None — integral exhaust</td><td>No vent run. Watch termination clearances instead</td></tr>
-          <tr><td class="code">RU / RUR / RSC</td><td>Twin pipe or concentric</td><td>Prior-gen limits vary by model and fuel — pull the model's manual before quoting a run</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="table-note">Common venting (multiple units, one vent) is a different animal with its own tables — use the PVC/CPVC Common Venting manual in the Residential section.</p>
-
-    <div class="subhead"><h3>Dip Switch &amp; Parameter Settings</h3><p>Kill power before touching switches. Set only what the manual tells you to — everything else stays factory.</p></div>
-    <div class="tablewrap">
-      <table class="data">
-        <thead><tr><th>Elevation</th><th>SW 2</th><th>SW 3</th></tr></thead>
-        <tbody>
-          <tr><td><strong>0 – 2,000 ft</strong> (factory)</td><td>OFF</td><td>OFF</td></tr>
-          <tr><td><strong>2,001 – 5,400 ft</strong></td><td class="code">ON</td><td>OFF</td></tr>
-          <tr><td><strong>5,401 – 7,700 ft</strong> (Big Bear, Wrightwood)</td><td>OFF</td><td class="code">ON</td></tr>
-          <tr><td><strong>7,701 – 10,200 ft</strong></td><td class="code">ON</td><td class="code">ON</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="table-note">Altitude switches 2 &amp; 3 live in the tan DIPSW1 bank on the front of the PCB. Once set, no gas pressure re-adjustment is needed for altitude. Vent-length setting: RE/REP use controller <strong>parameter 99</strong> — factory <strong>99A</strong> for long runs, change to <strong>99b</strong> only when total vent is under 21 equivalent ft. Prior-gen indoor condensing units put the same 21-ft threshold on dip switch #1 of the tan bank — confirm ON/OFF orientation in that model's manual.</p>
-
-    <div class="subhead"><h3>Descale / Flush Procedure</h3><p>Rinnai's water spec is total hardness under 200 mg/L (~12 gpg). Most of SoCal runs harder than that — flush annually and push scale treatment on every install.</p></div>
-    <ol class="steps">
-      <li>Power off, gas off, close the hot and cold isolation valves.</li>
-      <li>Connect the pump and hoses to the service valves; drop both in a bucket with ~4 gallons of food-grade white vinegar or citric descaler.</li>
-      <li>Open both service ports and circulate 45–60 minutes (SENSEI RX: use Quick-Flush mode).</li>
-      <li>Dump the solution and rinse with fresh water for about 5 minutes.</li>
-      <li>Pull and rinse the cold-inlet filter screen — towel down first.</li>
-      <li>Return valves to service, restore power and gas, run hot water, confirm no codes.</li>
-    </ol>
-
-    <div class="subhead"><h3>Annual Maintenance Checklist</h3><p>The visit that prevents the 2 a.m. no-hot-water call.</p></div>
-    <ul class="checks">
-      <li>Descale / flush the heat exchanger — non-negotiable in hard water</li>
-      <li>Clean the cold-inlet water filter</li>
-      <li>Condensing units: clear the condensate trap, check neutralizer media</li>
-      <li>Inspect the vent run and termination screen</li>
-      <li>Verify inlet gas pressure at max fire</li>
-      <li>Pull the error-code history from the controller</li>
-    </ul>
-  </section>
-
-  <!-- ================= RECESS BOXES & KITS ================= -->
-  <section id="kits">
-    <div class="section-head"><h2>Recess Boxes &amp; Door Kits</h2><span class="count">Wall Recess · Retrofit</span></div>
-    <p class="section-sub">Swapping a unit that lives in a wall recess? Match the retrofit door kit to the existing box and the new series — no re-doing the wall.</p>
-    <div class="tablewrap">
-      <table class="data">
-        <thead><tr><th>Recess Box</th><th>Model Series</th><th>Retrofit Door Kits</th><th>Best For</th></tr></thead>
-        <tbody>
-          <tr><td class="code">RGBRE</td><td>RE / REP (Non-Condensing)</td><td>109001313 · 109001365 · 109001374</td><td>Current non-condensing upgrades / retrofits</td></tr>
-          <tr><td class="code">RGBCTWHRX (CTWH-4)</td><td>RX / RXP / CX / RU / RSC (Condensing)</td><td>109001424 · 104000335 · 104000336</td><td>High-efficiency condensing installs</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ================= RESIDENTIAL ================= -->
-  <section id="residential">
-    <div class="section-head"><h2>Residential</h2><span class="count">Tankless</span></div>
-    <p class="section-sub">The two lines that matter out here: SENSEI RX condensing and RE non-condensing. Spec it, install it, vent it.</p>
-    <div class="grid">
-
-      <a class="card" href="https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span>
-        <span>
-          <h3>SENSEI RX Series Brochure</h3>
-          <p>Full 30+ page PDF — models, BTUs, approved components, venting, valves.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://media.rinnai.us/salsify_asset/s-5dcde422-3307-426c-ab15-29ecd56cac15/100000839%20SENSEI%20RX%20Residential%20Installation%20and%20Operation%20Manual.pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg></span>
-        <span>
-          <h3>SENSEI RX Install &amp; Operation Manual</h3>
-          <p>Clearances, water quality, venting, flushing (Quick-Flush), draining.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://media.rinnai.us/salsify_asset/s-7bbd9e1e-b3de-4800-acad-aa997c5e9f28/100000625-PVC%20and%20CPVC%20Common%20Venting%20Installation%20Instructions%20for%20SENSEI.pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 20V8a4 4 0 0 1 4-4h12"/><path d="M16 0l4 4-4 4" transform="translate(0,0)"/><path d="M4 14h6M4 17h6"/></svg></span>
-        <span>
-          <h3>PVC / CPVC Common Venting Manual</h3>
-          <p>Official common-vent instructions for SENSEI models.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://media.rinnai.us/salsify_asset/s-4c0f42d2-4a9d-40d2-a189-d4f84bee5509/100000722(02)%20RE%20Installation%20and%20Operation%20Manual.pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></span>
-        <span>
-          <h3>RE Series Install &amp; Operation Manual</h3>
-          <p>Non-condensing — the outdoor workhorse for warm-climate replacements. Venting, flushing, draining.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ================= COMMERCIAL ================= -->
-  <section id="commercial">
-    <div class="section-head"><h2>Commercial</h2><span class="count">CX · Demand Duo · RCW</span></div>
-    <p class="section-sub">What actually gets installed down here: CX tankless, Demand Duo hybrids, and the new RCW volume water heaters. No boilers.</p>
-    <div class="grid">
-
-      <a class="card" href="https://www.rinnai.us/commercial/tankless-water-heaters" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 7v4M10 9h4"/></svg></span>
-        <span>
-          <h3>SENSEI CX Commercial Tankless</h3>
-          <p>199k BTU, 185°F output, cascade up to 24 units. CX &amp; CXP models.</p>
-          <span class="tag gray">Product page</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://www.rinnai.us/commercial/demand-duo" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="8" height="14" rx="2"/><rect x="14" y="3" width="7" height="11" rx="2"/><path d="M11 13h3"/></svg></span>
-        <span>
-          <h3>Demand Duo Hybrid Systems</h3>
-          <p>Tank + tankless hybrid. Direct replacement for commercial tanks — R, H, and Duo 2 series.</p>
-          <span class="tag gray">Product page</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://www.rinnai.us/sites/default/files/2024-11/US%20-%20Demand%20Duo%C2%AE%20Hybrid%20Commercial%20Water%20Heating%20Solutions%20(1).pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6"/><path d="M12 11v6M9 14l3 3 3-3"/></svg></span>
-        <span>
-          <h3>Demand Duo Brochure</h3>
-          <p>First-hour delivery, warranty comparison, venting options — the sell sheet.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://media.rinnai.us/salsify_asset/s-eab7351b-b8a4-43d2-a1ab-3043b0b802d8/100000872%20Demand%20Duo%202%20H-Series%20with%20SENSEI%20CX%20Installation%20Instructions.pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3z"/></svg></span>
-        <span>
-          <h3>Demand Duo 2 Install Instructions</h3>
-          <p>H-Series with SENSEI CX — CA earthquake strapping, rack assembly, venting, clearances, part numbers.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://www.rinnai.us/commercial/rcw-series" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span>
-        <span>
-          <h3>RCW Series Volume Water Heaters</h3>
-          <p>New floor-standing condensing line — 399k to 1M BTU, up to 99% efficiency, 10:1 turndown.</p>
-          <span class="tag new">New</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="10" rx="1.5"/><rect x="14" y="4" width="7" height="10" rx="1.5"/><path d="M6.5 14v6M17.5 14v6M4 20h5M15 20h5"/></svg></span>
-        <span>
-          <h3>TRS Rack System Install Instructions</h3>
-          <p>Tankless rack systems with SENSEI CX — preassembled racks, fits a 32" doorway.</p>
-          <span class="tag">PDF</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://www.rinnai.us/commercial/multifamily-properties" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 10h2M13 10h2M9 14h2M13 14h2M9 18h2M13 18h2"/></svg></span>
-        <span>
-          <h3>Multi-Family Solutions</h3>
-          <p>Rack systems, central plant designs, and case studies for apartments &amp; HOAs.</p>
-          <span class="tag gray">Rinnai.us</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://www.rinnai.us/commercial" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
-        <span>
-          <h3>Commercial Overview + Free Sizing</h3>
-          <p>Rinnai's engineering team sizes your system free — quotes within 48 hours, 100% sizing guarantee.</p>
-          <span class="tag gray">Rinnai.us</span>
-        </span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ================= FIELD ESSENTIALS ================= -->
-  <section id="field">
-    <div class="section-head"><h2>Field Essentials</h2><span class="count">Store · Sizing · Recirc · Valves</span></div>
-    <p class="section-sub">Parts ordering and the rest of the job — gas sizing, recirculation, and isolation valves.</p>
-    <div class="grid">
-
-      <a class="card" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener" style="border-color:rgba(200,16,46,.5)">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 7h12l1.5 13a1 1 0 0 1-1 1.1H5.5a1 1 0 0 1-1-1.1L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></span>
-        <span>
-          <h3>Rinnai Store</h3>
-          <p>Order OEM parts and components direct from Rinnai — PRO login required.</p>
-          <span class="tag login">Login</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://www.rinnai.us/professional/faq" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
-        <span>
-          <h3>Gas Pipe Sizing Charts</h3>
-          <p>1/2", 3/4" run lengths and sizing answers in the PRO FAQ.</p>
-          <span class="tag gray">Rinnai.us</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://tinyurl.com/grundfos-alpha" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-6 6"/><path d="M21 3h-5M21 3v5"/></svg></span>
-        <span>
-          <h3>Grundfos Alpha HWR</h3>
-          <p>Smart indoor recirculation pump — the go-to for comfort recirc retrofits.</p>
-          <span class="tag gray">Grundfos</span>
-        </span>
-      </a>
-
-      <a class="card" href="library.html">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
-        <span>
-          <h3>Work Library</h3>
-          <p>Every manual, chart, and link in one searchable spot — plus add your own.</p>
-          <span class="tag">Search</span>
-        </span>
-      </a>
-    </div>
-  </section>
-
-  <!-- ================= TRAINING ================= -->
-  <section id="training">
-    <div class="section-head"><h2>Training &amp; Video</h2><span class="count">Learn it right</span></div>
-    <p class="section-sub">Watch it before you wrench it.</p>
-    <div class="grid">
-
-      <a class="card" href="https://www.youtube.com/@rinnaivideos" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3V9z"/></svg></span>
-        <span>
-          <h3>Rinnai YouTube Channel</h3>
-          <p>Installs, flushing, board replacement, venting walkthroughs.</p>
-          <span class="tag gray">Video</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://rinnaipro.myabsorb.com" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></span>
-        <span>
-          <h3>Rinnai PRO Training (Absorb LMS)</h3>
-          <p>Official online certification courses for Rinnai tankless.</p>
-          <span class="tag login">Login</span>
-        </span>
-      </a>
-
-      <a class="card" href="https://class-creation.netlify.app" target="_blank" rel="noopener">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
-        <span>
-          <h3>Live Hands-On Classes</h3>
-          <p>In-person Rinnai training in SoCal — register for the next session.</p>
-          <span class="tag">Register</span>
-        </span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ================= SUPPORT ================= -->
-  <section id="support">
-    <div class="support">
-      <div class="badge"><span class="dot" aria-hidden="true"></span>Rinnai PRO Tech Support · 24/7 Emergency Available</div>
-      <br>
-      <a class="phone" href="tel:8443191230">844-319-1230</a>
-      <p>Have the model and serial number ready — it's on the right side of the unit.</p>
-    </div>
-  </section>
-
-  <!-- ================= SHARE ================= -->
-  <div class="share">
-    <p class="share-label">Send this hub to your crew</p>
-    <p class="share-sub">Point a phone camera at this QR — opens the hub instantly, no typing needed. Save it to your home screen and you'll always have it on the job.</p>
-    <div class="qr-tile" aria-label="QR code linking to this hub">
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" viewBox="0 0 310 310"  preserveAspectRatio="xMinYMin meet"><rect width="100%" height="100%" fill="transparent" cx="0" cy="0"/><path d="M10,10l10,0 0,10 -10,0 0,-10z M20,10l10,0 0,10 -10,0 0,-10z M30,10l10,0 0,10 -10,0 0,-10z M40,10l10,0 0,10 -10,0 0,-10z M50,10l10,0 0,10 -10,0 0,-10z M60,10l10,0 0,10 -10,0 0,-10z M70,10l10,0 0,10 -10,0 0,-10z M90,10l10,0 0,10 -10,0 0,-10z M100,10l10,0 0,10 -10,0 0,-10z M110,10l10,0 0,10 -10,0 0,-10z M120,10l10,0 0,10 -10,0 0,-10z M140,10l10,0 0,10 -10,0 0,-10z M150,10l10,0 0,10 -10,0 0,-10z M160,10l10,0 0,10 -10,0 0,-10z M190,10l10,0 0,10 -10,0 0,-10z M230,10l10,0 0,10 -10,0 0,-10z M240,10l10,0 0,10 -10,0 0,-10z M250,10l10,0 0,10 -10,0 0,-10z M260,10l10,0 0,10 -10,0 0,-10z M270,10l10,0 0,10 -10,0 0,-10z M280,10l10,0 0,10 -10,0 0,-10z M290,10l10,0 0,10 -10,0 0,-10z M10,20l10,0 0,10 -10,0 0,-10z M70,20l10,0 0,10 -10,0 0,-10z M120,20l10,0 0,10 -10,0 0,-10z M130,20l10,0 0,10 -10,0 0,-10z M140,20l10,0 0,10 -10,0 0,-10z M150,20l10,0 0,10 -10,0 0,-10z M160,20l10,0 0,10 -10,0 0,-10z M180,20l10,0 0,10 -10,0 0,-10z M200,20l10,0 0,10 -10,0 0,-10z M230,20l10,0 0,10 -10,0 0,-10z M290,20l10,0 0,10 -10,0 0,-10z M10,30l10,0 0,10 -10,0 0,-10z M30,30l10,0 0,10 -10,0 0,-10z M40,30l10,0 0,10 -10,0 0,-10z M50,30l10,0 0,10 -10,0 0,-10z M70,30l10,0 0,10 -10,0 0,-10z M100,30l10,0 0,10 -10,0 0,-10z M120,30l10,0 0,10 -10,0 0,-10z M140,30l10,0 0,10 -10,0 0,-10z M150,30l10,0 0,10 -10,0 0,-10z M190,30l10,0 0,10 -10,0 0,-10z M200,30l10,0 0,10 -10,0 0,-10z M230,30l10,0 0,10 -10,0 0,-10z M250,30l10,0 0,10 -10,0 0,-10z M260,30l10,0 0,10 -10,0 0,-10z M270,30l10,0 0,10 -10,0 0,-10z M290,30l10,0 0,10 -10,0 0,-10z M10,40l10,0 0,10 -10,0 0,-10z M30,40l10,0 0,10 -10,0 0,-10z M40,40l10,0 0,10 -10,0 0,-10z M50,40l10,0 0,10 -10,0 0,-10z M70,40l10,0 0,10 -10,0 0,-10z M110,40l10,0 0,10 -10,0 0,-10z M120,40l10,0 0,10 -10,0 0,-10z M150,40l10,0 0,10 -10,0 0,-10z M160,40l10,0 0,10 -10,0 0,-10z M180,40l10,0 0,10 -10,0 0,-10z M200,40l10,0 0,10 -10,0 0,-10z M210,40l10,0 0,10 -10,0 0,-10z M230,40l10,0 0,10 -10,0 0,-10z M250,40l10,0 0,10 -10,0 0,-10z M260,40l10,0 0,10 -10,0 0,-10z M270,40l10,0 0,10 -10,0 0,-10z M290,40l10,0 0,10 -10,0 0,-10z M10,50l10,0 0,10 -10,0 0,-10z M30,50l10,0 0,10 -10,0 0,-10z M40,50l10,0 0,10 -10,0 0,-10z M50,50l10,0 0,10 -10,0 0,-10z M70,50l10,0 0,10 -10,0 0,-10z M110,50l10,0 0,10 -10,0 0,-10z M120,50l10,0 0,10 -10,0 0,-10z M130,50l10,0 0,10 -10,0 0,-10z M140,50l10,0 0,10 -10,0 0,-10z M160,50l10,0 0,10 -10,0 0,-10z M190,50l10,0 0,10 -10,0 0,-10z M200,50l10,0 0,10 -10,0 0,-10z M230,50l10,0 0,10 -10,0 0,-10z M250,50l10,0 0,10 -10,0 0,-10z M260,50l10,0 0,10 -10,0 0,-10z M270,50l10,0 0,10 -10,0 0,-10z M290,50l10,0 0,10 -10,0 0,-10z M10,60l10,0 0,10 -10,0 0,-10z M70,60l10,0 0,10 -10,0 0,-10z M100,60l10,0 0,10 -10,0 0,-10z M120,60l10,0 0,10 -10,0 0,-10z M140,60l10,0 0,10 -10,0 0,-10z M150,60l10,0 0,10 -10,0 0,-10z M230,60l10,0 0,10 -10,0 0,-10z M290,60l10,0 0,10 -10,0 0,-10z M10,70l10,0 0,10 -10,0 0,-10z M20,70l10,0 0,10 -10,0 0,-10z M30,70l10,0 0,10 -10,0 0,-10z M40,70l10,0 0,10 -10,0 0,-10z M50,70l10,0 0,10 -10,0 0,-10z M60,70l10,0 0,10 -10,0 0,-10z M70,70l10,0 0,10 -10,0 0,-10z M90,70l10,0 0,10 -10,0 0,-10z M110,70l10,0 0,10 -10,0 0,-10z M130,70l10,0 0,10 -10,0 0,-10z M150,70l10,0 0,10 -10,0 0,-10z M170,70l10,0 0,10 -10,0 0,-10z M190,70l10,0 0,10 -10,0 0,-10z M210,70l10,0 0,10 -10,0 0,-10z M230,70l10,0 0,10 -10,0 0,-10z M240,70l10,0 0,10 -10,0 0,-10z M250,70l10,0 0,10 -10,0 0,-10z M260,70l10,0 0,10 -10,0 0,-10z M270,70l10,0 0,10 -10,0 0,-10z M280,70l10,0 0,10 -10,0 0,-10z M290,70l10,0 0,10 -10,0 0,-10z M90,80l10,0 0,10 -10,0 0,-10z M100,80l10,0 0,10 -10,0 0,-10z M130,80l10,0 0,10 -10,0 0,-10z M150,80l10,0 0,10 -10,0 0,-10z M190,80l10,0 0,10 -10,0 0,-10z M210,80l10,0 0,10 -10,0 0,-10z M10,90l10,0 0,10 -10,0 0,-10z M20,90l10,0 0,10 -10,0 0,-10z M40,90l10,0 0,10 -10,0 0,-10z M50,90l10,0 0,10 -10,0 0,-10z M70,90l10,0 0,10 -10,0 0,-10z M100,90l10,0 0,10 -10,0 0,-10z M130,90l10,0 0,10 -10,0 0,-10z M140,90l10,0 0,10 -10,0 0,-10z M150,90l10,0 0,10 -10,0 0,-10z M160,90l10,0 0,10 -10,0 0,-10z M170,90l10,0 0,10 -10,0 0,-10z M180,90l10,0 0,10 -10,0 0,-10z M200,90l10,0 0,10 -10,0 0,-10z M210,90l10,0 0,10 -10,0 0,-10z M230,90l10,0 0,10 -10,0 0,-10z M290,90l10,0 0,10 -10,0 0,-10z M20,100l10,0 0,10 -10,0 0,-10z M30,100l10,0 0,10 -10,0 0,-10z M40,100l10,0 0,10 -10,0 0,-10z M50,100l10,0 0,10 -10,0 0,-10z M60,100l10,0 0,10 -10,0 0,-10z M80,100l10,0 0,10 -10,0 0,-10z M90,100l10,0 0,10 -10,0 0,-10z M110,100l10,0 0,10 -10,0 0,-10z M150,100l10,0 0,10 -10,0 0,-10z M190,100l10,0 0,10 -10,0 0,-10z M220,100l10,0 0,10 -10,0 0,-10z M240,100l10,0 0,10 -10,0 0,-10z M250,100l10,0 0,10 -10,0 0,-10z M270,100l10,0 0,10 -10,0 0,-10z M280,100l10,0 0,10 -10,0 0,-10z M10,110l10,0 0,10 -10,0 0,-10z M30,110l10,0 0,10 -10,0 0,-10z M70,110l10,0 0,10 -10,0 0,-10z M100,110l10,0 0,10 -10,0 0,-10z M130,110l10,0 0,10 -10,0 0,-10z M150,110l10,0 0,10 -10,0 0,-10z M180,110l10,0 0,10 -10,0 0,-10z M190,110l10,0 0,10 -10,0 0,-10z M250,110l10,0 0,10 -10,0 0,-10z M270,110l10,0 0,10 -10,0 0,-10z M20,120l10,0 0,10 -10,0 0,-10z M30,120l10,0 0,10 -10,0 0,-10z M50,120l10,0 0,10 -10,0 0,-10z M80,120l10,0 0,10 -10,0 0,-10z M90,120l10,0 0,10 -10,0 0,-10z M150,120l10,0 0,10 -10,0 0,-10z M160,120l10,0 0,10 -10,0 0,-10z M180,120l10,0 0,10 -10,0 0,-10z M200,120l10,0 0,10 -10,0 0,-10z M210,120l10,0 0,10 -10,0 0,-10z M220,120l10,0 0,10 -10,0 0,-10z M230,120l10,0 0,10 -10,0 0,-10z M240,120l10,0 0,10 -10,0 0,-10z M260,120l10,0 0,10 -10,0 0,-10z M290,120l10,0 0,10 -10,0 0,-10z M20,130l10,0 0,10 -10,0 0,-10z M70,130l10,0 0,10 -10,0 0,-10z M90,130l10,0 0,10 -10,0 0,-10z M100,130l10,0 0,10 -10,0 0,-10z M110,130l10,0 0,10 -10,0 0,-10z M140,130l10,0 0,10 -10,0 0,-10z M150,130l10,0 0,10 -10,0 0,-10z M170,130l10,0 0,10 -10,0 0,-10z M210,130l10,0 0,10 -10,0 0,-10z M230,130l10,0 0,10 -10,0 0,-10z M290,130l10,0 0,10 -10,0 0,-10z M30,140l10,0 0,10 -10,0 0,-10z M50,140l10,0 0,10 -10,0 0,-10z M100,140l10,0 0,10 -10,0 0,-10z M110,140l10,0 0,10 -10,0 0,-10z M130,140l10,0 0,10 -10,0 0,-10z M180,140l10,0 0,10 -10,0 0,-10z M190,140l10,0 0,10 -10,0 0,-10z M210,140l10,0 0,10 -10,0 0,-10z M220,140l10,0 0,10 -10,0 0,-10z M230,140l10,0 0,10 -10,0 0,-10z M240,140l10,0 0,10 -10,0 0,-10z M250,140l10,0 0,10 -10,0 0,-10z M260,140l10,0 0,10 -10,0 0,-10z M270,140l10,0 0,10 -10,0 0,-10z M280,140l10,0 0,10 -10,0 0,-10z M290,140l10,0 0,10 -10,0 0,-10z M60,150l10,0 0,10 -10,0 0,-10z M70,150l10,0 0,10 -10,0 0,-10z M150,150l10,0 0,10 -10,0 0,-10z M160,150l10,0 0,10 -10,0 0,-10z M190,150l10,0 0,10 -10,0 0,-10z M200,150l10,0 0,10 -10,0 0,-10z M210,150l10,0 0,10 -10,0 0,-10z M220,150l10,0 0,10 -10,0 0,-10z M230,150l10,0 0,10 -10,0 0,-10z M270,150l10,0 0,10 -10,0 0,-10z M290,150l10,0 0,10 -10,0 0,-10z M40,160l10,0 0,10 -10,0 0,-10z M60,160l10,0 0,10 -10,0 0,-10z M80,160l10,0 0,10 -10,0 0,-10z M100,160l10,0 0,10 -10,0 0,-10z M130,160l10,0 0,10 -10,0 0,-10z M140,160l10,0 0,10 -10,0 0,-10z M150,160l10,0 0,10 -10,0 0,-10z M170,160l10,0 0,10 -10,0 0,-10z M240,160l10,0 0,10 -10,0 0,-10z M270,160l10,0 0,10 -10,0 0,-10z M290,160l10,0 0,10 -10,0 0,-10z M10,170l10,0 0,10 -10,0 0,-10z M20,170l10,0 0,10 -10,0 0,-10z M60,170l10,0 0,10 -10,0 0,-10z M70,170l10,0 0,10 -10,0 0,-10z M90,170l10,0 0,10 -10,0 0,-10z M100,170l10,0 0,10 -10,0 0,-10z M120,170l10,0 0,10 -10,0 0,-10z M130,170l10,0 0,10 -10,0 0,-10z M170,170l10,0 0,10 -10,0 0,-10z M190,170l10,0 0,10 -10,0 0,-10z M200,170l10,0 0,10 -10,0 0,-10z M210,170l10,0 0,10 -10,0 0,-10z M240,170l10,0 0,10 -10,0 0,-10z M260,170l10,0 0,10 -10,0 0,-10z M10,180l10,0 0,10 -10,0 0,-10z M20,180l10,0 0,10 -10,0 0,-10z M30,180l10,0 0,10 -10,0 0,-10z M40,180l10,0 0,10 -10,0 0,-10z M60,180l10,0 0,10 -10,0 0,-10z M110,180l10,0 0,10 -10,0 0,-10z M120,180l10,0 0,10 -10,0 0,-10z M160,180l10,0 0,10 -10,0 0,-10z M190,180l10,0 0,10 -10,0 0,-10z M200,180l10,0 0,10 -10,0 0,-10z M210,180l10,0 0,10 -10,0 0,-10z M250,180l10,0 0,10 -10,0 0,-10z M270,180l10,0 0,10 -10,0 0,-10z M280,180l10,0 0,10 -10,0 0,-10z M10,190l10,0 0,10 -10,0 0,-10z M20,190l10,0 0,10 -10,0 0,-10z M70,190l10,0 0,10 -10,0 0,-10z M80,190l10,0 0,10 -10,0 0,-10z M90,190l10,0 0,10 -10,0 0,-10z M110,190l10,0 0,10 -10,0 0,-10z M130,190l10,0 0,10 -10,0 0,-10z M140,190l10,0 0,10 -10,0 0,-10z M150,190l10,0 0,10 -10,0 0,-10z M160,190l10,0 0,10 -10,0 0,-10z M180,190l10,0 0,10 -10,0 0,-10z M200,190l10,0 0,10 -10,0 0,-10z M250,190l10,0 0,10 -10,0 0,-10z M260,190l10,0 0,10 -10,0 0,-10z M290,190l10,0 0,10 -10,0 0,-10z M10,200l10,0 0,10 -10,0 0,-10z M20,200l10,0 0,10 -10,0 0,-10z M30,200l10,0 0,10 -10,0 0,-10z M40,200l10,0 0,10 -10,0 0,-10z M50,200l10,0 0,10 -10,0 0,-10z M80,200l10,0 0,10 -10,0 0,-10z M90,200l10,0 0,10 -10,0 0,-10z M110,200l10,0 0,10 -10,0 0,-10z M120,200l10,0 0,10 -10,0 0,-10z M140,200l10,0 0,10 -10,0 0,-10z M170,200l10,0 0,10 -10,0 0,-10z M260,200l10,0 0,10 -10,0 0,-10z M270,200l10,0 0,10 -10,0 0,-10z M10,210l10,0 0,10 -10,0 0,-10z M20,210l10,0 0,10 -10,0 0,-10z M40,210l10,0 0,10 -10,0 0,-10z M70,210l10,0 0,10 -10,0 0,-10z M110,210l10,0 0,10 -10,0 0,-10z M120,210l10,0 0,10 -10,0 0,-10z M140,210l10,0 0,10 -10,0 0,-10z M170,210l10,0 0,10 -10,0 0,-10z M210,210l10,0 0,10 -10,0 0,-10z M220,210l10,0 0,10 -10,0 0,-10z M230,210l10,0 0,10 -10,0 0,-10z M240,210l10,0 0,10 -10,0 0,-10z M250,210l10,0 0,10 -10,0 0,-10z M260,210l10,0 0,10 -10,0 0,-10z M270,210l10,0 0,10 -10,0 0,-10z M280,210l10,0 0,10 -10,0 0,-10z M90,220l10,0 0,10 -10,0 0,-10z M130,220l10,0 0,10 -10,0 0,-10z M140,220l10,0 0,10 -10,0 0,-10z M160,220l10,0 0,10 -10,0 0,-10z M180,220l10,0 0,10 -10,0 0,-10z M190,220l10,0 0,10 -10,0 0,-10z M210,220l10,0 0,10 -10,0 0,-10z M250,220l10,0 0,10 -10,0 0,-10z M260,220l10,0 0,10 -10,0 0,-10z M10,230l10,0 0,10 -10,0 0,-10z M20,230l10,0 0,10 -10,0 0,-10z M30,230l10,0 0,10 -10,0 0,-10z M40,230l10,0 0,10 -10,0 0,-10z M50,230l10,0 0,10 -10,0 0,-10z M60,230l10,0 0,10 -10,0 0,-10z M70,230l10,0 0,10 -10,0 0,-10z M100,230l10,0 0,10 -10,0 0,-10z M110,230l10,0 0,10 -10,0 0,-10z M120,230l10,0 0,10 -10,0 0,-10z M140,230l10,0 0,10 -10,0 0,-10z M160,230l10,0 0,10 -10,0 0,-10z M170,230l10,0 0,10 -10,0 0,-10z M190,230l10,0 0,10 -10,0 0,-10z M200,230l10,0 0,10 -10,0 0,-10z M210,230l10,0 0,10 -10,0 0,-10z M230,230l10,0 0,10 -10,0 0,-10z M250,230l10,0 0,10 -10,0 0,-10z M260,230l10,0 0,10 -10,0 0,-10z M10,240l10,0 0,10 -10,0 0,-10z M70,240l10,0 0,10 -10,0 0,-10z M100,240l10,0 0,10 -10,0 0,-10z M120,240l10,0 0,10 -10,0 0,-10z M130,240l10,0 0,10 -10,0 0,-10z M140,240l10,0 0,10 -10,0 0,-10z M180,240l10,0 0,10 -10,0 0,-10z M190,240l10,0 0,10 -10,0 0,-10z M200,240l10,0 0,10 -10,0 0,-10z M210,240l10,0 0,10 -10,0 0,-10z M250,240l10,0 0,10 -10,0 0,-10z M280,240l10,0 0,10 -10,0 0,-10z M290,240l10,0 0,10 -10,0 0,-10z M10,250l10,0 0,10 -10,0 0,-10z M30,250l10,0 0,10 -10,0 0,-10z M40,250l10,0 0,10 -10,0 0,-10z M50,250l10,0 0,10 -10,0 0,-10z M70,250l10,0 0,10 -10,0 0,-10z M90,250l10,0 0,10 -10,0 0,-10z M100,250l10,0 0,10 -10,0 0,-10z M110,250l10,0 0,10 -10,0 0,-10z M120,250l10,0 0,10 -10,0 0,-10z M130,250l10,0 0,10 -10,0 0,-10z M140,250l10,0 0,10 -10,0 0,-10z M160,250l10,0 0,10 -10,0 0,-10z M170,250l10,0 0,10 -10,0 0,-10z M200,250l10,0 0,10 -10,0 0,-10z M210,250l10,0 0,10 -10,0 0,-10z M220,250l10,0 0,10 -10,0 0,-10z M230,250l10,0 0,10 -10,0 0,-10z M240,250l10,0 0,10 -10,0 0,-10z M250,250l10,0 0,10 -10,0 0,-10z M260,250l10,0 0,10 -10,0 0,-10z M280,250l10,0 0,10 -10,0 0,-10z M290,250l10,0 0,10 -10,0 0,-10z M10,260l10,0 0,10 -10,0 0,-10z M30,260l10,0 0,10 -10,0 0,-10z M40,260l10,0 0,10 -10,0 0,-10z M50,260l10,0 0,10 -10,0 0,-10z M70,260l10,0 0,10 -10,0 0,-10z M90,260l10,0 0,10 -10,0 0,-10z M100,260l10,0 0,10 -10,0 0,-10z M110,260l10,0 0,10 -10,0 0,-10z M140,260l10,0 0,10 -10,0 0,-10z M150,260l10,0 0,10 -10,0 0,-10z M160,260l10,0 0,10 -10,0 0,-10z M170,260l10,0 0,10 -10,0 0,-10z M190,260l10,0 0,10 -10,0 0,-10z M290,260l10,0 0,10 -10,0 0,-10z M10,270l10,0 0,10 -10,0 0,-10z M30,270l10,0 0,10 -10,0 0,-10z M40,270l10,0 0,10 -10,0 0,-10z M50,270l10,0 0,10 -10,0 0,-10z M70,270l10,0 0,10 -10,0 0,-10z M100,270l10,0 0,10 -10,0 0,-10z M120,270l10,0 0,10 -10,0 0,-10z M130,270l10,0 0,10 -10,0 0,-10z M140,270l10,0 0,10 -10,0 0,-10z M160,270l10,0 0,10 -10,0 0,-10z M170,270l10,0 0,10 -10,0 0,-10z M200,270l10,0 0,10 -10,0 0,-10z M220,270l10,0 0,10 -10,0 0,-10z M240,270l10,0 0,10 -10,0 0,-10z M250,270l10,0 0,10 -10,0 0,-10z M270,270l10,0 0,10 -10,0 0,-10z M280,270l10,0 0,10 -10,0 0,-10z M290,270l10,0 0,10 -10,0 0,-10z M10,280l10,0 0,10 -10,0 0,-10z M70,280l10,0 0,10 -10,0 0,-10z M90,280l10,0 0,10 -10,0 0,-10z M120,280l10,0 0,10 -10,0 0,-10z M160,280l10,0 0,10 -10,0 0,-10z M170,280l10,0 0,10 -10,0 0,-10z M220,280l10,0 0,10 -10,0 0,-10z M250,280l10,0 0,10 -10,0 0,-10z M260,280l10,0 0,10 -10,0 0,-10z M270,280l10,0 0,10 -10,0 0,-10z M290,280l10,0 0,10 -10,0 0,-10z M10,290l10,0 0,10 -10,0 0,-10z M20,290l10,0 0,10 -10,0 0,-10z M30,290l10,0 0,10 -10,0 0,-10z M40,290l10,0 0,10 -10,0 0,-10z M50,290l10,0 0,10 -10,0 0,-10z M60,290l10,0 0,10 -10,0 0,-10z M70,290l10,0 0,10 -10,0 0,-10z M90,290l10,0 0,10 -10,0 0,-10z M150,290l10,0 0,10 -10,0 0,-10z M160,290l10,0 0,10 -10,0 0,-10z M170,290l10,0 0,10 -10,0 0,-10z M200,290l10,0 0,10 -10,0 0,-10z M210,290l10,0 0,10 -10,0 0,-10z M220,290l10,0 0,10 -10,0 0,-10z M230,290l10,0 0,10 -10,0 0,-10z M250,290l10,0 0,10 -10,0 0,-10z M260,290l10,0 0,10 -10,0 0,-10z " stroke="transparent" fill="#d51515"/></svg>
-    </div>
-    <p class="share-url">rinnai-easy-link.netlify.app</p>
+  <div class="meta-row">
+    <span id="countLabel"></span>
+    <span>Tip: press <span class="kbd">/</span> to search</span>
   </div>
-
+  <div id="list"></div>
 </main>
 
-<footer>
-  <p>Not an official Rinnai page — just what we actually use on jobs.</p>
-</footer>
-
-<div class="callbar">
-  <a href="tel:8443191230" aria-label="Call Rinnai tech support">
-    <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
-    Call Rinnai Tech Support
-  </a>
+<div class="libfoot">
+  <div class="io">
+    <button class="ghost" id="exportBtn">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 21h16"/></svg>
+      Export my links
+    </button>
+    <button class="ghost" id="importBtn">
+      <svg viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M4 21h16"/></svg>
+      Import
+    </button>
+    <input type="file" id="importFile" accept="application/json" hidden>
+  </div>
+  <p>Links you add and pins are saved in this browser. Export a backup to move them to another device or share with the crew.</p>
 </div>
 
+<div class="overlay" id="overlay">
+  <form class="modal" id="linkForm">
+    <h2 id="modalTitle">Add a link</h2>
+    <label for="fTitle">Title</label>
+    <input id="fTitle" required maxlength="120" placeholder="e.g. RUR199 Service Manual">
+    <label for="fUrl">URL</label>
+    <input id="fUrl" required type="url" placeholder="https://…" inputmode="url">
+    <label for="fDesc">Description (optional)</label>
+    <textarea id="fDesc" maxlength="300" placeholder="What is it, when do you reach for it?"></textarea>
+    <label for="fCat">Category</label>
+    <select id="fCat"></select>
+    <label for="fType">Type</label>
+    <select id="fType">
+      <option value="pdf">PDF</option>
+      <option value="page" selected>Web page</option>
+      <option value="login">Login required</option>
+      <option value="video">Video</option>
+      <option value="tool">Tool / App</option>
+    </select>
+    <label for="fTags">Tags (comma separated, optional)</label>
+    <input id="fTags" maxlength="200" placeholder="e.g. RX, venting, condensing">
+    <p class="err" id="formErr"></p>
+    <div class="btns">
+      <button type="button" class="cancel" id="cancelBtn">Cancel</button>
+      <button type="submit" class="save" id="saveBtn">Save</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-  (function(){
-    var input=document.getElementById('codeFilter');
-    if(!input)return;
-    var rows=Array.prototype.slice.call(document.querySelectorAll('#codeTable tbody tr'));
-    input.addEventListener('input',function(){
-      var q=input.value.trim().toLowerCase();
-      rows.forEach(function(r){
-        r.style.display=r.textContent.toLowerCase().indexOf(q)!==-1?'':'none';
-      });
+(function(){
+  "use strict";
+
+  /* ---------- Categories ---------- */
+  var CATS = [
+    "Tech Data Sheets",
+    "Installation Manuals",
+    "Legacy Equipment",
+    "Spec Sheets",
+    "Portals & Ordering",
+    "Brochures",
+    "Charts & Quick Reference",
+    "Product Pages",
+    "Training & Video",
+    "My Links"
+  ];
+  // Categories that start collapsed — tap the header to expand
+  var DEFAULT_COLLAPSED = {"Legacy Equipment": true, "Spec Sheets": true};
+
+  /* ---------- Seed catalog ---------- */
+  var SEED = [
+    // Tech Data Sheets — the service documents reached for most
+    {id:"s-td-rxcx", title:"RX / CX Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-4c213567-ddfa-42b1-ae72-8daaf587961d/100000849-SENSEI%20RX%20CX%20Tech%20Sheet_English.pdf", desc:"SENSEI RX and CX — parameter settings, dip switches, error codes, service data.", cat:"Tech Data Sheets", type:"pdf", tags:["RX","RXP","CX","CXP","tech sheet","tech data","parameters","dip switch","service"]},
+    {id:"s-td-rei", title:"RE Indoor Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-08d78ab4-23e4-4fc0-8ec4-753c17a25d05/100000733%20VE%20Non-Pump%20Indoor%20Tech%20Sheet.pdf", desc:"RE indoor non-condensing, no pump — parameters, gas pressure, commissioning.", cat:"Tech Data Sheets", type:"pdf", tags:["RE","VE","tech sheet","tech data","parameters","indoor","service"]},
+    {id:"s-td-re", title:"RE Outdoor Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-f7e95f26-90e9-45bf-8188-52b154268d00/100000735%20VE%20Non-Pump%20Outdoor%20Tech%20Sheet.pdf", desc:"RE outdoor non-condensing, no pump — parameters, gas pressure, commissioning.", cat:"Tech Data Sheets", type:"pdf", tags:["RE","VE","tech sheet","tech data","parameters","outdoor","service"]},
+    {id:"s-td-repi", title:"REP Indoor Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-ca686d95-9adf-415a-a2a2-1ea1d9b09c8c/100000734%20VE%20Pump%20Indoor%20Tech%20Sheet.pdf", desc:"REP indoor with built-in pump — parameters, recirc settings, service data.", cat:"Tech Data Sheets", type:"pdf", tags:["REP","VE","tech sheet","tech data","pump","recirculation","indoor","service"]},
+    {id:"s-td-repe", title:"REP Outdoor Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-6b3de262-fd19-405d-80cd-f394658596a5/100000736%20VE%20Pump%20Outdoor%20Tech%20Sheet.pdf", desc:"REP outdoor with built-in pump — parameters, recirc settings, service data.", cat:"Tech Data Sheets", type:"pdf", tags:["REP","VE","tech sheet","tech data","pump","recirculation","outdoor","service"]},
+    {id:"s-td-rsc", title:"RSC Tech Sheet", url:"https://media.rinnai.us/salsify_asset/s-906e84f5-92ba-46dd-9619-0dbcc130ae89/100000786-SENSEI%20Tech%20Sheet-RSC.pdf", desc:"SENSEI RSC — parameter and dip switch settings, service data.", cat:"Legacy Equipment", type:"pdf", tags:["RSC","tech sheet","tech data","parameters","dip switch","service"]},
+    {id:"s-td-rur", title:"RUR Tech Sheet (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-f3d0e42b-79ae-4232-8be9-f4b73d239324/U334-0783X01(01)-100000507(01)-N-Series%20Techsheet-Res%20with%20Pump.pdf", desc:"RUR residential with pump — diagnostics, parameters, service data.", cat:"Legacy Equipment", type:"pdf", tags:["RUR","N-Series","tech sheet","tech data","pump","recirculation","service"]},
+    {id:"s-td-ru", title:"RU Tech Sheet (N-Series Res & Comm)", url:"https://media.rinnai.us/salsify_asset/s-75390343-35ca-405e-aa2c-bb81667f7062/U334-0781X01(01)-100000505(01)-N-Series%20Techsheet-Res%20and%20Comm.pdf", desc:"RU residential and commercial — diagnostic codes, performance data, service procedures.", cat:"Legacy Equipment", type:"pdf", tags:["RU","CU","N-Series","tech sheet","tech data","diagnostics","service"]},
+
+    // Spec Sheets
+    {id:"s-sp-rx", title:"RX Spec Sheet — SENSEI Condensing", url:"https://media.rinnai.us/salsify_asset/s-b65161ac-3923-46b2-b2e6-65adc57fea27/100000883%20SENSEI%20RX%20Residential%20Condensing%20Spec%20Sheet.pdf", desc:"Current residential condensing line — dimensions, gas, venting, flow curves.", cat:"Spec Sheets", type:"pdf", tags:["RX","RXP","spec sheet","tech data","condensing"]},
+    {id:"s-sp-rei", title:"RE Indoor Spec Sheet (REi-SP)", url:"https://media.rinnai.us/salsify_asset/s-15b74aa5-ad50-4bca-8472-3ad046ca968d/REi-SP%20Non%20Condensing%20Residential%20Indoor%20Spec%20Sheet.pdf", desc:"RE199i · RE180i · RE160i · RE140i — indoor non-condensing.", cat:"Spec Sheets", type:"pdf", tags:["RE","spec sheet","tech data","non-condensing","indoor"]},
+    {id:"s-sp-ree", title:"RE Outdoor Spec Sheet (REe-SP)", url:"https://media.rinnai.us/salsify_asset/s-cbd9a57a-b865-4b48-bbbc-66247d74df96/REe-SP%20Non%20Condensing%20Residential%20Outdoor%20Spec%20Sheet.pdf", desc:"RE199e · RE180e · RE160e · RE140e — the outdoor warm-climate workhorse.", cat:"Spec Sheets", type:"pdf", tags:["RE","REP","spec sheet","tech data","non-condensing","outdoor"]},
+    {id:"s-sp-rsci", title:"RSC Indoor Spec Sheet (RSCi-SP)", url:"https://media.rinnai.us/salsify_asset/s-810e92fc-9d0d-4208-b914-8b37d43dd34a/RSCi-SP-2%20SENSEI%20Condensing%20with%20Pump%20Indoor%20Spec%20Sheet.pdf", desc:"RSC199i · RSC160i — condensing with built-in Smart-Circ pump.", cat:"Spec Sheets", type:"pdf", tags:["RSC","spec sheet","tech data","recirculation","pump","indoor"]},
+    {id:"s-sp-rsce", title:"RSC Outdoor Spec Sheet (RSCe-SP)", url:"https://media.rinnai.us/salsify_asset/s-2344b632-68ba-4a7a-9c13-a6dc231cb5d9/RSCe-SP-1%20SENSEI%20Condensing%20with%20Pump%20Outdoor%20Spec%20Sheet.pdf", desc:"Outdoor SENSEI condensing with built-in pump.", cat:"Spec Sheets", type:"pdf", tags:["RSC","spec sheet","tech data","recirculation","pump","outdoor"]},
+    {id:"s-sp-rur", title:"RUR Indoor Spec Sheet (RURi-SP)", url:"https://media.rinnai.us/salsify_asset/s-9896fa18-b5c1-4fee-b1c1-5054c834acc0/RURi-SP-N%20Series%20Condensing%20Residential%20with%20Pump%20Indoor%20Spec%20Sheet.pdf", desc:"RUR199i · RUR160i — prior-gen condensing with pump and thermal bypass recirc.", cat:"Spec Sheets", type:"pdf", tags:["RUR","spec sheet","tech data","recirculation","pump","indoor"]},
+    {id:"s-sp-rui", title:"RU Indoor Spec Sheet (RUi-SP)", url:"https://media.rinnai.us/salsify_asset/s-256984e6-5151-41e4-a0c0-fc6c392ff0f7/RUi-SP-4%20SENSEI%20Condensing%20Residential%20Indoor%20Spec%20Sheet.pdf", desc:"RU199i · RU180i · RU160i · RU130i — prior-gen condensing, everywhere in the field.", cat:"Spec Sheets", type:"pdf", tags:["RU","spec sheet","tech data","condensing","indoor"]},
+    {id:"s-sp-rue", title:"RU Outdoor Spec Sheet (RUe-SP)", url:"https://media.rinnai.us/salsify_asset/s-ae254def-662a-4241-ac5c-3cdf1ea2fee0/RUe-SP-4%20SENSEI%20Condensing%20Residential%20Outdoor%20Spec%20Sheet.pdf", desc:"RU199e · RU180e · RU160e · RU130e — prior-gen condensing, outdoor.", cat:"Spec Sheets", type:"pdf", tags:["RU","spec sheet","tech data","condensing","outdoor"]},
+
+    // Portals & Ordering
+    {id:"s-store", title:"Rinnai Store", url:"https://store.rinnai.us/instance2EnvAALogin/html/login.html", desc:"Order OEM parts and components direct — PRO login required.", cat:"Portals & Ordering", type:"login", tags:["parts","ordering","OEM","store"]},
+    {id:"s-rinnai", title:"Rinnai.us", url:"https://www.rinnai.us", desc:"Main Rinnai US site — products, support, warranty.", cat:"Portals & Ordering", type:"page", tags:["main site","warranty","support"]},
+
+    // Manuals & Install
+    {id:"s-rx-man", title:"SENSEI RX Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-5dcde422-3307-426c-ab15-29ecd56cac15/100000839%20SENSEI%20RX%20Residential%20Installation%20and%20Operation%20Manual.pdf", desc:"Clearances, water quality, venting, Quick-Flush, draining.", cat:"Installation Manuals", type:"pdf", tags:["RX","RXP","condensing","install","manual","residential"]},
+    {id:"s-re-man", title:"RE Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-4c0f42d2-4a9d-40d2-a189-d4f84bee5509/100000722(02)%20RE%20Installation%20and%20Operation%20Manual.pdf", desc:"Non-condensing outdoor workhorse — venting, flushing, draining.", cat:"Installation Manuals", type:"pdf", tags:["RE","REP","non-condensing","install","manual"]},
+    {id:"s-vent", title:"PVC / CPVC Common Venting Manual", url:"https://media.rinnai.us/salsify_asset/s-7bbd9e1e-b3de-4800-acad-aa997c5e9f28/100000625-PVC%20and%20CPVC%20Common%20Venting%20Installation%20Instructions%20for%20SENSEI.pdf", desc:"Official common-vent instructions for SENSEI models.", cat:"Installation Manuals", type:"pdf", tags:["venting","common vent","SENSEI","PVC","CPVC"]},
+    {id:"s-duo2", title:"Demand Duo 2 Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-eab7351b-b8a4-43d2-a1ab-3043b0b802d8/100000872%20Demand%20Duo%202%20H-Series%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"H-Series with SENSEI CX — CA strapping, rack assembly, venting, part numbers.", cat:"Installation Manuals", type:"pdf", tags:["Demand Duo","commercial","hybrid","install","CX"]},
+    {id:"s-trs", title:"TRS Rack System Install Instructions", url:"https://media.rinnai.us/salsify_asset/s-b1e7e822-5e97-4bb3-98b9-7e763342cd0e/100000870%20TRS%20with%20SENSEI%20CX%20Installation%20Instructions.pdf", desc:"Tankless rack systems with SENSEI CX — preassembled, fits a 32\" doorway.", cat:"Installation Manuals", type:"pdf", tags:["TRS","rack","commercial","CX","install"]},
+    {id:"s-rep-man", title:"REP Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-082a23e8-a027-49c5-9103-30d64d02f381/100000726(03)%20REP%20Installation%20and%20Operation%20Manual.pdf", desc:"RE with built-in pump — install, venting, recirc setup.", cat:"Installation Manuals", type:"pdf", tags:["REP","install","manual","pump","recirculation","non-condensing"]},
+    {id:"s-rsc-man", title:"RSC Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-815d8447-6141-4ddc-b1c1-6464d5c23d50/100000773-RSC%20SENSEI%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI RSC condensing with pump — install, venting, recirc setup.", cat:"Legacy Equipment", type:"pdf", tags:["RSC","install","manual","pump","recirculation","condensing"]},
+    {id:"s-cx-man", title:"CX Commercial Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-c0fcb742-0456-4168-82cf-9373b43514cd/100000840%20SENSEI%20CX%20Commercial%20Installation%20and%20Operation%20Manual.pdf", desc:"SENSEI CX199i/160i and CXP — commercial condensing install and operation.", cat:"Installation Manuals", type:"pdf", tags:["CX","CXP","commercial","install","manual","condensing"]},
+    {id:"s-ru-man", title:"RU Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-bb57a000-5f48-4159-ac3c-47e47f8180f7/100000467-N%20Series%20Residential%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential condensing — the RU units everywhere in the field.", cat:"Legacy Equipment", type:"pdf", tags:["RU","N-Series","install","manual","condensing"]},
+    {id:"s-rur-man", title:"RUR Install & Operation Manual (N-Series with Pump)", url:"https://media.rinnai.us/salsify_asset/s-286a4b4b-e04a-4af4-9ee4-4311495ae923/100000508-N%20Series%20Residential%20with%20Pump%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series residential with pump — RUR condensing with built-in recirc.", cat:"Legacy Equipment", type:"pdf", tags:["RUR","N-Series","install","manual","pump","recirculation"]},
+    {id:"s-cu-man", title:"CU Commercial Install & Operation Manual (N-Series)", url:"https://media.rinnai.us/salsify_asset/s-0dbc4660-4b6d-4210-82c7-a7ed6834a355/100000504-N%20Series%20Commercial%20Condensing%20Installation%20and%20Operation%20Manual.pdf", desc:"N-Series commercial condensing — CU units.", cat:"Legacy Equipment", type:"pdf", tags:["CU","N-Series","commercial","install","manual"]},
+    {id:"s-hybrid-man", title:"Residential Hybrid System Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-680b020a-4fc1-4ce4-a15b-e04557402526/100000446(02)-Residential%20Hybrid%20System%20Installation%20and%20Operation%20Manual.pdf", desc:"Residential tank + tankless hybrid systems.", cat:"Legacy Equipment", type:"pdf", tags:["hybrid","install","manual","residential"]},
+    {id:"s-value-man", title:"Value Series Install & Operation Manual", url:"https://media.rinnai.us/salsify_asset/s-43d60415-4de7-4ad8-aa59-1b39248bfe09/100000258-Value%20Series%20Installation%20and%20Operation%20Manual.pdf", desc:"V-Series direct vent tankless — the budget line still out in the field.", cat:"Legacy Equipment", type:"pdf", tags:["V65","V53","Value Series","install","manual"]},
+    {id:"s-rack-man", title:"Tankless Rack System Installation Manual", url:"https://media.rinnai.us/salsify_asset/s-a823682c-30b6-412b-977a-1f92b8ab594b/100000294-Tankless%20Rack%20Installation%20Manual.pdf", desc:"Original tankless rack system — prior-gen commercial rack installs.", cat:"Legacy Equipment", type:"pdf", tags:["rack","commercial","install","manual"]},
+
+    // Brochures & Specs
+    {id:"s-rx-bro", title:"SENSEI RX Series Brochure", url:"https://media.rinnai.us/salsify_asset/s-1fd1afd2-d37d-433b-8cea-7505e7a8452d/2023162.SENSEI%20RX%20Series.Brochure.US.pdf", desc:"30+ pages — models, BTUs, approved components, venting, valves.", cat:"Brochures", type:"pdf", tags:["RX","brochure","spec","condensing"]},
+    {id:"s-duo-bro", title:"Demand Duo Brochure", url:"https://www.rinnai.us/sites/default/files/2024-11/US%20-%20Demand%20Duo%C2%AE%20Hybrid%20Commercial%20Water%20Heating%20Solutions%20(1).pdf", desc:"First-hour delivery, warranty comparison, venting options — the sell sheet.", cat:"Brochures", type:"pdf", tags:["Demand Duo","brochure","commercial","hybrid"]},
+    {id:"s-re-bro", title:"RE Series Brochure", url:"https://media.rinnai.us/salsify_asset/s-fb61be47-e43f-4d37-97ae-063d9484f8d0/2021069.A-RE%E2%80%A2Series%20Broc.v8.pdf", desc:"Non-condensing Efficiency Series — the RE line sell sheet.", cat:"Brochures", type:"pdf", tags:["RE","REP","brochure","non-condensing"]},
+    {id:"s-rehp-bro", title:"Heat Pump Water Heater Brochure (REHP Series)", url:"https://media.rinnai.us/salsify_asset/s-c823302d-d490-43dd-8020-bcc3402445ad/US%20Rinnai%20Electric%20Heat%20Pump%20(REHP)%20Brochure.pdf", desc:"Original REHP 50/65/80-gal electric heat pump. REHP2 brochure isn't published online yet — swap this out when it lands.", cat:"Brochures", type:"pdf", tags:["REHP","REHP2","heat pump","electric","brochure"]},
+    {id:"s-comm-bro", title:"Commercial Water Heating Brochure (incl. RCW)", url:"https://www.rinnai.us/sites/default/files/2024-11/US%20Commercial%20Water%20Heating%20Solutions%20brochure.pdf", desc:"2024 commercial catalog — RCW volume water heaters, Demand Duo, CX, racks. No standalone RCW brochure exists yet.", cat:"Brochures", type:"pdf", tags:["RCW","volume","commercial","brochure","CX","Demand Duo"]},
+
+    // Charts & Quick Reference
+    {id:"s-codes-full", title:"Complete Error Code Guide — All Rinnai Products", url:"https://images.salsify.com/image/upload/s--Xfn54DOw--/chm21orqxqwes8akeb9b.pdf", desc:"The unabridged version — every error code across Rinnai product lines, not just the common ones.", cat:"Charts & Quick Reference", type:"pdf", tags:["error codes","complete","all products","diagnostic","troubleshooting","service"]},
+    {id:"s-codes", title:"Error Codes Quick Reference", url:"hub.html#codes", desc:"The codes you actually see, with first checks in the field.", cat:"Charts & Quick Reference", type:"tool", tags:["error codes","diagnostic","troubleshooting","11","12","LC"]},
+    {id:"s-specs", title:"Service Quick Specs & Flow Chart", url:"hub.html#specs", desc:"Gas pressure, vent length limits, dip switches, descale steps, GPM vs ΔT calculator and curve.", cat:"Charts & Quick Reference", type:"tool", tags:["gas pressure","dip switch","vent length","flow","GPM","delta T","chart","descale"]},
+    {id:"s-faq", title:"Gas Pipe Sizing Charts (PRO FAQ)", url:"https://www.rinnai.us/professional/faq", desc:"1/2\" and 3/4\" run lengths and sizing answers.", cat:"Charts & Quick Reference", type:"page", tags:["gas sizing","pipe","chart","FAQ"]},
+
+    // Product Pages
+    {id:"s-cx", title:"SENSEI CX Commercial Tankless", url:"https://www.rinnai.us/commercial/tankless-water-heaters", desc:"199k BTU, 185°F output, cascades up to 24 units.", cat:"Product Pages", type:"page", tags:["CX","CXP","commercial","tankless"]},
+    {id:"s-duo", title:"Demand Duo Hybrid Systems", url:"https://www.rinnai.us/commercial/demand-duo", desc:"Tank + tankless hybrid — direct commercial tank replacement.", cat:"Product Pages", type:"page", tags:["Demand Duo","hybrid","commercial"]},
+    {id:"s-rcw", title:"RCW Series Volume Water Heaters", url:"https://www.rinnai.us/commercial/rcw-series", desc:"Floor-standing condensing — 399k to 1M BTU, up to 99% efficiency.", cat:"Product Pages", type:"page", tags:["RCW","volume","commercial","condensing"]},
+    {id:"s-multi", title:"Multi-Family Solutions", url:"https://www.rinnai.us/commercial/multifamily-properties", desc:"Rack systems, central plant designs, case studies for apartments & HOAs.", cat:"Product Pages", type:"page", tags:["multifamily","apartments","HOA","rack"]},
+    {id:"s-comm", title:"Commercial Overview + Free Sizing", url:"https://www.rinnai.us/commercial", desc:"Rinnai engineering sizes your system free — quotes within 48 hours.", cat:"Product Pages", type:"page", tags:["commercial","sizing","overview"]},
+    {id:"s-grundfos", title:"Grundfos Alpha HWR", url:"https://tinyurl.com/grundfos-alpha", desc:"Smart indoor recirculation pump — the go-to for comfort recirc retrofits.", cat:"Product Pages", type:"page", tags:["recirculation","pump","Grundfos","retrofit"]},
+
+    // Training & Video
+    {id:"s-yt", title:"Rinnai YouTube Channel", url:"https://www.youtube.com/@rinnaivideos", desc:"Installs, flushing, board replacement, venting walkthroughs.", cat:"Training & Video", type:"video", tags:["video","training","YouTube"]},
+    {id:"s-absorb", title:"Rinnai PRO Training (Absorb LMS)", url:"https://rinnaipro.myabsorb.com", desc:"Official online certification courses for Rinnai tankless.", cat:"Training & Video", type:"login", tags:["training","certification","LMS","Absorb"]},
+    {id:"s-classes", title:"Live Hands-On Classes", url:"https://class-creation.netlify.app", desc:"In-person Rinnai training in SoCal — register for the next session.", cat:"Training & Video", type:"tool", tags:["training","classes","register","SoCal"]}
+  ];
+
+  /* ---------- Storage ---------- */
+  var LS_CUSTOM   = "rinnaihub.library.custom";
+  var LS_PINS     = "rinnaihub.library.pins";
+  var LS_COLLAPSE = "rinnaihub.library.collapse";
+
+  function loadJSON(key, fallback){
+    try{
+      var v = JSON.parse(localStorage.getItem(key));
+      return v == null ? fallback : v;
+    }catch(e){ return fallback; }
+  }
+  function saveJSON(key, val){
+    try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){}
+  }
+
+  var custom = loadJSON(LS_CUSTOM, []);
+  var pins   = loadJSON(LS_PINS, []);
+  if(!Array.isArray(custom)) custom = [];
+  if(!Array.isArray(pins)) pins = [];
+  var collapse = loadJSON(LS_COLLAPSE, null);
+  if(!collapse || typeof collapse !== "object" || Array.isArray(collapse)) collapse = {};
+  for(var ck in DEFAULT_COLLAPSED){
+    if(!(ck in collapse)) collapse[ck] = DEFAULT_COLLAPSED[ck];
+  }
+
+  /* ---------- State ---------- */
+  var activeCat = "All";
+  var query = "";
+  var editingId = null;
+
+  /* ---------- Elements ---------- */
+  var $q = document.getElementById("q");
+  var $qClear = document.getElementById("qClear");
+  var $cats = document.getElementById("cats");
+  var $list = document.getElementById("list");
+  var $count = document.getElementById("countLabel");
+  var $overlay = document.getElementById("overlay");
+  var $form = document.getElementById("linkForm");
+  var $modalTitle = document.getElementById("modalTitle");
+  var $fTitle = document.getElementById("fTitle");
+  var $fUrl = document.getElementById("fUrl");
+  var $fDesc = document.getElementById("fDesc");
+  var $fCat = document.getElementById("fCat");
+  var $fType = document.getElementById("fType");
+  var $fTags = document.getElementById("fTags");
+  var $formErr = document.getElementById("formErr");
+  var $toast = document.getElementById("toast");
+
+  /* ---------- Helpers ---------- */
+  function allEntries(){ return SEED.concat(custom); }
+  function isPinned(id){ return pins.indexOf(id) !== -1; }
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  function displayUrl(u){
+    return u.replace(/^https?:\/\//,"").replace(/^www\./,"");
+  }
+  var toastTimer;
+  function toast(msg){
+    $toast.textContent = msg;
+    $toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ $toast.classList.remove("show"); }, 2200);
+  }
+  function copyUrl(url){
+    var abs = url;
+    if(!/^[a-z]+:/i.test(url)){
+      abs = location.href.replace(/[^\/]*$/,"") + url;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(abs).then(function(){ toast("Link copied"); }, function(){ fallbackCopy(abs); });
+    }else{
+      fallbackCopy(abs);
+    }
+  }
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); toast("Link copied"); }
+    catch(e){ toast("Couldn't copy — long-press the link instead"); }
+    document.body.removeChild(ta);
+  }
+
+  /* ---------- Search ---------- */
+  function matches(entry, words){
+    if(!words.length) return true;
+    var hay = (entry.title + " " + (entry.desc||"") + " " + (entry.tags||[]).join(" ") + " " + entry.url + " " + entry.cat).toLowerCase();
+    for(var i=0;i<words.length;i++){
+      if(hay.indexOf(words[i]) === -1) return false;
+    }
+    return true;
+  }
+
+  /* ---------- Rendering ---------- */
+  var TYPE_LABEL = {pdf:"PDF", page:"Page", login:"Login", video:"Video", tool:"Tool"};
+
+  function rowHTML(e){
+    var pinned = isPinned(e.id);
+    var isCustom = e.id.indexOf("u-") === 0;
+    var external = /^[a-z]+:/i.test(e.url);
+    var actions =
+      '<button class="iconbtn'+(pinned?' pin-on':'')+'" data-act="pin" data-id="'+esc(e.id)+'" title="'+(pinned?'Unpin':'Pin to top')+'" aria-label="'+(pinned?'Unpin':'Pin')+'">' +
+        '<svg viewBox="0 0 24 24"><path d="M12 17.3l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6l2.9 5.9 6.5.9-4.7 4.5 1.1 6.4z"/></svg></button>' +
+      '<button class="iconbtn" data-act="copy" data-id="'+esc(e.id)+'" title="Copy link" aria-label="Copy link">' +
+        '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>';
+    if(isCustom){
+      actions +=
+        '<button class="iconbtn" data-act="edit" data-id="'+esc(e.id)+'" title="Edit" aria-label="Edit">' +
+          '<svg viewBox="0 0 24 24"><path d="M17 3l4 4L8 20l-5 1 1-5L17 3z"/></svg></button>' +
+        '<button class="iconbtn" data-act="del" data-id="'+esc(e.id)+'" title="Delete" aria-label="Delete">' +
+          '<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15M10 11v6M14 11v6"/></svg></button>';
+    }
+    return '<div class="row'+(pinned?' pinned-row':'')+'">' +
+      '<div class="rowmain">' +
+        '<div class="rowtitle">' +
+          '<a href="'+esc(e.url)+'"'+(external?' target="_blank" rel="noopener"':'')+'>'+esc(e.title)+'</a>' +
+          '<span class="badge '+esc(e.type)+'">'+(TYPE_LABEL[e.type]||"Link")+'</span>' +
+        '</div>' +
+        (e.desc ? '<p class="rowdesc">'+esc(e.desc)+'</p>' : '') +
+        '<p class="rowurl">'+esc(displayUrl(e.url))+'</p>' +
+      '</div>' +
+      '<div class="rowacts">'+actions+'</div>' +
+    '</div>';
+  }
+
+  function render(){
+    var words = query.toLowerCase().split(/\s+/).filter(Boolean);
+    var entries = allEntries().filter(function(e){
+      if(activeCat !== "All" && e.cat !== activeCat) return false;
+      return matches(e, words);
     });
-  })();
-</script>
 
-<script>
-  (function(){
-    var inp=document.getElementById('fcIn'),set=document.getElementById('fcSet'),
-        unit=document.getElementById('fcUnit'),out=document.getElementById('fcOut'),
-        det=document.getElementById('fcDetail');
-    if(!inp)return;
-    function calc(){
-      var p=unit.value.split(','),btu=+p[0],eff=+p[1],cap=+p[2];
-      var dt=Math.max(1,(+set.value)-(+inp.value));
-      var g=btu*eff/(500*dt);
-      if(cap>0)g=Math.min(g,cap);
-      out.innerHTML=g.toFixed(1)+' <span>GPM max</span>';
-      det.textContent='\u0394T '+dt+'\u00B0F \u00B7 roughly '+Math.max(1,Math.floor(g/2))+' simultaneous 2.0 GPM showers';
-    }
-    [inp,set,unit].forEach(function(el){el.addEventListener('input',calc)});
-    calc();
+    var pinned = entries.filter(function(e){ return isPinned(e.id); });
+    var rest   = entries.filter(function(e){ return !isPinned(e.id); });
 
-    var svg=document.getElementById('flowChart'),hit=document.getElementById('fcHit'),
-        cross=document.getElementById('fcCross'),dA=document.getElementById('fcDotA'),
-        dB=document.getElementById('fcDotB'),tip=document.getElementById('fcTip'),
-        wrap=document.getElementById('chartWrap');
-    var ML=44,MR=16,MT=16,PW=580,PH=278,T0=35,T1=85,G1=12.0;
-    function gpm(btu,eff,dt){return btu*eff/(500*dt)}
-    function onMove(ev){
-      var pt=svg.createSVGPoint();pt.x=ev.clientX;pt.y=ev.clientY;
-      var p=pt.matrixTransform(svg.getScreenCTM().inverse());
-      var t=T0+(p.x-ML)/PW*(T1-T0);
-      if(t<T0||t>T1)return onLeave();
-      var a=gpm(199000,.96,t),b=gpm(199000,.82,t);
-      var ya=MT+(G1-a)/G1*PH,yb=MT+(G1-b)/G1*PH;
-      cross.setAttribute('x1',p.x);cross.setAttribute('x2',p.x);cross.style.display='';
-      dA.setAttribute('cx',p.x);dA.setAttribute('cy',ya);dA.style.display='';
-      dB.setAttribute('cx',p.x);dB.setAttribute('cy',yb);dB.style.display='';
-      tip.innerHTML='<strong>\u0394T '+Math.round(t)+'\u00B0F</strong><br>Condensing: <strong>'+a.toFixed(1)+
-        '</strong> GPM<br>Non-cond: <strong>'+b.toFixed(1)+'</strong> GPM';
-      tip.style.display='block';
-      var r=wrap.getBoundingClientRect();
-      var tx=ev.clientX-r.left+14,ty=ev.clientY-r.top-10;
-      if(tx+tip.offsetWidth>r.width-8)tx-=tip.offsetWidth+28;
-      tip.style.left=tx+'px';tip.style.top=ty+'px';
+    var html = "";
+    if(pinned.length){
+      html += '<div class="group"><div class="group-head"><h2>&#9733; Pinned</h2><span class="n">'+pinned.length+'</span></div><div class="rows">' +
+        pinned.map(rowHTML).join("") + '</div></div>';
     }
-    function onLeave(){
-      cross.style.display='none';dA.style.display='none';dB.style.display='none';tip.style.display='none';
+    var searching = words.length > 0;
+    CATS.forEach(function(cat){
+      var group = rest.filter(function(e){ return e.cat === cat; });
+      if(!group.length) return;
+      group.sort(function(a,b){ return a.title.localeCompare(b.title); });
+      var isCollapsed = !searching && activeCat === "All" && collapse[cat];
+      html += '<div class="group'+(isCollapsed?' collapsed':'')+'">' +
+        '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
+          '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
+          '<h2>'+esc(cat)+'</h2><span class="n">'+group.length+'</span>' +
+          (isCollapsed ? '<span class="hint">tap to show</span>' : '') +
+        '</button>' +
+        (isCollapsed ? '' : '<div class="rows">'+group.map(rowHTML).join("")+'</div>') +
+      '</div>';
+    });
+
+    if(!entries.length){
+      html = '<div class="empty"><strong>Nothing matches "'+esc(query)+'"</strong><br>Try fewer words — or add it with the red button so it\'s here next time.</div>';
     }
-    hit.addEventListener('pointermove',onMove);
-    hit.addEventListener('pointerleave',onLeave);
-  })();
+    $list.innerHTML = html;
+    $count.textContent = entries.length + (entries.length === 1 ? " item" : " items") +
+      (activeCat !== "All" ? " in " + activeCat : "") + (query ? ' for "' + query + '"' : "");
+  }
+
+  /* ---------- Category chips ---------- */
+  function renderCats(){
+    var cats = ["All"].concat(CATS);
+    $cats.innerHTML = cats.map(function(c){
+      return '<button class="cat'+(c === activeCat ? ' active' : '')+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>';
+    }).join("");
+  }
+  $cats.addEventListener("click", function(ev){
+    var btn = ev.target.closest("[data-cat]");
+    if(!btn) return;
+    activeCat = btn.getAttribute("data-cat");
+    renderCats(); render();
+  });
+
+  /* ---------- Search events ---------- */
+  $q.addEventListener("input", function(){
+    query = $q.value.trim();
+    $qClear.style.display = query ? "block" : "none";
+    render();
+  });
+  $qClear.addEventListener("click", function(){
+    $q.value = ""; query = "";
+    $qClear.style.display = "none";
+    render(); $q.focus();
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "/" && document.activeElement !== $q &&
+       !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){
+      ev.preventDefault(); $q.focus();
+    }
+    if(ev.key === "Escape" && $overlay.classList.contains("open")) closeModal();
+  });
+
+  /* ---------- Row actions ---------- */
+  $list.addEventListener("click", function(ev){
+    var tog = ev.target.closest("[data-toggle]");
+    if(tog){
+      var tcat = tog.getAttribute("data-toggle");
+      collapse[tcat] = !collapse[tcat];
+      saveJSON(LS_COLLAPSE, collapse);
+      render();
+      return;
+    }
+    var btn = ev.target.closest("[data-act]");
+    if(!btn) return;
+    var id = btn.getAttribute("data-id");
+    var act = btn.getAttribute("data-act");
+    var entry = allEntries().filter(function(e){ return e.id === id; })[0];
+    if(!entry) return;
+
+    if(act === "pin"){
+      var i = pins.indexOf(id);
+      if(i === -1) pins.push(id); else pins.splice(i,1);
+      saveJSON(LS_PINS, pins);
+      render();
+    }else if(act === "copy"){
+      copyUrl(entry.url);
+    }else if(act === "edit"){
+      openModal(entry);
+    }else if(act === "del"){
+      if(confirm('Delete "' + entry.title + '"?')){
+        custom = custom.filter(function(e){ return e.id !== id; });
+        pins = pins.filter(function(p){ return p !== id; });
+        saveJSON(LS_CUSTOM, custom);
+        saveJSON(LS_PINS, pins);
+        render();
+        toast("Deleted");
+      }
+    }
+  });
+
+  /* ---------- Modal ---------- */
+  function openModal(entry){
+    editingId = entry ? entry.id : null;
+    $modalTitle.textContent = entry ? "Edit link" : "Add a link";
+    $fTitle.value = entry ? entry.title : "";
+    $fUrl.value = entry ? entry.url : "";
+    $fDesc.value = entry ? (entry.desc || "") : "";
+    $fType.value = entry ? entry.type : "page";
+    $fTags.value = entry ? (entry.tags || []).join(", ") : "";
+    $fCat.innerHTML = CATS.map(function(c){
+      return '<option value="'+esc(c)+'">'+esc(c)+'</option>';
+    }).join("");
+    $fCat.value = entry ? entry.cat : "My Links";
+    $formErr.style.display = "none";
+    $overlay.classList.add("open");
+    setTimeout(function(){ $fTitle.focus(); }, 50);
+  }
+  function closeModal(){
+    $overlay.classList.remove("open");
+    editingId = null;
+  }
+  document.getElementById("addBtn").addEventListener("click", function(){ openModal(null); });
+  document.getElementById("cancelBtn").addEventListener("click", closeModal);
+  $overlay.addEventListener("mousedown", function(ev){
+    if(ev.target === $overlay) closeModal();
+  });
+
+  $form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var title = $fTitle.value.trim();
+    var url = $fUrl.value.trim();
+    if(!title || !url){
+      $formErr.textContent = "Title and URL are required.";
+      $formErr.style.display = "block";
+      return;
+    }
+    if(!/^https?:\/\//i.test(url)){
+      $formErr.textContent = "URL must start with http:// or https://";
+      $formErr.style.display = "block";
+      return;
+    }
+    var tags = $fTags.value.split(",").map(function(t){ return t.trim(); }).filter(Boolean);
+    if(editingId){
+      for(var i=0;i<custom.length;i++){
+        if(custom[i].id === editingId){
+          custom[i].title = title;
+          custom[i].url = url;
+          custom[i].desc = $fDesc.value.trim();
+          custom[i].cat = $fCat.value;
+          custom[i].type = $fType.value;
+          custom[i].tags = tags;
+        }
+      }
+      toast("Saved");
+    }else{
+      custom.push({
+        id: "u-" + Date.now().toString(36) + Math.random().toString(36).slice(2,7),
+        title: title, url: url,
+        desc: $fDesc.value.trim(),
+        cat: $fCat.value, type: $fType.value, tags: tags
+      });
+      toast("Added to library");
+    }
+    saveJSON(LS_CUSTOM, custom);
+    closeModal();
+    render();
+  });
+
+  /* ---------- Export / Import ---------- */
+  document.getElementById("exportBtn").addEventListener("click", function(){
+    var payload = { app: "rinnai-work-library", version: 1, exported: new Date().toISOString(), custom: custom, pins: pins };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "rinnai-library-backup.json";
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+    toast("Backup downloaded");
+  });
+  document.getElementById("importBtn").addEventListener("click", function(){
+    document.getElementById("importFile").click();
+  });
+  document.getElementById("importFile").addEventListener("change", function(ev){
+    var file = ev.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var data = JSON.parse(reader.result);
+        var added = 0;
+        if(Array.isArray(data.custom)){
+          data.custom.forEach(function(e){
+            if(!e || !e.title || !e.url) return;
+            var exists = custom.some(function(c){ return c.url === e.url; });
+            if(exists) return;
+            custom.push({
+              id: (typeof e.id === "string" && e.id.indexOf("u-") === 0) ? e.id : "u-" + Date.now().toString(36) + Math.random().toString(36).slice(2,7),
+              title: String(e.title).slice(0,120),
+              url: String(e.url),
+              desc: String(e.desc || "").slice(0,300),
+              cat: CATS.indexOf(e.cat) !== -1 ? e.cat : "My Links",
+              type: TYPE_LABEL[e.type] ? e.type : "page",
+              tags: Array.isArray(e.tags) ? e.tags.map(String).slice(0,20) : []
+            });
+            added++;
+          });
+        }
+        if(Array.isArray(data.pins)){
+          data.pins.forEach(function(p){
+            if(typeof p === "string" && pins.indexOf(p) === -1) pins.push(p);
+          });
+        }
+        saveJSON(LS_CUSTOM, custom);
+        saveJSON(LS_PINS, pins);
+        render();
+        toast(added ? "Imported " + added + " link" + (added === 1 ? "" : "s") : "Nothing new to import");
+      }catch(e){
+        toast("That file didn't look like a library backup");
+      }
+      ev.target.value = "";
+    };
+    reader.readAsText(file);
+  });
+
+  /* ---------- Init ---------- */
+  renderCats();
+  render();
+})();
 </script>
 
 </body>
