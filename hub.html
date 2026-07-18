@@ -25,6 +25,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:120px}
+  html,body{overflow-x:hidden;max-width:100%}
   @media (max-width:640px){html{scroll-padding-top:74px}}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -331,6 +332,8 @@
 
   /* ===== Small screens ===== */
   @media (max-width:640px){
+    /* 16px stops iOS Safari from auto-zooming (and then wobbling) when an input is tapped */
+    .filterbar input,.calc input,.calc select{font-size:16px}
     header{padding:52px 18px 40px}
     .eyebrow{margin-bottom:16px}
     main{padding:6px 14px 36px}
