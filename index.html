@@ -25,6 +25,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden;max-width:100%}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -158,6 +159,7 @@
   }
   .rowtitle a{
     font-size:.93rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;
+    overflow-wrap:anywhere;
   }
   .rowtitle a:hover{color:#FF5A6E}
   .rowtitle a::after{content:"";position:absolute;inset:0}
@@ -170,7 +172,7 @@
   .badge.login{color:#F59E0B;background:rgba(245,158,11,.1)}
   .badge.video{color:#38BDF8;background:rgba(56,189,248,.1)}
   .badge.tool{color:#4ADE80;background:rgba(74,222,128,.1)}
-  .rowdesc{font-size:.8rem;color:var(--body);margin-top:3px}
+  .rowdesc{font-size:.8rem;color:var(--body);margin-top:3px;overflow-wrap:anywhere}
   .rowurl{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:.66rem;color:var(--dim);margin-top:5px;
@@ -259,6 +261,17 @@
     .rowacts{flex-direction:column}
     .addbtn span{display:none}
     .addbtn{padding:11px 14px}
+  }
+  @media (max-width:640px){
+    /* 16px stops iOS Safari from auto-zooming (and then wobbling) when an input is tapped */
+    .searchbox input,.modal input,.modal select,.modal textarea{font-size:16px}
+    .tagline{font-size:.84rem}
+    .rowtitle a{font-size:.87rem}
+    .rowdesc{font-size:.76rem}
+    .group-head h2{font-size:.88rem}
+    .cat{font-size:.74rem;padding:6px 12px}
+    .badge{font-size:.55rem}
+    .row{padding:12px 12px;gap:10px}
   }
 </style>
 </head>
