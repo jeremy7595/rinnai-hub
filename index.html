@@ -115,6 +115,25 @@
 
   /* ===== List ===== */
   main{max-width:880px;margin:0 auto;padding:20px 16px 40px}
+  /* Featured YouTube button */
+  .feature-yt{
+    display:flex;align-items:center;gap:13px;
+    padding:13px 15px;margin:0 0 18px;border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid rgba(255,48,58,.5);
+    box-shadow:0 0 22px rgba(255,32,40,.16);
+    transition:border-color .15s var(--ease),box-shadow .15s var(--ease),transform .15s var(--ease);
+  }
+  .feature-yt:hover{border-color:rgba(255,48,58,.85);box-shadow:0 0 28px rgba(255,32,40,.26);transform:translateY(-1px)}
+  .feature-yt .yt-ico{
+    flex:0 0 auto;width:46px;height:32px;border-radius:8px;background:#FF0000;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(255,0,0,.4);
+  }
+  .feature-yt .yt-ico svg{width:19px;height:19px;fill:#fff}
+  .feature-yt .yt-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .feature-yt .yt-txt b{color:var(--ink);font-size:.98rem;font-weight:800;letter-spacing:-.01em}
+  .feature-yt .yt-txt span{color:var(--body);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .feature-yt .yt-go{flex:0 0 auto;color:#FF4750;font-weight:900;font-size:1.15rem;line-height:1}
   .meta-row{
     display:flex;justify-content:space-between;align-items:center;
     font-size:.75rem;color:var(--dim);margin-bottom:14px;flex-wrap:wrap;gap:8px;
@@ -318,6 +337,11 @@
 </div>
 
 <main>
+  <a class="feature-yt" href="https://www.youtube.com/@rinnaivideos" target="_blank" rel="noopener" aria-label="Rinnai YouTube Channel">
+    <span class="yt-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+    <span class="yt-txt"><b>Rinnai YouTube Channel</b><span>Installs, flushing, board replacement, venting walkthroughs</span></span>
+    <span class="yt-go" aria-hidden="true">&rsaquo;</span>
+  </a>
   <div class="meta-row">
     <span id="countLabel"></span>
     <span>Tip: press <span class="kbd">/</span> to search</span>
@@ -475,20 +499,16 @@
     // Charts & Quick Reference
     {id:"s-codes-full", title:"Complete Error Code Guide — All Rinnai Products", url:"https://images.salsify.com/image/upload/s--Xfn54DOw--/chm21orqxqwes8akeb9b.pdf", desc:"The unabridged version — every error code across Rinnai product lines, not just the common ones.", cat:"Diagnostics & Error Codes", type:"pdf", tags:["error codes","complete","all products","diagnostic","troubleshooting","service"]},
     {id:"s-codes", title:"Error Codes Quick Reference", url:"hub.html#codes", desc:"The codes you actually see, with first checks in the field.", cat:"Diagnostics & Error Codes", type:"tool", tags:["error codes","diagnostic","troubleshooting","11","12","LC"]},
-    {id:"s-specs", title:"Service Quick Specs & Flow Chart", url:"hub.html#specs", desc:"Gas pressure, vent length limits, dip switches, descale steps, GPM vs ΔT calculator and curve.", cat:"Diagnostics & Error Codes", type:"tool", tags:["gas pressure","dip switch","vent length","flow","GPM","delta T","chart","descale"]},
     {id:"s-gascalc", title:"Gas Pipe Sizing Calculator", url:"https://reuven.tools/tools/gas-pipe-sizing/", desc:"Interactive sizing calculator — plug in the run and BTUs instead of reading tables.", cat:"Gas, Venting & Sizing", type:"tool", tags:["gas sizing","pipe","calculator","natural gas","propane"]},
     {id:"s-tb111", title:"Gas Pipe Sizing — TB-111 Technical Bulletin", url:"https://media.rinnai.us/salsify_asset/s-f905168b-b0a9-4b7c-a205-bbb8071597bb/TB-111%20Half%20Inch%20Gas%20line.pdf", desc:"Rinnai's official 1/2\" gas line tables — the paper backup for the calculator.", cat:"Gas, Venting & Sizing", type:"pdf", tags:["gas sizing","pipe","chart","TB-111","half inch","natural gas","propane"]},
 
     // Product Pages
     {id:"s-cx", title:"SENSEI CX Commercial Tankless", url:"https://www.rinnai.us/commercial/tankless-water-heaters", desc:"199k BTU, 185°F output, cascades up to 24 units.", cat:"SENSEI RX / CX", type:"page", tags:["CX","CXP","commercial","tankless"]},
     {id:"s-duo", title:"Demand Duo Hybrid Systems", url:"https://www.rinnai.us/commercial/demand-duo", desc:"Tank + tankless hybrid — direct commercial tank replacement.", cat:"Demand Duo", type:"page", tags:["Demand Duo","hybrid","commercial"]},
-    {id:"s-comm", title:"Commercial Overview + Free Sizing", url:"https://www.rinnai.us/commercial", desc:"Rinnai engineering sizes your system free — quotes within 48 hours.", cat:"Portals & Ordering", type:"page", tags:["commercial","sizing","overview"]},
     {id:"s-grundfos", title:"Grundfos Alpha HWR", url:"https://product-selection.grundfos.com/us/products/alpha-north-america/alpha-hwr-sf-t-north-america?tab=models", desc:"Smart indoor recirculation pump — the go-to for comfort recirc retrofits.", cat:"System Design & Multi-Unit", type:"page", tags:["recirculation","pump","Grundfos","retrofit"]},
 
     // Training & Video
-    {id:"s-yt", title:"Rinnai YouTube Channel", url:"https://www.youtube.com/@rinnaivideos", desc:"Installs, flushing, board replacement, venting walkthroughs.", cat:"Training & Video", type:"video", tags:["video","training","YouTube"]},
     {id:"s-absorb", title:"Rinnai PRO Training (Absorb LMS)", url:"https://rinnaipro.myabsorb.com", desc:"Official online certification courses for Rinnai tankless.", cat:"Training & Video", type:"login", tags:["training","certification","LMS","Absorb"]},
-    {id:"s-classes", title:"Live Hands-On Classes", url:"https://class-creation.netlify.app", desc:"In-person Rinnai training in SoCal — register for the next session.", cat:"Training & Video", type:"tool", tags:["training","classes","register","SoCal"]},
 
     // Self-hosted documents (PDFs served from this site's /docs folder)
     {id:"s-design-man", title:"Hot Water System Design Manual", url:"docs/hot-water-system-design-manual.pdf", desc:"Plumbing schematics for single and multiple units — recirculation, storage tanks, full system design (R-TRWH-E-02).", cat:"System Design & Multi-Unit", type:"pdf", tags:["design","schematics","recirculation","storage","multi-unit","manifold","system design","plumbing"]},
