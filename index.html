@@ -132,6 +132,15 @@
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:.68rem;color:var(--dim);letter-spacing:.1em;
   }
+  .group-head .gicon{
+    flex:0 0 auto;font-size:.66rem;font-weight:900;letter-spacing:.05em;
+    text-transform:uppercase;line-height:1;white-space:nowrap;
+    padding:5px 9px;border-radius:8px;
+    color:rgb(var(--accent,170,172,182));
+    background:rgba(var(--accent,170,172,182),.15);
+    border:1px solid rgba(var(--accent,170,172,182),.45);
+    box-shadow:0 0 12px rgba(var(--accent,170,172,182),.14);
+  }
   button.group-head{
     width:100%;background:transparent;border:0;padding:6px 0;text-align:left;
   }
@@ -392,6 +401,20 @@
     "Portals & Ordering":         "140,190,210",
     "Training & Video":           "224,160,200"
   };
+  // Short, high-visibility icon/badge shown on each group header (in the group's accent color)
+  var CAT_ICON = {
+    "SENSEI RX / CX":             "RX/CX",
+    "RE Series":                  "RE",
+    "RCW":                        "RCW",
+    "Demand Duo":                 "DUO",
+    "Heat Pump (Electric)":       "HEAT",
+    "RU Series":                  "RU",
+    "Diagnostics & Error Codes":  "ERROR",
+    "System Design & Multi-Unit": "DESIGN",
+    "Gas, Venting & Sizing":      "GAS",
+    "Portals & Ordering":         "PARTS",
+    "Training & Video":           "VIDEO"
+  };
 
   /* ---------- Seed catalog ---------- */
   var SEED = [
@@ -622,6 +645,7 @@
       html += '<div class="group'+(isCollapsed?' collapsed':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
         '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
           '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
+          (CAT_ICON[cat] ? '<span class="gicon">'+esc(CAT_ICON[cat])+'</span>' : '') +
           '<h2>'+esc(cat)+'</h2><span class="n">'+group.length+'</span>' +
           (isCollapsed ? '<span class="hint">tap to show</span>' : '') +
         '</button>' +
