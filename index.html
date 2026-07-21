@@ -123,9 +123,9 @@
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:.7rem;
   }
-  .group{margin-bottom:26px}
+  .group{margin-bottom:12px}
   .group-head{
-    display:flex;align-items:center;gap:10px;margin-bottom:10px;
+    display:flex;align-items:center;gap:10px;
   }
   .group-head h2{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em}
   .group-head .n{
@@ -142,9 +142,14 @@
     box-shadow:0 0 12px rgba(var(--accent,170,172,182),.14);
   }
   button.group-head{
-    width:100%;background:transparent;border:0;padding:6px 0;text-align:left;
+    width:100%;text-align:left;padding:14px 14px;border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid rgba(var(--accent,120,122,132),.42);
+    box-shadow:0 0 14px rgba(var(--accent,120,122,132),.09);
+    transition:border-color .15s var(--ease),box-shadow .15s var(--ease);
   }
-  button.group-head:hover h2{color:#FF5A6E}
+  button.group-head:hover{border-color:rgba(var(--accent,120,122,132),.7);box-shadow:0 0 20px rgba(var(--accent,120,122,132),.16)}
+  .group:not(.collapsed) button.group-head{margin-bottom:8px}
   .group-head .chev{
     width:14px;height:14px;flex:0 0 auto;
     stroke:var(--dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
@@ -637,7 +642,7 @@
       var group = rest.filter(function(e){ return e.cat === cat; });
       if(!group.length) return;
       group.sort(function(a,b){ return a.title.localeCompare(b.title); });
-      var isCollapsed = !searching && activeCat === "All" && collapse[cat];
+      var isCollapsed = !searching && activeCat === "All" && (collapse[cat] !== false);
       var accent = CAT_ACCENT[cat];
       html += '<div class="group'+(isCollapsed?' collapsed':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
         '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
@@ -696,7 +701,7 @@
     var tog = ev.target.closest("[data-toggle]");
     if(tog){
       var tcat = tog.getAttribute("data-toggle");
-      collapse[tcat] = !collapse[tcat];
+      collapse[tcat] = (collapse[tcat] !== false) ? false : true;
       saveJSON(LS_COLLAPSE, collapse);
       render();
       return;
