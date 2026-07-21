@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rinnai Work Library — Docs &amp; Links</title>
 <meta name="description" content="A centralized location for finding links, documents, and other important information on your mobile device.">
-<meta name="theme-color" content="#0D0D0D">
+<meta name="theme-color" content="#242428">
 <meta name="apple-mobile-web-app-title" content="Rinnai Library">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0D0D0D;
+    --bg:#242428;
     --card:#1A1A1C;
     --line:#2A2A2D;
     --ink:#FFFFFF;
@@ -69,7 +69,7 @@
   /* ===== Toolbar ===== */
   .toolbar{
     position:sticky;top:0;z-index:50;
-    background:rgba(13,13,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(36,36,40,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
     padding:12px 16px;
   }
@@ -148,11 +148,14 @@
   .rows{display:flex;flex-direction:column;gap:8px}
   .row{
     display:flex;gap:12px;align-items:flex-start;
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid rgba(var(--accent,120,122,132),.36);
+    box-shadow:0 0 16px rgba(var(--accent,120,122,132),.10);
+    border-radius:var(--radius);
     padding:13px 14px;transition:all .15s var(--ease);position:relative;
   }
-  .row:hover{border-color:rgba(200,16,46,.55);box-shadow:0 4px 20px rgba(200,16,46,.1)}
-  .row.pinned-row{border-color:rgba(200,16,46,.35)}
+  .row:hover{border-color:rgba(var(--accent,120,122,132),.6);box-shadow:0 0 22px rgba(var(--accent,120,122,132),.18)}
+  .row.pinned-row{border-color:rgba(200,16,46,.55)}
   .rowmain{flex:1;min-width:0}
   .rowtitle{
     display:flex;align-items:center;gap:8px;flex-wrap:wrap;
@@ -372,6 +375,17 @@
   ];
   // Categories that start collapsed — tap the header to expand
   var DEFAULT_COLLAPSED = {};
+  // Soft pastel accent per group — used for a hazy outline/glow on that group's cards (R,G,B)
+  var CAT_ACCENT = {
+    "Condensing":                 "122,170,224",
+    "Non-Condensing":             "226,148,155",
+    "Heat Pump (Electric)":       "138,208,164",
+    "System Design & Multi-Unit": "184,158,226",
+    "Diagnostics & Error Codes":  "230,193,132",
+    "Gas, Venting & Sizing":      "220,212,140",
+    "Portals & Ordering":         "138,196,206",
+    "Training & Video":           "140,206,220"
+  };
 
   /* ---------- Seed catalog ---------- */
   var SEED = [
@@ -598,7 +612,8 @@
       if(!group.length) return;
       group.sort(function(a,b){ return a.title.localeCompare(b.title); });
       var isCollapsed = !searching && activeCat === "All" && collapse[cat];
-      html += '<div class="group'+(isCollapsed?' collapsed':'')+'">' +
+      var accent = CAT_ACCENT[cat];
+      html += '<div class="group'+(isCollapsed?' collapsed':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
         '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
           '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
           '<h2>'+esc(cat)+'</h2><span class="n">'+group.length+'</span>' +
