@@ -134,6 +134,26 @@
   .feature-yt .yt-txt b{color:var(--ink);font-size:.98rem;font-weight:800;letter-spacing:-.01em}
   .feature-yt .yt-txt span{color:var(--body);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .feature-yt .yt-go{flex:0 0 auto;color:#FF4750;font-weight:900;font-size:1.15rem;line-height:1}
+  /* Featured Rinnai Store button */
+  .feature-store{
+    display:flex;align-items:center;gap:13px;
+    padding:13px 15px;margin:0 0 18px;border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid rgba(200,16,46,.5);
+    box-shadow:0 0 22px rgba(200,16,46,.16);
+    transition:border-color .15s var(--ease),box-shadow .15s var(--ease),transform .15s var(--ease);
+  }
+  .feature-store:hover{border-color:rgba(200,16,46,.85);box-shadow:0 0 28px rgba(200,16,46,.26);transform:translateY(-1px)}
+  .feature-store .store-logo{
+    flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+    padding:7px 12px;border-radius:8px;background:#FFFFFF;
+    color:#C8102E;font-weight:900;font-size:1.02rem;letter-spacing:-.02em;line-height:1;
+    box-shadow:0 0 14px rgba(200,16,46,.32);
+  }
+  .feature-store .store-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .feature-store .store-txt b{color:var(--ink);font-size:.98rem;font-weight:800;letter-spacing:-.01em}
+  .feature-store .store-txt span{color:var(--body);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .feature-store .store-go{flex:0 0 auto;color:#E5344A;font-weight:900;font-size:1.15rem;line-height:1}
   .meta-row{
     display:flex;justify-content:space-between;align-items:center;
     font-size:.75rem;color:var(--dim);margin-bottom:14px;flex-wrap:wrap;gap:8px;
@@ -342,6 +362,11 @@
     <span class="yt-txt"><b>Rinnai YouTube Channel</b><span>Installs, flushing, board replacement, venting walkthroughs</span></span>
     <span class="yt-go" aria-hidden="true">&rsaquo;</span>
   </a>
+  <a class="feature-store" href="https://store.rinnai.us/instance2EnvAALogin/html/login.html" target="_blank" rel="noopener" aria-label="Rinnai Store">
+    <span class="store-logo">Rinnai</span>
+    <span class="store-txt"><b>Rinnai Store</b><span>Order OEM parts &amp; components — PRO login</span></span>
+    <span class="store-go" aria-hidden="true">&rsaquo;</span>
+  </a>
   <div class="meta-row">
     <span id="countLabel"></span>
     <span>Tip: press <span class="kbd">/</span> to search</span>
@@ -467,7 +492,6 @@
     {id:"s-sp-rue", title:"RU Outdoor Spec Sheet (RUe-SP)", url:"https://media.rinnai.us/salsify_asset/s-ae254def-662a-4241-ac5c-3cdf1ea2fee0/RUe-SP-4%20SENSEI%20Condensing%20Residential%20Outdoor%20Spec%20Sheet.pdf", desc:"RU199e · RU180e · RU160e · RU130e — prior-gen condensing, outdoor.", cat:"RU Series", type:"pdf", tags:["RU","spec sheet","tech data","condensing","outdoor"]},
 
     // Portals & Ordering
-    {id:"s-store", title:"Rinnai Store", url:"https://store.rinnai.us/instance2EnvAALogin/html/login.html", desc:"Order OEM parts and components direct — PRO login required.", cat:"Portals & Ordering", type:"login", tags:["parts","ordering","OEM","store"]},
     {id:"s-rinnai", title:"Rinnai.us", url:"https://www.rinnai.us", desc:"Main Rinnai US site — products, support, warranty.", cat:"Portals & Ordering", type:"page", tags:["main site","warranty","support"]},
 
     // Manuals & Install
