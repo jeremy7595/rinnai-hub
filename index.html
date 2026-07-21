@@ -115,6 +115,25 @@
 
   /* ===== List ===== */
   main{max-width:880px;margin:0 auto;padding:20px 16px 40px}
+  /* Featured YouTube button */
+  .feature-yt{
+    display:flex;align-items:center;gap:13px;
+    padding:13px 15px;margin:0 0 18px;border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid rgba(255,48,58,.5);
+    box-shadow:0 0 22px rgba(255,32,40,.16);
+    transition:border-color .15s var(--ease),box-shadow .15s var(--ease),transform .15s var(--ease);
+  }
+  .feature-yt:hover{border-color:rgba(255,48,58,.85);box-shadow:0 0 28px rgba(255,32,40,.26);transform:translateY(-1px)}
+  .feature-yt .yt-ico{
+    flex:0 0 auto;width:46px;height:32px;border-radius:8px;background:#FF0000;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(255,0,0,.4);
+  }
+  .feature-yt .yt-ico svg{width:19px;height:19px;fill:#fff}
+  .feature-yt .yt-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .feature-yt .yt-txt b{color:var(--ink);font-size:.98rem;font-weight:800;letter-spacing:-.01em}
+  .feature-yt .yt-txt span{color:var(--body);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .feature-yt .yt-go{flex:0 0 auto;color:#FF4750;font-weight:900;font-size:1.15rem;line-height:1}
   .meta-row{
     display:flex;justify-content:space-between;align-items:center;
     font-size:.75rem;color:var(--dim);margin-bottom:14px;flex-wrap:wrap;gap:8px;
@@ -318,6 +337,11 @@
 </div>
 
 <main>
+  <a class="feature-yt" href="https://www.youtube.com/@rinnaivideos" target="_blank" rel="noopener" aria-label="Rinnai YouTube Channel">
+    <span class="yt-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+    <span class="yt-txt"><b>Rinnai YouTube Channel</b><span>Installs, flushing, board replacement, venting walkthroughs</span></span>
+    <span class="yt-go" aria-hidden="true">&rsaquo;</span>
+  </a>
   <div class="meta-row">
     <span id="countLabel"></span>
     <span>Tip: press <span class="kbd">/</span> to search</span>
@@ -484,7 +508,6 @@
     {id:"s-grundfos", title:"Grundfos Alpha HWR", url:"https://product-selection.grundfos.com/us/products/alpha-north-america/alpha-hwr-sf-t-north-america?tab=models", desc:"Smart indoor recirculation pump — the go-to for comfort recirc retrofits.", cat:"System Design & Multi-Unit", type:"page", tags:["recirculation","pump","Grundfos","retrofit"]},
 
     // Training & Video
-    {id:"s-yt", title:"Rinnai YouTube Channel", url:"https://www.youtube.com/@rinnaivideos", desc:"Installs, flushing, board replacement, venting walkthroughs.", cat:"Training & Video", type:"video", tags:["video","training","YouTube"]},
     {id:"s-absorb", title:"Rinnai PRO Training (Absorb LMS)", url:"https://rinnaipro.myabsorb.com", desc:"Official online certification courses for Rinnai tankless.", cat:"Training & Video", type:"login", tags:["training","certification","LMS","Absorb"]},
 
     // Self-hosted documents (PDFs served from this site's /docs folder)
