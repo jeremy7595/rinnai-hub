@@ -15,5 +15,3 @@ export default async () => {
     return Response.json({ error: String(err) }, { status: 500 });
   }
 };
-
-export const config = { path: "/archive-status" };
