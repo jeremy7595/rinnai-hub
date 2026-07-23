@@ -86,5 +86,3 @@ export default async (request) => {
     return Response.redirect(source, 302);
   }
 };
-
-export const config = { path: "/doc/*" };
