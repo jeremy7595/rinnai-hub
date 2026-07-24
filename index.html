@@ -48,6 +48,12 @@
     background:radial-gradient(ellipse 70% 55% at 50% 108%, rgba(200,16,46,.14) 0%, rgba(255,90,40,.05) 45%, transparent 75%);
   }
   header>*{position:relative}
+  .build{
+    position:absolute;top:8px;right:10px;z-index:2;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.56rem;font-weight:600;letter-spacing:.04em;
+    color:var(--dim);opacity:.7;
+  }
   .eyebrow{
     display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.16em;
     text-transform:uppercase;color:var(--red);
@@ -347,6 +353,7 @@
 <body>
 
 <header>
+  <span class="build">v36</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
   <span class="eyebrow">Everything In One Place</span>
   <h1>Rinnai <span class="red">Work Library</span></h1>
   <p class="tagline">A centralized location for finding links, documents, and other important information on your mobile device.</p>
