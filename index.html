@@ -204,12 +204,12 @@
     50%{transform:scale(1.012);box-shadow:0 0 30px rgba(var(--accent,120,122,132),.42);border-color:rgba(var(--accent,120,122,132),.95)}
     100%{transform:scale(1);box-shadow:0 0 14px rgba(var(--accent,120,122,132),.09)}
   }
-  .group.opening button.group-head{animation:headPop .6s var(--ease)}
+  .group.opening button.group-head{animation:headPop .8s var(--ease)}
   @keyframes rowIn{
-    from{opacity:0;transform:translateY(-16px) scale(.975)}
+    from{opacity:0;transform:translateY(-20px) scale(.97)}
     to{opacity:1;transform:none}
   }
-  .group.opening .rows .row{animation:rowIn .55s var(--ease) both}
+  .group.opening .rows .row{animation:rowIn .72s var(--ease) both}
   .group-head .chev{
     width:14px;height:14px;flex:0 0 auto;
     stroke:var(--dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
@@ -355,7 +355,7 @@
 <body>
 
 <header>
-  <span class="build">v41</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
+  <span class="build">v42</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
   <span class="eyebrow">Everything In One Place</span>
   <h1>Rinnai <span class="red">Work Library</span></h1>
   <p class="tagline">A centralized location for finding links, documents, and other important information on your mobile device.</p>
@@ -721,7 +721,7 @@
       var opening = !isCollapsed && cat === opened;
       var accent = CAT_ACCENT[cat];
       var rowsHTML = opening
-        ? group.map(function(e, i){ return rowHTML(e, i * 0.12); }).join("")
+        ? group.map(function(e, i){ return rowHTML(e, i * 0.17); }).join("")
         : group.map(function(e){ return rowHTML(e); }).join("");
       html += '<div class="group'+(isCollapsed?' collapsed':'')+(opening?' opening':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
         '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
@@ -781,8 +781,13 @@
     if(tog){
       var tcat = tog.getAttribute("data-toggle");
       var willOpen = collapse[tcat] !== false;   // currently collapsed -> this tap opens it
-      collapse[tcat] = willOpen ? false : true;
-      if(willOpen) justOpened = tcat;             // trigger the pop + cascade on open
+      if(willOpen){
+        CATS.forEach(function(c){ collapse[c] = true; });  // accordion: close every other group
+        collapse[tcat] = false;                            // open only the tapped one
+        justOpened = tcat;                                 // trigger the pop + cascade on open
+      } else {
+        collapse[tcat] = true;                             // tapping an open group closes it
+      }
       saveJSON(LS_COLLAPSE, collapse);
       render();
       return;
