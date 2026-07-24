@@ -189,6 +189,19 @@
   }
   button.group-head:hover{border-color:rgba(var(--accent,120,122,132),.7);box-shadow:0 0 20px rgba(var(--accent,120,122,132),.16)}
   .group:not(.collapsed) button.group-head{margin-bottom:8px}
+  /* Deliberate open: press-in, a little pop on the pushed button, cards cascade in */
+  button.group-head:active{transform:scale(.98)}
+  @keyframes headPop{
+    0%{transform:scale(.985);box-shadow:0 0 14px rgba(var(--accent,120,122,132),.09)}
+    50%{transform:scale(1.012);box-shadow:0 0 30px rgba(var(--accent,120,122,132),.42);border-color:rgba(var(--accent,120,122,132),.95)}
+    100%{transform:scale(1);box-shadow:0 0 14px rgba(var(--accent,120,122,132),.09)}
+  }
+  .group.opening button.group-head{animation:headPop .4s var(--ease)}
+  @keyframes rowIn{
+    from{opacity:0;transform:translateY(-10px) scale(.985)}
+    to{opacity:1;transform:none}
+  }
+  .group.opening .rows .row{animation:rowIn .34s var(--ease) both}
   .group-head .chev{
     width:14px;height:14px;flex:0 0 auto;
     stroke:var(--dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
@@ -643,8 +656,9 @@
   /* ---------- Rendering ---------- */
   var TYPE_LABEL = {pdf:"PDF", page:"Page", login:"Login", video:"Video", tool:"Tool"};
 
-  function rowHTML(e){
+  function rowHTML(e, delay){
     var pinned = isPinned(e.id);
+    var animStyle = (typeof delay === "number") ? ' style="animation-delay:'+delay+'s"' : '';
     var isCustom = e.id.indexOf("u-") === 0;
     var external = /^[a-z]+:/i.test(e.url);
     var actions =
@@ -659,7 +673,7 @@
         '<button class="iconbtn" data-act="del" data-id="'+esc(e.id)+'" title="Delete" aria-label="Delete">' +
           '<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15M10 11v6M14 11v6"/></svg></button>';
     }
-    return '<div class="row'+(pinned?' pinned-row':'')+'">' +
+    return '<div class="row'+(pinned?' pinned-row':'')+'"'+animStyle+'>' +
       '<div class="rowmain">' +
         '<div class="rowtitle">' +
           '<a href="'+esc(e.url)+'"'+(external?' target="_blank" rel="noopener"':'')+'>'+esc(e.title)+'</a>' +
@@ -672,7 +686,9 @@
     '</div>';
   }
 
+  var justOpened = null;   // cat name of a group just tapped open, for the reveal animation
   function render(){
+    var opened = justOpened; justOpened = null;   // animate only the group just tapped open
     var words = query.toLowerCase().split(/\s+/).filter(Boolean);
     var entries = allEntries().filter(function(e){
       if(activeCat !== "All" && e.cat !== activeCat) return false;
@@ -685,7 +701,7 @@
     var html = "";
     if(pinned.length){
       html += '<div class="group"><div class="group-head"><h2>&#9733; Pinned</h2><span class="n">'+pinned.length+'</span></div><div class="rows">' +
-        pinned.map(rowHTML).join("") + '</div></div>';
+        pinned.map(function(e){ return rowHTML(e); }).join("") + '</div></div>';
     }
     var searching = words.length > 0;
     CATS.forEach(function(cat){
@@ -693,15 +709,19 @@
       if(!group.length) return;
       group.sort(function(a,b){ return a.title.localeCompare(b.title); });
       var isCollapsed = !searching && activeCat === "All" && (collapse[cat] !== false);
+      var opening = !isCollapsed && cat === opened;
       var accent = CAT_ACCENT[cat];
-      html += '<div class="group'+(isCollapsed?' collapsed':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
+      var rowsHTML = opening
+        ? group.map(function(e, i){ return rowHTML(e, i * 0.06); }).join("")
+        : group.map(function(e){ return rowHTML(e); }).join("");
+      html += '<div class="group'+(isCollapsed?' collapsed':'')+(opening?' opening':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
         '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
           '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
           (CAT_ICON[cat] ? '<span class="gicon">'+esc(CAT_ICON[cat])+'</span>' : '') +
           '<h2>'+esc(cat)+'</h2><span class="n">'+group.length+'</span>' +
           (isCollapsed ? '<span class="hint">tap to show</span>' : '') +
         '</button>' +
-        (isCollapsed ? '' : '<div class="rows">'+group.map(rowHTML).join("")+'</div>') +
+        (isCollapsed ? '' : '<div class="rows">'+rowsHTML+'</div>') +
       '</div>';
     });
 
@@ -751,7 +771,9 @@
     var tog = ev.target.closest("[data-toggle]");
     if(tog){
       var tcat = tog.getAttribute("data-toggle");
-      collapse[tcat] = (collapse[tcat] !== false) ? false : true;
+      var willOpen = collapse[tcat] !== false;   // currently collapsed -> this tap opens it
+      collapse[tcat] = willOpen ? false : true;
+      if(willOpen) justOpened = tcat;             // trigger the pop + cascade on open
       saveJSON(LS_COLLAPSE, collapse);
       render();
       return;
