@@ -14,6 +14,7 @@
   :root{
     --bg:#242428;
     --card:#1A1A1C;
+    --row:#3C3C42;
     --line:#2A2A2D;
     --ink:#FFFFFF;
     --body:#A0A0A8;
@@ -219,10 +220,10 @@
   .group-head .hint{
     margin-left:auto;font-size:.68rem;font-weight:600;color:var(--dim);
   }
-  .rows{display:flex;flex-direction:column;gap:8px}
+  .rows{display:flex;flex-direction:column;gap:8px;padding:0 10px}
   .row{
     display:flex;gap:12px;align-items:flex-start;
-    background:var(--card);
+    background:var(--row);
     border:1px solid rgba(var(--accent,120,122,132),.36);
     box-shadow:0 0 16px rgba(var(--accent,120,122,132),.10);
     border-radius:var(--radius);
@@ -355,7 +356,7 @@
 <body>
 
 <header>
-  <span class="build">v42</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
+  <span class="build">v43</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
   <span class="eyebrow">Everything In One Place</span>
   <h1>Rinnai <span class="red">Work Library</span></h1>
   <p class="tagline">A centralized location for finding links, documents, and other important information on your mobile device.</p>
