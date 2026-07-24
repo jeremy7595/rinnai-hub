@@ -196,12 +196,12 @@
     50%{transform:scale(1.012);box-shadow:0 0 30px rgba(var(--accent,120,122,132),.42);border-color:rgba(var(--accent,120,122,132),.95)}
     100%{transform:scale(1);box-shadow:0 0 14px rgba(var(--accent,120,122,132),.09)}
   }
-  .group.opening button.group-head{animation:headPop .4s var(--ease)}
+  .group.opening button.group-head{animation:headPop .6s var(--ease)}
   @keyframes rowIn{
-    from{opacity:0;transform:translateY(-10px) scale(.985)}
+    from{opacity:0;transform:translateY(-16px) scale(.975)}
     to{opacity:1;transform:none}
   }
-  .group.opening .rows .row{animation:rowIn .34s var(--ease) both}
+  .group.opening .rows .row{animation:rowIn .55s var(--ease) both}
   .group-head .chev{
     width:14px;height:14px;flex:0 0 auto;
     stroke:var(--dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
@@ -712,7 +712,7 @@
       var opening = !isCollapsed && cat === opened;
       var accent = CAT_ACCENT[cat];
       var rowsHTML = opening
-        ? group.map(function(e, i){ return rowHTML(e, i * 0.06); }).join("")
+        ? group.map(function(e, i){ return rowHTML(e, i * 0.12); }).join("")
         : group.map(function(e){ return rowHTML(e); }).join("");
       html += '<div class="group'+(isCollapsed?' collapsed':'')+(opening?' opening':'')+'"'+(accent?' style="--accent:'+accent+'"':'')+'>' +
         '<button type="button" class="group-head" data-toggle="'+esc(cat)+'" aria-expanded="'+(!isCollapsed)+'">' +
