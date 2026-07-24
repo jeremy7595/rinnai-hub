@@ -49,10 +49,12 @@
   }
   header>*{position:relative}
   .build{
-    position:absolute;top:8px;right:10px;z-index:2;
+    position:absolute;top:10px;right:10px;z-index:5;
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    font-size:.56rem;font-weight:600;letter-spacing:.04em;
-    color:var(--dim);opacity:.7;
+    font-size:.72rem;font-weight:800;letter-spacing:.02em;
+    color:#FFFFFF;background:var(--red);
+    border-radius:7px;padding:3px 8px;
+    box-shadow:0 0 12px rgba(200,16,46,.5);
   }
   .eyebrow{
     display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.16em;
@@ -353,7 +355,7 @@
 <body>
 
 <header>
-  <span class="build">v36</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
+  <span class="build">v37</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
   <span class="eyebrow">Everything In One Place</span>
   <h1>Rinnai <span class="red">Work Library</span></h1>
   <p class="tagline">A centralized location for finding links, documents, and other important information on your mobile device.</p>
