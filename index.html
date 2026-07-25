@@ -7,6 +7,12 @@
 <meta name="description" content="A centralized location for finding links, documents, and other important information on your mobile device.">
 <meta name="theme-color" content="#242428">
 <meta name="apple-mobile-web-app-title" content="Rinnai Library">
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -356,7 +362,7 @@
 <body>
 
 <header>
-  <span class="build">v43</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
+  <span class="build">v44</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
   <span class="eyebrow">Everything In One Place</span>
   <h1>Rinnai <span class="red">Work Library</span></h1>
   <p class="tagline">A centralized location for finding links, documents, and other important information on your mobile device.</p>
@@ -950,6 +956,15 @@
   renderCats();
   render();
 })();
+</script>
+
+<script>
+  /* Register the service worker so the app opens offline (PWA). */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
 </script>
 
 </body>
