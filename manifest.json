@@ -1,0 +1,15 @@
+{
+  "name": "Rinnai Work Library",
+  "short_name": "Rinnai Library",
+  "description": "Rinnai field resources — manuals, spec sheets, tech data, and links.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#242428",
+  "theme_color": "#242428",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
