@@ -362,7 +362,7 @@
 <body>
 
 <header>
-  <span class="build">v44</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
+  <span class="build">v45</span><!-- BUMP THIS on every deploy so a refresh is verifiable -->
   <span class="eyebrow">Everything In One Place</span>
   <h1>Rinnai <span class="red">Work Library</span></h1>
   <p class="tagline">A centralized location for finding links, documents, and other important information on your mobile device.</p>
@@ -551,7 +551,6 @@
 
     // Charts & Quick Reference
     {id:"s-codes-full", title:"Complete Error Code Guide — All Rinnai Products", url:"https://images.salsify.com/image/upload/s--Xfn54DOw--/chm21orqxqwes8akeb9b.pdf", desc:"The unabridged version — every error code across Rinnai product lines, not just the common ones.", cat:"Diagnostics & Error Codes", type:"pdf", tags:["error codes","complete","all products","diagnostic","troubleshooting","service"]},
-    {id:"s-codes", title:"Error Codes Quick Reference", url:"hub.html#codes", desc:"The codes you actually see, with first checks in the field.", cat:"Diagnostics & Error Codes", type:"tool", tags:["error codes","diagnostic","troubleshooting","11","12","LC"]},
     {id:"s-gascalc", title:"Gas Pipe Sizing Calculator", url:"https://reuven.tools/tools/gas-pipe-sizing/", desc:"Interactive sizing calculator — plug in the run and BTUs instead of reading tables.", cat:"Gas, Venting & Sizing", type:"tool", tags:["gas sizing","pipe","calculator","natural gas","propane"]},
     {id:"s-tb111", title:"Gas Pipe Sizing — TB-111 Technical Bulletin", url:"https://media.rinnai.us/salsify_asset/s-f905168b-b0a9-4b7c-a205-bbb8071597bb/TB-111%20Half%20Inch%20Gas%20line.pdf", desc:"Rinnai's official 1/2\" gas line tables — the paper backup for the calculator.", cat:"Gas, Venting & Sizing", type:"pdf", tags:["gas sizing","pipe","chart","TB-111","half inch","natural gas","propane"]},
 
@@ -692,7 +691,7 @@
     return '<div class="row'+(pinned?' pinned-row':'')+'"'+animStyle+'>' +
       '<div class="rowmain">' +
         '<div class="rowtitle">' +
-          '<a href="'+esc(e.url)+'"'+(external?' target="_blank" rel="noopener"':'')+'>'+esc(e.title)+'</a>' +
+          '<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a>' +
           '<span class="badge '+esc(e.type)+'">'+(TYPE_LABEL[e.type]||"Link")+'</span>' +
         '</div>' +
         (e.desc ? '<p class="rowdesc">'+esc(e.desc)+'</p>' : '') +
