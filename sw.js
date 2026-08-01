@@ -1,6 +1,6 @@
 /* Rinnai Work Library — service worker (offline support)
    Bump CACHE on every deploy so clients pick up the new build. */
-const CACHE = 'rwl-v45';
+const CACHE = 'rwl-v46';
 const PRECACHE = [
   '/', '/index.html', '/manifest.json',
   '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'
